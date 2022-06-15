@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.hubspot.jinjava:jinjava:2.1.19">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/hubspot/jinjava/jinjava/2.1.19/jinjava-2.1.19.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/hubspot/jinjava/jinjava/2.1.19/jinjava-2.1.19-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/hubspot/jinjava/jinjava/2.1.19/jinjava-2.1.19-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
