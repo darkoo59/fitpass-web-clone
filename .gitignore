@@ -1,24 +1,108 @@
-# Compiled class file
-*.class
+### Spark ###
+*#*#
+*.#*
+*.iml
+*.ipr
+*.iws
+*.pyc
+*.pyo
+*.swp
+*~
+.DS_Store
+.cache
+.classpath
+.ensime
+.ensime_cache/
+.ensime_lucene
+.generated-mima*
+.idea/
+.idea_modules/
+.project
+.pydevproject
+.scala_dependencies
+.settings
+/lib/
+R-unit-tests.log
+R/unit-tests.out
+R/cran-check.out
+R/pkg/vignettes/sparkr-vignettes.html
+R/pkg/tests/fulltests/Rplots.pdf
+build/*.jar
+build/apache-maven*
+build/scala*
+build/zinc*
+cache
+checkpoint
+conf/*.cmd
+conf/*.conf
+conf/*.properties
+conf/*.sh
+conf/*.xml
+conf/java-opts
+conf/slaves
+dependency-reduced-pom.xml
+derby.log
+dev/create-release/*final
+dev/create-release/*txt
+dev/pr-deps/
+dist/
+docs/_site
+docs/api
+sql/docs
+sql/site
+lib_managed/
+lint-r-report.log
+log/
+logs/
+out/
+project/boot/
+project/build/target/
+project/plugins/lib_managed/
+project/plugins/project/build.properties
+project/plugins/src_managed/
+project/plugins/target/
+python/lib/pyspark.zip
+python/deps
+python/test_coverage/coverage_data
+python/test_coverage/htmlcov
+python/pyspark/python
+reports/
+scalastyle-on-compile.generated.xml
+scalastyle-output.xml
+scalastyle.txt
+spark-*-bin-*.tgz
+spark-tests.log
+src_managed/
+streaming-tests.log
+target/
+unit-tests.log
+work/
+docs/.jekyll-metadata
 
-# Log file
-*.log
+# For Hive
+TempStatsStore/
+metastore/
+metastore_db/
+sql/hive-thriftserver/test_warehouses
+warehouse/
+spark-warehouse/
 
-# BlueJ files
-*.ctxt
+# For R session data
+.RData
+.RHistory
+.Rhistory
+*.Rproj
+*.Rproj.*
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+.Rproj.user
 
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
+# For SBT
+.jvmopts
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+
+### Vuejs ###
+# Recommended template: Node.gitignore
+
+node_modules/
+npm-debug.log
+yarn-error.log
