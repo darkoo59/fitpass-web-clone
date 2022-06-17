@@ -1,67 +1,37 @@
 <template>
-  <div class="header">
-    <h2>{{msg}}</h2>
-    <div class="header-right">
-      <a class="login" href="#login">Login</a>
-      <router-link to="/register">Register</router-link>
-    </div>
+  <div class="header gradient-custom">
+    <div class="row">
+      <div class="col-lg-5"></div>
+      <div class="col-lg-5"></div>
+      <div class="col-lg-2">
+        <router-link to="/login">
+          <input class="btn btn-primary" type="button" value="Login">
+        </router-link>
+        <router-link to="/register">
+          <button type="button" class="btn btn-secondary">Register</button>
+        </router-link>
+      </div>
+      </div>
+  </div>
+  <div class="body v-100 h-100">
   </div>
 </template>
 
 <script>
 export default {
   name: "HomeHeader",
-  props: {
-    msg: String
-  }
 }
 </script>
 
 <style scoped>
-.header {
-  overflow: hidden;
-  background-color: #f1f1f1;
-  padding: 20px 10px;
+h2{
+  margin:0;
 }
+.gradient-custom {
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to bottom right, #000428, #2c3e50);
 
-/* Style the header links */
-.header a {
-  float: left;
-  color: black;
-  text-align: center;
-  padding: 12px;
-  text-decoration: none;
-  font-size: 18px;
-  line-height: 25px;
-  border-radius: 4px;
-}
-
-/* Change the background color on mouse-over */
-.header a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-/* Style the active/current link*/
-.header a.login {
-  background-color: dodgerblue;
-  color: white;
-}
-
-/* Float the link section to the right */
-.header-right {
-  float: right;
-}
-
-/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
-@media screen and (max-width: 500px) {
-  .header a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-  .header-right {
-    float: none;
-  }
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to bottom right, #000428, #2c3e50);
 }
 </style>
