@@ -6,5 +6,6 @@ module.exports = {
   publicPath: '',
   devServer: {
     proxy: 'https://mainsite.com/',
-    }
+    },
+  lintOnSave: false
 }
