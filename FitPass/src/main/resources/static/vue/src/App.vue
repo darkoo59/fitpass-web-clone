@@ -1,15 +1,18 @@
 <template>
+  <HomeHeader msg="FitPass"/>
   <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import HomeHeader from "./components/HomeHeader";
 
 export default {
   el: '#home',
   components: {
-    HelloWorld
+    HelloWorld,
+    HomeHeader
   }
 }
 </script>
