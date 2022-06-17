@@ -4,4 +4,7 @@ module.exports = defineConfig({
 })
 module.exports = {
   publicPath: '',
+  devServer: {
+    proxy: 'https://mainsite.com/',
+    }
 }

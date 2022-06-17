@@ -1,7 +1,9 @@
 package model;
 
+import utils.enums.GenderType;
 import utils.enums.RoleType;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -11,7 +13,7 @@ public class Customer extends User{
     private Double collectedPoints;
     private CustomerType type;
 
-    public Customer(String username, String password, String name, String surname, String gender, Date birthDate,
+    public Customer(String username, String password, String name, String surname, GenderType gender, LocalDate birthDate,
                     RoleType role, Membership membership, ArrayList<SportsFacility> visitedFacilities,
                     Double collectedPoints, CustomerType type) {
         super(username, password, name, surname, gender, birthDate, role);

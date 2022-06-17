@@ -1,6 +1,10 @@
 package sample;
 
 import com.google.gson.Gson;
+import dataHandler.UsersDataHandler;
+import model.User;
+
+import java.util.ArrayList;
 
 import static spark.Spark.*;
 
@@ -8,8 +12,13 @@ public class hello {
     private static Gson gson = new Gson();
 
     public static void main(String[] args) throws Exception {
-        staticFileLocation("static");
-        port(8080);
+        UsersDataHandler dh = new UsersDataHandler();
+        ArrayList<User> users = dh.loadDataFromFile();
+        for (User user:users) {
+            System.out.println(user.getBirthDate());
+        }
+        staticFiles.location("/static/vue/dist");
+        port(8081);
         options("/*",
                 (request, response) -> {
 
@@ -38,8 +47,8 @@ public class hello {
             return "";
         });
 
-        post("/forma", (req, rest) -> {
-            return "TEST";
+        post("/forma", (req, res) -> {
+            return req.queryParams("polje");
         });
     }
 }

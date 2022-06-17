@@ -3,6 +3,8 @@ package model;
 import utils.enums.Rating;
 
 public class Comment {
+
+    private String id;
     private Customer customer;
     private SportsFacility sportsFacility;
     private String text;
@@ -14,6 +16,10 @@ public class Comment {
         this.text = text;
         this.rating = rating;
     }
+
+    public String getId() { return id; }
+
+    public void setId(String id) { this.id = id; }
 
     public Customer getCustomer() {
         return customer;

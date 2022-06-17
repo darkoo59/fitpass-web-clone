@@ -7,6 +7,8 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class SportsFacility {
+
+    private String id;
     private String name;
     private String type;
     private ArrayList<String> content;
@@ -27,6 +29,10 @@ public class SportsFacility {
         this.averageRating = averageRating;
         this.workHour = workHour;
     }
+
+    public String getId() { return id; }
+
+    public void setId(String id) { this.id = id; }
 
     public String getName() {
         return name;
