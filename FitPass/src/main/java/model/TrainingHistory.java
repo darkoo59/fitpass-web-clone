@@ -3,6 +3,8 @@ package model;
 import java.time.LocalDateTime;
 
 public class TrainingHistory {
+
+    private String id;
     private LocalDateTime applicationDateTime;
     private Training training;
     private Customer customer;
@@ -14,6 +16,10 @@ public class TrainingHistory {
         this.customer = customer;
         this.coach = coach;
     }
+
+    public String getId() { return id; }
+
+    public void setId(String id) { this.id = id; }
 
     public LocalDateTime getApplicationDateTime() {
         return applicationDateTime;

@@ -27,8 +27,8 @@
       <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
 
-      <form action="/forma" method="post">
-        <input type="text">
+      <form method="post" action="/forma">
+        <input type="text" name = "polje">
         <input type="submit">
       </form>
     </ul>

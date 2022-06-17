@@ -3,6 +3,7 @@ package model;
 import utils.others.Address;
 
 public class Location {
+    private String id;
     private Double longitude;
     private Double latitude;
     private Address address;
@@ -12,6 +13,10 @@ public class Location {
         this.latitude = latitude;
         this.address = address;
     }
+
+    public String getId() { return id; }
+
+    public void setId(String id) { this.id = id; }
 
     public Double getLongitude() {
         return longitude;

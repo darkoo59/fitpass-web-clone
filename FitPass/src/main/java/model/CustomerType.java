@@ -3,6 +3,7 @@ package model;
 import utils.enums.CustomerTypeName;
 
 public class CustomerType {
+    private String id;
     private CustomerTypeName type;
     private double percentage;
     private double points;
@@ -12,6 +13,10 @@ public class CustomerType {
         this.percentage = percentage;
         this.points = points;
     }
+
+    public String getId() { return id; }
+
+    public void setId(String id) { this.id = id; }
 
     public CustomerTypeName getType() {
         return type;

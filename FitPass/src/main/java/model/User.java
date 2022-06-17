@@ -1,19 +1,28 @@
 package model;
 
+import utils.enums.GenderType;
 import utils.enums.RoleType;
 
+import java.text.Format;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class User {
+
+    private String id;
     private String username;
     private String password;
     private String name;
     private String surname;
-    private String gender;
-    private Date birthDate;
+    private GenderType gender;
+    private LocalDate birthDate;
     private RoleType role;
 
-    public User(String username, String password, String name, String surname, String gender, Date birthDate,
+    public User()
+    {
+
+    }
+    public User(String username, String password, String name, String surname, GenderType gender, LocalDate birthDate,
                 RoleType role) {
         this.username = username;
         this.password = password;
@@ -24,6 +33,9 @@ public class User {
         this.role = role;
     }
 
+    public String getId() { return id; }
+
+    public void setId(String id) { this.id = id; }
     public String getUsername() {
         return username;
     }
@@ -56,19 +68,19 @@ public class User {
         this.surname = surname;
     }
 
-    public String getGender() {
+    public GenderType getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(GenderType gender) {
         this.gender = gender;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
