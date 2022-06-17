@@ -3,8 +3,8 @@ package model;
 import java.time.LocalDateTime;
 
 public class TrainingHistory {
-    LocalDateTime applicationDateTime;
-//    Training training;
-//    Customer customer;
-//    
+    private LocalDateTime applicationDateTime;
+//    private Training training;
+    private Customer customer;
+    private Coach coach;
 }

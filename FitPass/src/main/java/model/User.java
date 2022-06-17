@@ -5,12 +5,11 @@ import utils.enums.RoleType;
 import java.util.Date;
 
 public class User {
-    String username;
-    String password;
-    String name;
-    String surname;
-    String gender;
-    Date birthDate;
-    RoleType role;
-
+    private String username;
+    private String password;
+    private String name;
+    private String surname;
+    private String gender;
+    private Date birthDate;
+    private RoleType role;
 }

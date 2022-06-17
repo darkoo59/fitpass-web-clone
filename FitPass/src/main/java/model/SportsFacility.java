@@ -7,12 +7,12 @@ import java.awt.*;
 import java.util.List;
 
 public class SportsFacility {
-    String name;
-    String type;
-    List<String> content;
-    SportsFacilityStatus status;
-//    Location location;
-    Image logo;
-    double averageRating;
-    WorkHour workHour;
+    private String name;
+    private String type;
+    private List<String> content;
+    private SportsFacilityStatus status;
+    private Location location;
+    private Image logo;
+    private double averageRating;
+    private WorkHour workHour;
 }
