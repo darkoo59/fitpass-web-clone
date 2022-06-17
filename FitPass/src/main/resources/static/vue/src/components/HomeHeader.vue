@@ -3,7 +3,7 @@
     <h2>{{msg}}</h2>
     <div class="header-right">
       <a class="login" href="#login">Login</a>
-      <a href="#register">Register</a>
+      <router-link to="/register">Register</router-link>
     </div>
   </div>
 </template>
