@@ -11,7 +11,7 @@ public class Membership {
     private LocalDate paymentDate;
     private LocalDateTime validityDateTime;
     private Double price;
-    //TODO : Kupac
+    private Customer customer;
     private MembershipStatus status;
     private String dailyTerms;
 }

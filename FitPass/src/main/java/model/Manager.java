@@ -1,5 +1,7 @@
 package model;
 
 public class Manager extends User{
-    //TODO sportski objekti
+    //TODO sportski objekAT
+    private SportsFacility sportFacility;
+
 }
