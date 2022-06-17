@@ -4,21 +4,21 @@ import utils.enums.SportsFacilityStatus;
 import utils.others.WorkHour;
 
 import java.awt.*;
-import java.util.List;
+import java.util.ArrayList;
 
 public class SportsFacility {
 
     private String id;
     private String name;
     private String type;
-    private List<String> content;
+    private ArrayList<String> content;
     private SportsFacilityStatus status;
     private Location location;
     private Image logo;
     private double averageRating;
     private WorkHour workHour;
 
-    public SportsFacility(String name, String type, List<String> content, SportsFacilityStatus status,
+    public SportsFacility(String name, String type, ArrayList<String> content, SportsFacilityStatus status,
                           Location location, Image logo, double averageRating, WorkHour workHour) {
         this.name = name;
         this.type = type;
@@ -50,11 +50,11 @@ public class SportsFacility {
         this.type = type;
     }
 
-    public List<String> getContent() {
+    public ArrayList<String> getContent() {
         return content;
     }
 
-    public void setContent(List<String> content) {
+    public void setContent(ArrayList<String> content) {
         this.content = content;
     }
 
