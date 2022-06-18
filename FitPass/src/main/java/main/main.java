@@ -1,10 +1,10 @@
-package sample;
+package main;
 
 import com.google.gson.Gson;
 
 import static spark.Spark.*;
 
-public class hello {
+public class main {
     private static Gson gson = new Gson();
 
     public static void main(String[] args) throws Exception {
