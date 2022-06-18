@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": "1",
     "username": "coach",
     "password": "Coach",
     "name": "Milan",
@@ -10,7 +10,7 @@
     "role": 2
   },
   {
-    "id": 2,
+    "id": "2",
     "username": "manager",
     "password": "Manager",
     "name": "Jovan",
@@ -20,7 +20,7 @@
     "role": 1
   },
   {
-    "id": 3,
+    "id": "3",
     "username": "customer",
     "password": "Customer",
     "name": "Jelena",
@@ -30,7 +30,7 @@
     "role": 3
   },
   {
-    "id": 4,
+    "id": "4",
     "username": "administrator",
     "password": "Administrator",
     "name": "Milos",
