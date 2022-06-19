@@ -14,12 +14,12 @@ public class SportsFacility {
     private ArrayList<String> content;
     private SportsFacilityStatus status;
     private Location location;
-    private Image logo;
+    private String logo;
     private double averageRating;
     private WorkHour workHour;
 
     public SportsFacility(String name, String type, ArrayList<String> content, SportsFacilityStatus status,
-                          Location location, Image logo, double averageRating, WorkHour workHour) {
+                          Location location, String logo, double averageRating, WorkHour workHour) {
         this.name = name;
         this.type = type;
         this.content = content;
@@ -74,11 +74,11 @@ public class SportsFacility {
         this.location = location;
     }
 
-    public Image getLogo() {
+    public String getLogo() {
         return logo;
     }
 
-    public void setLogo(Image logo) {
+    public void setLogo(String logo) {
         this.logo = logo;
     }
 

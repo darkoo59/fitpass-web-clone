@@ -7,26 +7,28 @@ import model.SportsFacility;
 import model.User;
 import utils.others.LocalDateDeserializer;
 import utils.others.LocalDateSerializer;
+import utils.others.LocalTimeDeserializer;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class SportsFacilityDAO implements IDao<SportsFacility>{
-    private final String path = "resources/sportsFacility.json";
+    private final String path = "resources/sportsFacilities.json";
     @Override
     public ArrayList<SportsFacility> getAll() throws IOException {
         GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateSerializer());
-        gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateDeserializer());
+        gsonBuilder.registerTypeAdapter(LocalTime.class, new LocalTimeDeserializer());
         Gson gson = gsonBuilder.setPrettyPrinting().create();
-        Reader reader = Files.newBufferedReader(Paths.get(path));
+        Reader reader = Files.newBufferedReader(Paths.get(path), StandardCharsets.UTF_8);
         ArrayList<SportsFacility> sportsFacilities = null;
         sportsFacilities = gson.fromJson(reader,new TypeToken<ArrayList<SportsFacility>>(){}.getType());
         return sportsFacilities;

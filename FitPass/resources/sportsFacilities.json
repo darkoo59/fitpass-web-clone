@@ -1,0 +1,68 @@
+[
+  {
+    "name": "Fitness klub Liman",
+    "type": "gym",
+    "content": [
+      "group training",
+      "personal training",
+      "sauna"
+    ],
+    "status": 0,
+    "location": null,
+    "logo": null,
+    "averageRating": 4.9,
+    "workHour":{
+      "start": "22:10:32",
+      "end": "11:12:33"
+    }
+  },
+  {
+    "name": "Baš čelik",
+    "type": "gym",
+    "content": [
+      "group training",
+      "personal training"
+    ],
+    "status": 0,
+    "location": null,
+    "logo": null,
+    "averageRating": 4.7,
+    "workHour":{
+      "start": "22:10:32",
+      "end": "11:12:33"
+    }
+  },
+  {
+    "name": "Flex gym",
+    "type": "gym",
+    "content": [
+      "group training",
+      "personal training",
+      "sauna"
+    ],
+    "status": 1,
+    "location": null,
+    "logo": null,
+    "averageRating": 3.9,
+    "workHour":{
+      "start": "22:10:32",
+      "end": "11:12:33"
+    }
+  },
+  {
+    "name": "Non stop fitness",
+    "type": "gym",
+    "content": [
+      "group training",
+      "personal training"
+    ],
+    "status": 0,
+    "location": null,
+    "logo": null,
+    "averageRating": 4.6,
+    "workHour":{
+      "start": "22:10:32",
+      "end": "11:12:33"
+    }
+  }
+]
