@@ -1,8 +1,20 @@
 <template>
   <section class="vh-100 gradient-custom">
+    <SportsFacilities />
   </section>
 </template>
 
+<script>
+import SportsFacilities from "../components/SportsFacilities";
+
+export default {
+  el: '#home',
+  components: {
+    SportsFacilities
+  }
+}
+
+</script>
 
 <style scoped>
 .gradient-custom {

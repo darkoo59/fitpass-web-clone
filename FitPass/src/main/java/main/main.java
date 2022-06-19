@@ -54,6 +54,8 @@ public class main {
             AccountService service = new AccountService();
             service.register(request);
             return "success";
+        });
+
         get("/login", (req, res) -> {
             return "Uspesno ulogovan!";
         });
