@@ -1,6 +1,7 @@
 package main;
 
 import com.google.gson.Gson;
+import service.AccountService;
 
 import static spark.Spark.*;
 
@@ -38,8 +39,12 @@ public class main {
             return "";
         });
 
-        post("/forma", (req, res) -> {
-            return req.queryParams("polje");
+        get("/register", (request, response) -> "");
+
+        post("/register", (request, response) -> {
+            AccountService service = new AccountService();
+            service.register(request);
+            return "success";
         });
     }
 }

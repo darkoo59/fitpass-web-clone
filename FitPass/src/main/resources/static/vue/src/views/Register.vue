@@ -6,14 +6,14 @@
           <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
             <div class="card-body p-4 p-md-5">
               <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Become a member of the FitPass community</h3>
-              <form>
+              <form method="post" action="http://localhost:8081/register">
 
                 <div class="row">
                   <div class="col-md-6 mb-4">
 
                     <div class="form-outline">
                       <label class="form-label" for="firstName">Name</label>
-                      <input type="text" id="firstName" class="form-control form-control-lg" />
+                      <input type="text" id="firstName" name="name" class="form-control form-control-lg" />
                     </div>
 
                   </div>
@@ -21,7 +21,7 @@
 
                     <div class="form-outline">
                       <label class="form-label" for="lastName">Surname</label>
-                      <input type="text" id="lastName" class="form-control form-control-lg" />
+                      <input type="text" id="lastName" name="surname" class="form-control form-control-lg" />
                     </div>
 
                   </div>
@@ -32,7 +32,7 @@
 
                     <div class="form-outline">
                       <label for="username" class="form-label">Username</label>
-                      <input type="text" id="username" class="form-control form-control-lg" />
+                      <input type="text" id="username" name="username" class="form-control form-control-lg" />
                     </div>
 
                   </div>
@@ -40,7 +40,7 @@
                   <div class="col-md-6 mb-4">
                     <div class="form-outline">
                       <label for="password" class="form-label">Password</label>
-                      <input type="password" id="password" class="form-control form-control-lg" />
+                      <input type="password" id="password" name="password" class="form-control form-control-lg" />
                     </div>
                   </div>
 
@@ -49,32 +49,8 @@
                 <div class="row">
                   <div class="col-md-6 mb-4 pb-2">
 
-                    <div class="form-outline">
-                      <label class="form-label" for="emailAddress">Email</label>
-                      <input type="email" id="emailAddress" class="form-control form-control-lg" />
-                    </div>
-
-                  </div>
-                  <div class="col-md-6 mb-4 pb-2">
-
-                    <div class="form-outline">
-                      <label class="form-label" for="phoneNumber">Phone number</label>
-                      <input type="tel" id="phoneNumber" class="form-control form-control-lg" />
-                    </div>
-
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-6 mb-4 pb-2">
-
-                    <label class="form-label select-label">Choose membership</label>
-                    <select class="select form-control-lg">
-                      <option value="1" disabled>Choose option</option>
-                      <option value="2">Gold</option>
-                      <option value="3">Silver</option>
-                      <option value="4">Bronze</option>
-                    </select>
+                    <label class="form-label" for="datepicker">Date of birth</label>
+                    <input type="date" name="date" class="form-control form-control-lg" min="1900-01-01" max="2022-12-31"/>
 
                   </div>
 
@@ -85,18 +61,28 @@
                     <div class="col-md-12 mb-12 pb-2">
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleSex"
-                               value="option1" />
+                               value="female" />
                         <label class="form-check-label" for="femaleSex">Female</label>
                       </div>
 
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleSex"
-                               value="option2" />
+                               value="male" />
                         <label class="form-check-label" for="maleSex">Male</label>
                       </div>
                     </div>
 
 
+                  </div>
+
+                  <div class="col-md-6 mb-4 justify-content-center">
+                    <label class="form-label select-label">Choose membership</label>
+                    <select id ="membership" name="membership" class="select form-control-lg">
+                      <option value="1" disabled>Choose option</option>
+                      <option value="2">Gold</option>
+                      <option value="3">Silver</option>
+                      <option value="4">Bronze</option>
+                    </select>
                   </div>
 
 
