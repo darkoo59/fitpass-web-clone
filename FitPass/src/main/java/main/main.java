@@ -1,19 +1,21 @@
 package main;
 
 import com.google.gson.Gson;
+import dao.SportsFacilityDAO;
 import model.SportsFacility;
 import service.AccountService;
 import com.google.gson.GsonBuilder;
 import model.User;
-import service.AccountService;
 import service.SportsFacilityService;
+import utils.enums.SportsFacilityStatus;
 import utils.others.LocalDateDeserializer;
 import utils.others.LocalDateSerializer;
-import utils.others.LocalTimeDeserializer;
+import utils.others.LocalTimeConverter;
+import utils.others.WorkHour;
 
-import java.awt.image.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 import static spark.Spark.*;
 
@@ -27,7 +29,7 @@ public class main {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateSerializer());
         gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateDeserializer());
-        gsonBuilder.registerTypeAdapter(LocalTime.class,new LocalTimeDeserializer());
+        gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalTimeConverter());
         gson = gsonBuilder.setPrettyPrinting().create();
         options("/*",
                 (request, response) -> {
@@ -53,10 +55,6 @@ public class main {
 
         accountService = new AccountService();
         facilitiesService = new SportsFacilityService();
-        for(SportsFacility sf: facilitiesService.getAll())
-        {
-            System.out.println(sf.getName());
-        }
 
         get("/home" , (req,res) -> {
             res.type("application/html");
