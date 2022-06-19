@@ -9,6 +9,10 @@ import utils.enums.RoleType;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import spark.Response;
+import spark.Spark;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class AccountService {
@@ -34,4 +38,15 @@ public class AccountService {
         userDAO.save(users);
     }
 
+    public User loginUser(Request request) throws IOException {
+        String username = request.queryParams("username");
+        String password = request.queryParams("password");
+        System.out.println("Username = "+username+" password = "+password);
+        ArrayList<User> users = userDAO.getAll();
+        for (User user:users) {
+            if(user.getUsername().equals(username) && user.getPassword().equals(password))
+                return user;
+        }
+        return null;
+    }
 }
