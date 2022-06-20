@@ -4,10 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import model.SportsFacility;
-import model.User;
-import utils.others.LocalDateDeserializer;
-import utils.others.LocalDateSerializer;
-import utils.others.LocalTimeDeserializer;
+import utils.others.LocalTimeConverter;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,7 +14,6 @@ import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -26,7 +22,7 @@ public class SportsFacilityDAO implements IDao<SportsFacility>{
     @Override
     public ArrayList<SportsFacility> getAll() throws IOException {
         GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.registerTypeAdapter(LocalTime.class, new LocalTimeDeserializer());
+        gsonBuilder.registerTypeAdapter(LocalTime.class, new LocalTimeConverter());
         Gson gson = gsonBuilder.setPrettyPrinting().create();
         Reader reader = Files.newBufferedReader(Paths.get(path), StandardCharsets.UTF_8);
         ArrayList<SportsFacility> sportsFacilities = null;
@@ -47,8 +43,7 @@ public class SportsFacilityDAO implements IDao<SportsFacility>{
     @Override
     public void save(ArrayList<SportsFacility> objs) throws IOException {
         GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateSerializer());
-        gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateDeserializer());
+        gsonBuilder.registerTypeAdapter(LocalTime.class, new LocalTimeConverter());
         PrintWriter writer = new PrintWriter(new FileWriter(path));
         Gson gson = gsonBuilder.create();
         Type listType = new TypeToken<ArrayList<SportsFacility>>() {}.getType();
