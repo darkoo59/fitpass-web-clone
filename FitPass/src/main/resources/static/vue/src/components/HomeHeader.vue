@@ -13,8 +13,6 @@
       </div>
       </div>
   </div>
-  <div class="body v-100 h-100">
-  </div>
 </template>
 
 <script>

@@ -20,8 +20,8 @@
       </div>
     </div>
   </div>
-  <div class="item error" v-if="input&& !facilities.length">
-    <p>No results found!</p>
+  <div class="item error" v-if="input&& !filtered.length">
+    <p style="color:white;">No results found!</p>
   </div>
 
 </template>

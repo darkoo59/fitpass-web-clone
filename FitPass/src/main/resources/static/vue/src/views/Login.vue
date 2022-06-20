@@ -20,7 +20,7 @@
             <label for="exampleInputPassword1">Password</label>
             <input type="password" v-model="formData.password" name="password" class="form-control" placeholder="Password" required>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary m-3">Submit</button>
         </div>
         <div class="col-lg-4">
           </div>
@@ -65,6 +65,7 @@
           alert('Wrong credentials')
           console.log("uslojee")
         }else {
+          alert(responseData.name + " " + responseData.surname + " successfully logged!");
           this.$router.push('/user')
           console.log("uslojee2")
         }

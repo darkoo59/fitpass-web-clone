@@ -1,13 +1,25 @@
 <template>
-<div>User uspesno ulogovan!</div>
+  <section class="vh-100 gradient-custom">
+      <SportsFacilities />
+  </section>
 </template>
 
 <script>
+import SportsFacilities from "../components/SportsFacilities";
 export default {
   name:'LoginDone',
+  components: {
+    SportsFacilities
+  }
 }
 </script>
 
 <style scoped>
+.gradient-custom {
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to bottom right, #000428, #004e92);
 
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to bottom right, #000428, #004e92);
+}
 </style>
