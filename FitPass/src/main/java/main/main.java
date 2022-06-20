@@ -1,6 +1,7 @@
 package main;
 
 import com.google.gson.Gson;
+import controller.AccountController;
 import dao.SportsFacilityDAO;
 import model.SportsFacility;
 import service.AccountService;
@@ -24,12 +25,15 @@ public class main {
     private static AccountService accountService;
     private static SportsFacilityService facilitiesService;
     public static void main(String[] args) throws Exception {
+
+        initializeContext();
+
         staticFiles.location("/static/vue/dist");
         port(8081);
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateSerializer());
         gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateDeserializer());
-        gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalTimeConverter());
+        gsonBuilder.registerTypeAdapter(LocalTime.class, new LocalTimeConverter());
         gson = gsonBuilder.setPrettyPrinting().create();
         options("/*",
                 (request, response) -> {
@@ -62,8 +66,6 @@ public class main {
             return "";
         });
 
-        get("/register", (request, response) -> "");
-
         post("/register", (request, response) -> {
             AccountService service = new AccountService();
             service.register(request);
@@ -74,10 +76,11 @@ public class main {
             return "Uspesno ulogovan!";
         });
 
-        get("/user", (req, res) -> {
-            res.redirect("http://localhost:8080/");
-            return "BORA KONJ";
-        });
+//        get("/user", (req, res) -> {
+//            res.redirect("http://localhost:8080/");
+//            return "BORA KONJ";
+//        });
+        get("/user", AccountController::getUser);
 
         get("/sportsFacilities", (req, res) -> {
             res.type("application/json");
@@ -93,5 +96,10 @@ public class main {
             res.redirect("http://localhost:8080/login");
             return str;
         });
+    }
+
+    private static void initializeContext() {
+        AccountService accountService = new AccountService();
+        AccountController.initializeService(accountService);
     }
 }
