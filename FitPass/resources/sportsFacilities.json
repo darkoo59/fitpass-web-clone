@@ -10,11 +10,7 @@
     "status": 0,
     "location": null,
     "logo": null,
-    "averageRating": 4.9,
-    "workHour":{
-      "start": "22:10:32",
-      "end": "11:12:33"
-    }
+    "averageRating": 4.9
   },
   {
     "name": "Baš čelik",
@@ -26,11 +22,7 @@
     "status": 0,
     "location": null,
     "logo": null,
-    "averageRating": 4.7,
-    "workHour":{
-      "start": "22:10:32",
-      "end": "11:12:33"
-    }
+    "averageRating": 4.7
   },
   {
     "name": "Flex gym",
@@ -43,11 +35,7 @@
     "status": 1,
     "location": null,
     "logo": null,
-    "averageRating": 3.9,
-    "workHour":{
-      "start": "22:10:32",
-      "end": "11:12:33"
-    }
+    "averageRating": 3.9
   },
   {
     "name": "Non stop fitness",
@@ -59,10 +47,6 @@
     "status": 0,
     "location": null,
     "logo": null,
-    "averageRating": 4.6,
-    "workHour":{
-      "start": "22:10:32",
-      "end": "11:12:33"
-    }
+    "averageRating": 4.6
   }
 ]

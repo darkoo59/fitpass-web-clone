@@ -5,7 +5,7 @@
       <div class="col-lg-5"></div>
       <div class="col-lg-2">
         <router-link to="/login">
-          <input class="btn btn-primary" type="button" value="Login">
+          <input class="btn btn-primary" type="button" @click="goToHome()" value="Login">
         </router-link>
         <router-link to="/register">
           <button type="button" class="btn btn-secondary">Register</button>
@@ -20,6 +20,11 @@
 <script>
 export default {
   name: "HomeHeader",
+  methods:{
+    goToHome(){
+      this.$router.push('/home');
+    }
+  }
 }
 </script>
 

@@ -1,16 +1,19 @@
 <template>
   <section class="vh-100 gradient-custom">
+    <HomeHeader />
     <SportsFacilities />
   </section>
 </template>
 
 <script>
 import SportsFacilities from "../components/SportsFacilities";
+import HomeHeader from "../components/HomeHeader";
 
 export default {
   el: '#home',
   components: {
-    SportsFacilities
+    SportsFacilities,
+    HomeHeader
   }
 }
 

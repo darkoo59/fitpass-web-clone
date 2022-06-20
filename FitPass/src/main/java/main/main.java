@@ -1,6 +1,7 @@
 package main;
 
 import com.google.gson.Gson;
+import io.jsonwebtoken.*;
 import model.SportsFacility;
 import service.AccountService;
 import com.google.gson.GsonBuilder;
@@ -64,8 +65,6 @@ public class main {
             return "";
         });
 
-        get("/register", (request, response) -> "");
-
         post("/register", (request, response) -> {
             AccountService service = new AccountService();
             service.register(request);
@@ -76,24 +75,17 @@ public class main {
             return "Uspesno ulogovan!";
         });
 
-        get("/user", (req, res) -> {
-            res.redirect("http://localhost:8080/");
-            return "BORA KONJ";
-        });
-
         get("/sportsFacilities", (req, res) -> {
             res.type("application/json");
             return gson.toJson(facilitiesService.getAll());
         });
 
-        post("/login", (req,res) -> {
-            System.out.println("DOSLO JEEEE");
+        post("/login","application/json", (req,res) -> {
+            System.out.println(req.body());
             User user = accountService.loginUser(req);
             res.type("application/json");
-            res.body("Username = "+user.getUsername() + " and password = "+user.getPassword() + "BORA KONJ");
-            String str = gson.toJson(user);
-            res.redirect("http://localhost:8080/login");
-            return str;
+            System.out.println(gson.toJson(user));
+            return gson.toJson(user);
         });
     }
 }

@@ -1,4 +1,5 @@
 <template>
+  <HomeHeader />
   <section class="vh-100 gradient-custom">
     <div class="container py-5 h-100">
       <div class="row justify-content-center align-items-center h-100">
@@ -102,7 +103,10 @@
 </template>
 
 <script>
-
+import HomeHeader from "@/components/HomeHeader";
+export default {
+  components: {HomeHeader}
+}
 </script>
 
 <style scoped>

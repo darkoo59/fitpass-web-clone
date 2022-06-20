@@ -1,7 +1,11 @@
 package service;
 
+import com.esotericsoftware.kryo.util.IntMap;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import dao.IDao;
 import dao.UserDAO;
+import io.jsonwebtoken.*;
+import model.Credentials;
 import model.User;
 import spark.Request;
 import utils.enums.GenderType;
@@ -9,17 +13,20 @@ import utils.enums.RoleType;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import spark.Response;
-import spark.Spark;
-
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
+import javax.xml.bind.DatatypeConverter;
 
 public class AccountService {
     private IDao userDAO;
+    private static String key = "random_secret_key";
+    private  static String base64Key = DatatypeConverter.printBase64Binary(key.getBytes());
+    private static byte[] secretBytes = DatatypeConverter.parseBase64Binary(base64Key);
+    private ObjectMapper mapper;
 
     public AccountService() {
         userDAO = new UserDAO();
+        mapper = new ObjectMapper();
     }
 
     public void register(Request req) throws IOException {
@@ -39,14 +46,32 @@ public class AccountService {
     }
 
     public User loginUser(Request request) throws IOException {
-        String username = request.queryParams("username");
-        String password = request.queryParams("password");
-        System.out.println("Username = "+username+" password = "+password);
+        Credentials cred = new Credentials();
+        cred = mapper.readValue(request.body(),Credentials.class);
+        System.out.println("Username = "+cred.getUsername()+" password = "+cred.getPassword());
         ArrayList<User> users = userDAO.getAll();
         for (User user:users) {
-            if(user.getUsername().equals(username) && user.getPassword().equals(password))
+            if(user.getUsername().equals(cred.getUsername()) && user.getPassword().equals(cred.getPassword()))
                 return user;
         }
         return null;
+    }
+
+    public User loginJWT(User user) {
+
+// Token je validan 10 sekundi!
+
+        String jws =
+                Jwts.builder().setSubject(user.getUsername()).
+                        setExpiration(new Date(new Date().getTime() +
+                                1000*10L)).
+                        setIssuedAt(new Date()).
+                        signWith(SignatureAlgorithm.HS512,secretBytes).
+                        compact();
+
+        user.setJWT(jws);
+
+        System.out.println("Retuned JWT: " + jws);
+        return user;
     }
 }

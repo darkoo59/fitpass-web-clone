@@ -17,6 +17,7 @@ public class User {
     private GenderType gender;
     private LocalDate birthDate;
     private RoleType role;
+    private String JWT;
 
     public User()
     {
@@ -91,4 +92,8 @@ public class User {
     public void setRole(RoleType role) {
         this.role = role;
     }
+
+    public String getJWT() {return JWT;}
+
+    public void setJWT(String JWT) { this.JWT = JWT; }
 }

@@ -1,6 +1,11 @@
 <template>
+  <HomeHeader />
   <section class="vh-100 gradient-custom">
-  <form action="http://localhost:8081/login" method="POST">
+<!--  <form v-on:submit.prevent="submitForm" ref="form">-->
+
+    <div :data-show="false">
+    </div>
+    <form v-on:submit.prevent="submitForm">
     <div class="content">
       <div class="row">
         <div class="col-lg-4">
@@ -8,12 +13,12 @@
         <div class="col-lg-4">
           <div class="form-group p-3">
             <label for="exampleInputEmail1">Username</label>
-            <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                   placeholder="Enter username">
+            <input type="text" name="username" class="form-control" aria-describedby="emailHelp"
+                   v-model="formData.username" placeholder="Enter username" required>
           </div>
           <div class="form-group p-3">
             <label for="exampleInputPassword1">Password</label>
-            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <input type="password" v-model="formData.password" name="password" class="form-control" placeholder="Password" required>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </div>
@@ -22,28 +27,49 @@
       </div>
     </div>
   </form>
+
   </section>
 </template>
 
 <script>
   import axios from 'axios'
+  import HomeHeader from "../components/HomeHeader"
   export default {
-    data() {
-      return {
-        username: '',
-        password: ''
+    components:{
+      HomeHeader
+    },
+    data: function(){
+      return{
+        formData: {
+          username: '',
+          password:''
+        },
+        responseData: ''
+        ,
+        user : {
+          name: '',
+          surname: ''
+        },
+        modal: false
       }
     },
     methods: {
-      async handleSubmit() {
-        const response = await axios.post('login', {
-          email: this.email,
-          password: this.password
-        });
-
-        console.log(response);
+      submitForm:function()  {
+        axios
+            .post('http://localhost:8081/login',this.formData)
+            .then(response => (this.Redirect(response.data)))
+      },
+      Redirect:function(responseData)
+      {
+        if(responseData === null){
+          alert('Wrong credentials')
+          console.log("uslojee")
+        }else {
+          this.$router.push('/user')
+          console.log("uslojee2")
+        }
       }
-    }
+  }
 }
 </script>
 
