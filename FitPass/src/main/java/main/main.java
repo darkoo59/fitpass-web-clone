@@ -70,6 +70,7 @@ public class main {
         post("/register", (request, response) -> {
             AccountService service = new AccountService();
             service.register(request);
+            response.redirect("http://localhost:8080");
             return "success";
         });
 
