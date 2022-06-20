@@ -49,12 +49,13 @@ export default {
   methods: {
     searchFacilities() {
       this.filtered = this.facilities.filter((facility) => {
-        return facility.name.toLowerCase().includes(this.input.toLowerCase());
+        return facility.name.toLowerCase().includes(this.input.toLowerCase())
+            || facility.type.toLowerCase().includes(this.input.toLowerCase())
+            || facility.location.address.streetAndNumber.toLowerCase().includes(this.input.toLowerCase())
+            || facility.averageRating == parseFloat(this.input);
       })
     }
   }
-
-
 }
 
 </script>
