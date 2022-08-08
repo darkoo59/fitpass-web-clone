@@ -1,6 +1,6 @@
 <template>
   <section class="vh-100 gradient-custom">
-    <HomeHeader />
+    <HomeHeader v-if="token === null "/>
     <SportsFacilities />
   </section>
 </template>
@@ -14,7 +14,12 @@ export default {
   components: {
     SportsFacilities,
     HomeHeader
-  }
+  },
+  data: function(){
+    return{
+      token: window.localStorage.getItem('token')
+    }
+  },
 }
 
 </script>

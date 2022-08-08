@@ -19,7 +19,7 @@ import javax.xml.bind.DatatypeConverter;
 
 public class AccountService {
     private IDao userDAO;
-    private static String key = "random_secret_key";
+    private static String key = "fhjdfddjsaildhadlHHHjjFHaFHAkflfhAFKLJhfk";
     private  static String base64Key = DatatypeConverter.printBase64Binary(key.getBytes());
     private static byte[] secretBytes = DatatypeConverter.parseBase64Binary(base64Key);
     private ObjectMapper mapper;
@@ -45,14 +45,26 @@ public class AccountService {
         userDAO.save(users);
     }
 
-    public User loginUser(Request request) throws IOException {
+    public String loginUser(Request request) throws IOException {
         Credentials cred = new Credentials();
         cred = mapper.readValue(request.body(),Credentials.class);
         System.out.println("Username = "+cred.getUsername()+" password = "+cred.getPassword());
         ArrayList<User> users = userDAO.getAll();
         for (User user:users) {
             if(user.getUsername().equals(cred.getUsername()) && user.getPassword().equals(cred.getPassword()))
-                return user;
+            {
+                String jws =
+                        Jwts.builder().setSubject(user.getUsername()).
+                                setExpiration(new Date(new Date().getTime() +
+                                        1000*10L)).
+                                setIssuedAt(new Date()).
+                                signWith(SignatureAlgorithm.HS256,secretBytes).
+                                compact();
+
+                user.setJWT(jws);
+                userDAO.save(users);
+                return user.getJWT();
+            }
         }
         return null;
     }

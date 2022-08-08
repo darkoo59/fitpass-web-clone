@@ -1,5 +1,5 @@
 <template>
-  <HomeHeader />
+  <HomeHeader/>
   <section class="vh-100 gradient-custom">
 <!--  <form v-on:submit.prevent="submitForm" ref="form">-->
 
@@ -65,8 +65,10 @@
           alert('Wrong credentials')
           console.log("uslojee")
         }else {
-          alert(responseData.name + " " + responseData.surname + " successfully logged!");
-          this.$router.push('/user')
+          alert(responseData + " successfully logged!");
+          localStorage.setItem('token',responseData);
+          alert(localStorage.getItem('token'))
+          this.$router.push('/')
           console.log("uslojee2")
         }
       }
