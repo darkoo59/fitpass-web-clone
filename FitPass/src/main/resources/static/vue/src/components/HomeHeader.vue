@@ -22,7 +22,13 @@ export default {
     goToHome(){
       this.$router.push('/home');
     }
-  }
+  },
+  data: function(){
+    return{
+      token: window.localStorage.getItem('token'),
+      userRole: window.localStorage.getItem('userRole')
+    }
+  },
 }
 </script>
 

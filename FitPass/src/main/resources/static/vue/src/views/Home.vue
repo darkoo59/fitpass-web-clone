@@ -1,6 +1,7 @@
 <template>
   <section class="vh-100 gradient-custom">
-    <HomeHeader v-if="token === null "/>
+    <HomeHeader v-if="token === null"/>
+    <Menu v-if="token != null"/>
     <SportsFacilities />
   </section>
 </template>
@@ -8,16 +9,19 @@
 <script>
 import SportsFacilities from "../components/SportsFacilities";
 import HomeHeader from "../components/HomeHeader";
+import Menu from "../components/Menu"
 
 export default {
   el: '#home',
   components: {
     SportsFacilities,
-    HomeHeader
+    HomeHeader,
+    Menu
   },
   data: function(){
     return{
-      token: window.localStorage.getItem('token')
+      token: window.localStorage.getItem('token'),
+      userRole: window.localStorage.getItem('userRole')
     }
   },
 }

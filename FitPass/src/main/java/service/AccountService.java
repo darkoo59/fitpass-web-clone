@@ -2,23 +2,33 @@ package service;
 
 import com.esotericsoftware.kryo.util.IntMap;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nimbusds.jwt.SignedJWT;
 import dao.IDao;
 import dao.UserDAO;
 import io.jsonwebtoken.*;
 import model.Credentials;
 import model.User;
+import org.apache.spark.sql.catalyst.expressions.Base64;
+import scala.util.parsing.json.JSONObject;
+import scala.util.parsing.json.JSONObject$;
 import spark.Request;
 import utils.enums.GenderType;
 import utils.enums.RoleType;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.annotation.Signed;
+import javax.management.relation.Role;
 import javax.xml.bind.DatatypeConverter;
+
+import static utils.others.Decode.decode;
 
 public class AccountService {
     private IDao userDAO;
+    private UserService userService;
     private static String key = "fhjdfddjsaildhadlHHHjjFHaFHAkflfhAFKLJhfk";
     private  static String base64Key = DatatypeConverter.printBase64Binary(key.getBytes());
     private static byte[] secretBytes = DatatypeConverter.parseBase64Binary(base64Key);
@@ -26,6 +36,7 @@ public class AccountService {
 
     public AccountService() {
         userDAO = new UserDAO();
+        userService = new UserService();
         mapper = new ObjectMapper();
     }
 
@@ -69,6 +80,15 @@ public class AccountService {
         return null;
     }
 
+    public RoleType getLoggedUserRole(Request request) throws ParseException, IOException {
+        String[] splittedHeader = request.headers("Authorization").split("\\s+");
+        String jwtToken = splittedHeader[1];
+        SignedJWT decodedJWT = SignedJWT.parse(jwtToken);
+        String payload = decodedJWT.getPayload().toString();
+        String username = payload.substring(8,payload.lastIndexOf("\",\"exp\":"));
+        System.out.println(username);
+        return userService.getRoleTypeByUsername(username);
+    }
     public User loginJWT(User user) {
 
 // Token je validan 10 sekundi!

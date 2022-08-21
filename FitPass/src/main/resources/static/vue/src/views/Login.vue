@@ -65,12 +65,16 @@
           alert('Wrong credentials')
           console.log("uslojee")
         }else {
-          alert(responseData + " successfully logged!");
           localStorage.setItem('token',responseData);
-          alert(localStorage.getItem('token'))
+          this.SetUserInfo()
+          this.$router.push('/login')
           this.$router.push('/')
-          console.log("uslojee2")
         }
+      },
+      SetUserInfo:function() {
+        axios
+            .get('http://localhost:8081/userInfo', {headers : {"Authorization" : `Bearer ${localStorage.getItem('token')}`}})
+            .then(response => (localStorage.setItem('userRole',response.data)))
       }
   }
 }

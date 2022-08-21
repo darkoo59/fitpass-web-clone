@@ -90,12 +90,14 @@ public class main {
         });
 
         post("/login","application/json", (req,res) -> {
-            System.out.println(req.body());
-            System.out.println(accountService.loginUser(req));
             return accountService.loginUser(req);
 //            res.type("application/json");
 //            System.out.println(gson.toJson(user));
 //            return gson.toJson(user);
+        });
+
+        get("/userInfo",(req,res) -> {
+            return accountService.getLoggedUserRole(req).toString();
         });
     }
 
