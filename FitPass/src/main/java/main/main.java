@@ -1,28 +1,22 @@
 package main;
 
 import com.google.gson.Gson;
-import io.jsonwebtoken.*;
 import controller.AccountController;
-import dao.SportsFacilityDAO;
-import model.SportsFacility;
+import dao.UserDAO;
 import service.AccountService;
 import com.google.gson.GsonBuilder;
-import model.User;
 import service.SportsFacilityService;
-import utils.enums.SportsFacilityStatus;
 import utils.others.LocalDateDeserializer;
 import utils.others.LocalDateSerializer;
 import utils.others.LocalTimeConverter;
-import utils.others.WorkHour;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 
 import static spark.Spark.*;
 
 public class main {
-    private static Gson gson;
+    public static Gson gson;
     private static AccountService accountService;
     private static SportsFacilityService facilitiesService;
     public static void main(String[] args) throws Exception {
@@ -58,7 +52,6 @@ public class main {
 
         before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
 
-        accountService = new AccountService();
         facilitiesService = new SportsFacilityService();
 
         get("/home" , (req,res) -> {
@@ -67,42 +60,21 @@ public class main {
             return "";
         });
 
-        post("/register", (request, response) -> {
-            AccountService service = new AccountService();
-            service.register(request);
-            response.redirect("http://localhost:8081");
-            return "success";
-        });
 
-        get("/login", (req, res) -> {
-            return "Uspesno ulogovan!";
-        });
-
-//        get("/user", (req, res) -> {
-//            res.redirect("http://localhost:8080/");
-//            return "BORA KONJ";
-//        });
-        get("/user", AccountController::getUser);
+        AccountController.postRegister();
+        AccountController.postLogin();
+        AccountController.getUser();
 
         get("/sportsFacilities", (req, res) -> {
             res.type("application/json");
             return gson.toJson(facilitiesService.getAll());
         });
 
-        post("/login","application/json", (req,res) -> {
-            return accountService.loginUser(req);
-//            res.type("application/json");
-//            System.out.println(gson.toJson(user));
-//            return gson.toJson(user);
-        });
-
-        get("/userInfo",(req,res) -> {
-            return accountService.getLoggedUserRole(req).toString();
-        });
+        get("/userInfo",(req,res) -> accountService.getLoggedUserRole(req).toString());
     }
 
     private static void initializeContext() {
-        AccountService accountService = new AccountService();
+        accountService = new AccountService();
         AccountController.initializeService(accountService);
     }
 }
