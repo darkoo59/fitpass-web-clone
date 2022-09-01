@@ -5,7 +5,7 @@ import service.AccountService;
 import static spark.Spark.*;
 
 public class AccountController {
-    private static  AccountService accountService;
+    private static AccountService accountService;
 
     public static void initializeService(AccountService accService) {
         accountService = accService;
@@ -32,4 +32,7 @@ public class AccountController {
         });
     }
 
+    public static void getUserInfo() {
+        get("/userInfo", (req, res) -> accountService.getLoggedUserRole(req).toString());
+    }
 }
