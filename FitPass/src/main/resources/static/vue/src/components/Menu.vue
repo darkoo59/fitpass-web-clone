@@ -30,6 +30,9 @@
             </li>
           </ul>
         </div>
+        <router-link to="/">
+          <input class="btn btn-primary" type="button" @click="logout()" value="Logout">
+        </router-link>
       </div>
     </nav>
   </div>
@@ -45,10 +48,14 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
+              <router-link class="nav-link text-white" to="/">
+                Home
+              </router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" href="#">AdministratorFeature1</a>
+              <router-link class="nav-link text-white" to="/administratorCreateProfiles">
+                Create profile
+              </router-link>
             </li>
             <li class="nav-item">
               <a class="nav-link text-white" href="#">AdministratorFeature2</a>
@@ -65,6 +72,9 @@
             </li>
           </ul>
         </div>
+        <router-link to="/">
+          <input class="btn btn-primary" type="button" @click="logout()" value="Logout">
+        </router-link>
       </div>
     </nav>
   </div>
@@ -100,6 +110,9 @@
             </li>
           </ul>
         </div>
+        <router-link to="/">
+          <input class="btn btn-primary" type="button" @click="logout()" value="Logout">
+        </router-link>
       </div>
     </nav>
   </div>
@@ -134,6 +147,9 @@
             </li>
           </ul>
         </div>
+        <router-link to="/">
+          <input class="btn btn-primary" type="button" @click="logout()" value="Logout">
+        </router-link>
       </div>
     </nav>
   </div>
@@ -142,6 +158,14 @@
 <script>
 export default {
   name: "Menu",
+  methods:{
+    logout(){
+      window.localStorage.removeItem('token')
+      window.localStorage.removeItem('userRole')
+      this.$router.go()
+
+    }
+  },
   data: function(){
     return{
       userRole: window.localStorage.getItem('userRole')

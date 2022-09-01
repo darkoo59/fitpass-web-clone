@@ -13,15 +13,15 @@
       </div>
     </div>
 
-    <div v-if="token !== null" class="row">
-      <div class="col-lg-5"></div>
-      <div class="col-lg-5"></div>
-      <div class="col-lg-2">
-        <router-link to="/">
-          <input class="btn btn-primary" type="button" @click="logout()" value="Logout">
-        </router-link>
-      </div>
-    </div>
+<!--    <div v-if="token !== null" class="row">-->
+<!--      <div class="col-lg-5"></div>-->
+<!--      <div class="col-lg-5"></div>-->
+<!--      <div class="col-lg-2">-->
+<!--        <router-link to="/">-->
+<!--          <input class="btn btn-primary" type="button" @click="logout()" value="Logout">-->
+<!--        </router-link>-->
+<!--      </div>-->
+<!--    </div>-->
 
   </div>
 </template>

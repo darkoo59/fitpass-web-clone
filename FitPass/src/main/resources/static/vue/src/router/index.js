@@ -2,7 +2,7 @@ import {createRouter, createWebHistory} from 'vue-router'
 import Home from '../views/Home'
 import Register from '../views/Register'
 import Login from "../views/Login"
-import LoginDone from "../views/LoginDone";
+import AdministratorCreateProfiles from "../views/AdministratorCreateProfiles";
 
 const routes = [
     {
@@ -19,6 +19,11 @@ const routes = [
         path: '/login',
         name: 'Login',
         component: Login
+    },
+    {
+        path: '/administratorCreateProfiles',
+        name: 'AdministratorCreateProfiles',
+        component: AdministratorCreateProfiles
     }
 
 ]
