@@ -1,6 +1,6 @@
 <template>
   <section class="vh-100 gradient-custom">
-    <HomeHeader v-if="token === null"/>
+    <HomeHeader/>
     <Menu v-if="token != null"/>
     <SportsFacilities />
   </section>
@@ -24,6 +24,12 @@ export default {
       userRole: window.localStorage.getItem('userRole')
     }
   },
+  beforeMount() {
+    if(localStorage.getItem('showMenu')){
+      this.$router.go()
+      localStorage.removeItem('showMenu')
+    }
+  }
 }
 
 </script>

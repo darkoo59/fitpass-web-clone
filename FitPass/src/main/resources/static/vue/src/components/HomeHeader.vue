@@ -1,6 +1,6 @@
 <template>
   <div class="header gradient-custom">
-    <div class="row">
+    <div v-if="token === null" class="row">
       <div class="col-lg-5"></div>
       <div class="col-lg-5"></div>
       <div class="col-lg-2">
@@ -11,7 +11,18 @@
           <button type="button" class="btn btn-secondary">Register</button>
         </router-link>
       </div>
+    </div>
+
+    <div v-if="token !== null" class="row">
+      <div class="col-lg-5"></div>
+      <div class="col-lg-5"></div>
+      <div class="col-lg-2">
+        <router-link to="/">
+          <input class="btn btn-primary" type="button" @click="logout()" value="Logout">
+        </router-link>
       </div>
+    </div>
+
   </div>
 </template>
 
@@ -21,6 +32,12 @@ export default {
   methods:{
     goToHome(){
       this.$router.push('/home');
+    },
+    logout(){
+      window.localStorage.removeItem('token')
+      window.localStorage.removeItem('userRole')
+      this.$router.go()
+
     }
   },
   data: function(){
