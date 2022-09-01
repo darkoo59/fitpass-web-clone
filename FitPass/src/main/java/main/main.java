@@ -2,9 +2,11 @@ package main;
 
 import com.google.gson.Gson;
 import controller.AccountController;
+import controller.AdministratorController;
 import controller.CORSController;
 import controller.SportsFacilityController;
 import service.AccountService;
+import service.AdministratorService;
 import service.SportsFacilityService;
 import utils.others.CustomGsonBuilder;
 import static spark.Spark.*;
@@ -14,6 +16,8 @@ public class main {
     private static CustomGsonBuilder customGsonBuilder;
     private static AccountService accountService;
     private static SportsFacilityService facilitiesService;
+
+    private static AdministratorService administratorService;
     public static void main(String[] args) throws Exception {
 
         initializeContext();
@@ -30,6 +34,9 @@ public class main {
         AccountController.getUser();
         AccountController.getUserInfo();
 
+        AdministratorController.postRegister();
+        AdministratorController.getAllProfiles();
+
         SportsFacilityController.getSportsFacilites();
     }
 
@@ -39,5 +46,8 @@ public class main {
         facilitiesService = new SportsFacilityService();
         SportsFacilityController.initializeService(facilitiesService);
         customGsonBuilder = new CustomGsonBuilder();
+        administratorService = new AdministratorService();
+        AdministratorController.initializeService(administratorService);
+
     }
 }

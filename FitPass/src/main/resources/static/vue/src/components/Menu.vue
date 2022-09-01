@@ -58,7 +58,9 @@
               </router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" href="#">AdministratorFeature2</a>
+              <router-link class="nav-link text-white" to="/allProfiles">
+                All profiles
+              </router-link>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -162,8 +164,11 @@ export default {
     logout(){
       window.localStorage.removeItem('token')
       window.localStorage.removeItem('userRole')
-      this.$router.go()
-
+      if(this.$route.name === 'Home'){
+        this.$router.go()
+      }
+      else
+        this.$router.push('')
     }
   },
   data: function(){

@@ -62,13 +62,13 @@
 
                     <div class="col-md-12 mb-12 pb-2">
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleSex"
+                        <input class="form-check-input" type="radio" name="sexRadioOptions" id="femaleSex"
                                value="female" required/>
                         <label class="form-check-label" for="femaleSex">Female</label>
                       </div>
 
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleSex"
+                        <input class="form-check-input" type="radio" name="sexRadioOptions" id="maleSex"
                                value="male" required/>
                         <label class="form-check-label" for="maleSex">Male</label>
                       </div>
@@ -86,15 +86,15 @@
 
                     <div class="col-md-12 mb-12 pb-2">
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="managerRole"
+                        <input class="form-check-input" type="radio" name="roleRadioOptions" id="managerRole"
                                value="manager" required/>
                         <label class="form-check-label" for="managerRole">Manager</label>
                       </div>
 
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="trainerRole"
+                        <input class="form-check-input" type="radio" name="roleRadioOptions" id="trainerRole"
                                value="trainer" required/>
-                        <label class="form-check-label" for="trainerRole">Trainer</label>
+                        <label class="form-check-label" for="trainerRole">Coach</label>
                       </div>
                     </div>
 
@@ -117,6 +117,7 @@
 
 <script>
 import Menu from "@/components/Menu";
+import axios from "axios";
 export default {
   name:'AdministratorCreateProfiles',
   components: {
