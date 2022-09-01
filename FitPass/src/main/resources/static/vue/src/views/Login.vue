@@ -67,7 +67,7 @@
         }else {
           localStorage.setItem('token',responseData);
           this.SetUserInfo()
-          this.$router.push('/login')
+          localStorage.setItem('showMenu','true')
           this.$router.push('/')
         }
       },
