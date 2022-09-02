@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import model.SportsFacility;
+import model.User;
 import utils.others.LocalTimeConverter;
 
 import java.io.FileWriter;
@@ -77,8 +78,21 @@ public class SportsFacilityDAO implements IDao<SportsFacility>{
                 facility.setStatus(obj.getStatus());
                 facility.setType(obj.getType());
                 facility.setWorkHour(obj.getWorkHour());
+                facility.setManagerId(obj.getManagerId());
                 return;
             }
         }
+    }
+
+    public int getNewId() throws IOException {
+        int id = 0;
+        ArrayList<SportsFacility> facilities = getAll();
+        for (SportsFacility facility:facilities) {
+            if(Integer.parseInt(facility.getId()) >= id) {
+                id = Integer.parseInt(facility.getId()) + 1;
+            }
+        }
+        return id;
+
     }
 }

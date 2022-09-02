@@ -4,6 +4,7 @@ import Register from '../views/Register'
 import Login from "../views/Login"
 import AdministratorCreateProfiles from "../views/AdministratorCreateProfiles";
 import AllProfiles from "../views/AllProfiles";
+import CreateFacility from "../views/CreateFacility";
 
 const routes = [
     {
@@ -30,6 +31,11 @@ const routes = [
         path: '/allProfiles',
         name: 'AllProfiles',
         component: AllProfiles
+    },
+    {
+        path: '/createFacility',
+        name: 'CreateFacility',
+        component: CreateFacility
     }
 
 ]

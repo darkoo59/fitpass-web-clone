@@ -27,4 +27,11 @@ public class AdministratorController {
             return gson.toJson(administratorService.getAllProfiles());
         });
     }
+
+    public static void getManagersForNewFacility() {
+        get("/managersForNewFacility", (req, res) -> {
+            res.type("application/json");
+            return gson.toJson(administratorService.getManagersForNewFacility());
+        });
+    }
 }

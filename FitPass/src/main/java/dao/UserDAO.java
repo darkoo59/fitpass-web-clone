@@ -87,4 +87,16 @@ public class UserDAO implements IDao<User> {
             }
         }
     }
+    public int getNewId() throws IOException {
+        int id = 0;
+        ArrayList<User> users = getAll();
+        for (User user:users) {
+            System.out.println();
+            if(Integer.parseInt(user.getId()) >= id) {
+                id = Integer.parseInt(user.getId()) + 1;
+            }
+        }
+        return id;
+
+    }
 }

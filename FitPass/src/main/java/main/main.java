@@ -36,6 +36,7 @@ public class main {
 
         AdministratorController.postRegister();
         AdministratorController.getAllProfiles();
+        AdministratorController.getManagersForNewFacility();
 
         SportsFacilityController.getSportsFacilites();
     }
