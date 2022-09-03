@@ -1,6 +1,7 @@
 package controller;
 
 import service.AdministratorService;
+import spark.Request;
 
 import static main.main.gson;
 import static spark.Spark.get;
@@ -39,6 +40,15 @@ public class AdministratorController {
         post("/sarchProfiles",(req,res) -> {
             res.type("application/json");
             return administratorService.getSearchedProfiles(req);
+        });
+    }
+
+    public static void postCreateNewFacility()
+    {
+        post("/createFacility",(req,res) -> {
+            administratorService.createNewFacility(req);
+            res.redirect("http://localhost:8080/");
+            return "SUCCESS";
         });
     }
 }

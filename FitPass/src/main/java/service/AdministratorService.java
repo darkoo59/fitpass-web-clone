@@ -37,7 +37,7 @@ public class AdministratorService {
         String role = req.queryParams("roleRadioOptions");
         RoleType roleType = role.equals("manager") ? RoleType.MANAGER : RoleType.COACH;
         User newUser = new User(username, password, name, surname, sexType, parsedDate, roleType);
-        newUser.setId(String.valueOf(userDAO.getNewId()));
+        newUser.setId(userDAO.getNewId());
         ArrayList<User> users = userDAO.getAll();
         users.add(newUser);
         userDAO.save(users);
@@ -74,6 +74,11 @@ public class AdministratorService {
             }
         }
         return managers;
+    }
+
+    public void createNewFacility(Request req) {
+        System.out.println(req.queryParams("name"));
+        return;
     }
 
 }

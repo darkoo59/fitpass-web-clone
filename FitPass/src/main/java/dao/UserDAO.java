@@ -103,16 +103,18 @@ public class UserDAO implements IUserDAO {
         }
     }
 
-    public int getNewId() throws IOException {
+    public String getNewId() throws IOException {
         int id = 0;
+        System.out.println("dadadad");
         ArrayList<User> users = getAll();
         for (User user:users) {
-            System.out.println();
+            System.out.println(user.getId());
             if(Integer.parseInt(user.getId()) >= id) {
                 id = Integer.parseInt(user.getId()) + 1;
             }
         }
-        return id;
+        System.out.println(id);
+        return String.valueOf(id);
 
     }
 }

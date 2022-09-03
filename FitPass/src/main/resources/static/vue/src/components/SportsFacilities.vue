@@ -44,8 +44,8 @@ export default {
       let resp = await axios.get('http://localhost:8081/sportsFacilities')
       this.facilities = resp.data
       this.filtered = resp.data
-    },
-
+    }
+,
   methods: {
     searchFacilities() {
       this.filtered = this.facilities.filter((facility) => {
@@ -53,6 +53,17 @@ export default {
             || facility.type.toLowerCase().includes(this.input.toLowerCase())
             || facility.location.address.streetAndNumber.toLowerCase().includes(this.input.toLowerCase())
             || facility.averageRating == parseFloat(this.input);
+      })
+    },
+    sortFacilities(){
+      this.filtered = this.filtered.sort((a, b) => {
+        if (Intl.parse(a.workHour.start) < Intl.parse(b.workHour.end) && Intl.parse(a.workHour.start) < Intl.parse(b.workHour.end)) {
+          return 1
+        } else if (Date.parse(a.date) < Date.parse(b.date)) {
+          return -1
+        } else {
+          return 0
+        }
       })
     }
   }

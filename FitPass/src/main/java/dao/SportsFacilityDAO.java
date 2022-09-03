@@ -84,7 +84,7 @@ public class SportsFacilityDAO implements IDao<SportsFacility>{
         }
     }
 
-    public int getNewId() throws IOException {
+    public String getNewId() throws IOException {
         int id = 0;
         ArrayList<SportsFacility> facilities = getAll();
         for (SportsFacility facility:facilities) {
@@ -92,7 +92,7 @@ public class SportsFacilityDAO implements IDao<SportsFacility>{
                 id = Integer.parseInt(facility.getId()) + 1;
             }
         }
-        return id;
+        return String.valueOf(id);
 
     }
 }

@@ -44,6 +44,7 @@ public class main {
         AdministratorController.getAllProfiles();
         AdministratorController.getManagersForNewFacility();
         AdministratorController.getSearchedProfiles();
+        AdministratorController.postCreateNewFacility();
 
         SportsFacilityController.getSportsFacilites();
     }

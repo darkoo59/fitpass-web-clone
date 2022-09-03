@@ -15,7 +15,7 @@ public class SportsFacilityController {
     public static void getSportsFacilites() {
         get("/sportsFacilities", (req, res) -> {
             res.type("application/json");
-            return gson.toJson(sportsFacilityService.getAll());
+            return gson.toJson(sportsFacilityService.getAllSorted());
         });
     }
 }

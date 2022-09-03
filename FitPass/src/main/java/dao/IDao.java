@@ -10,5 +10,5 @@ public interface IDao<T> {
     void delete(T obj) throws IOException;
     void update(T obj) throws IOException;
 
-    int getNewId() throws IOException;
+    String getNewId() throws IOException;
 }

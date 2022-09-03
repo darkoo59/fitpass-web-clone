@@ -1,1 +1,71 @@
-[{"id":"1","username":"coach","password":"Coach","name":"Milan","surname":"Jovanovic","birthDate":"26-05-2018","role":"2","JWT":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb2FjaCIsImV4cCI6MTY2MTExMTU2MSwiaWF0IjoxNjYxMTExNTUxfQ.Ps-LSNAA3CgA72TRJQpEKoBdw5CAIUHuk4L8EnOtXV0"},{"id":"2","username":"manager","password":"Manager","name":"Jovan","surname":"Markovic","birthDate":"26-03-2018","role":"1","JWT":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyIiwiZXhwIjoxNjYxMTExMzk5LCJpYXQiOjE2NjExMTEzODl9.rwqyKYO6WxRdxU-WUH7dy-DlCC92J4XofbpUxKLZO90"},{"id":"3","username":"customer","password":"Customer","name":"Jelena","surname":"Janjic","birthDate":"26-11-2018","role":"3"},{"id":"4","username":"administrator","password":"Administrator","name":"Milos","surname":"Jovanovic","birthDate":"26-02-2018","role":"0","JWT":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjYxMTExNDI2LCJpYXQiOjE2NjExMTE0MTZ9.SjAgY73_bSaK4Dfo5TLS3vtZU0TlqKZsCzQitTqgTac"},{"username":"borakonj","password":"borakonj","name":"Bora","surname":"Konj","gender":"FEMALE","birthDate":"07-06-2022","role":"3"},{"username":"pero","password":"pero","name":"pero","surname":"pero","gender":"MALE","birthDate":"23-06-2022","role":"3"}]
+[
+  {
+    "id": "1",
+    "username": "coach",
+    "password": "Coach",
+    "name": "Milan",
+    "surname": "Jovanovic",
+    "birthDate": "26-05-2018",
+    "role": "2",
+    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb2FjaCIsImV4cCI6MTY2MTExMTU2MSwiaWF0IjoxNjYxMTExNTUxfQ.Ps-LSNAA3CgA72TRJQpEKoBdw5CAIUHuk4L8EnOtXV0"
+  },
+  {
+    "id": "2",
+    "username": "manager",
+    "password": "Manager",
+    "name": "Jovan",
+    "surname": "Markovic",
+    "birthDate": "26-03-2018",
+    "role": "1",
+    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyIiwiZXhwIjoxNjYxMTExMzk5LCJpYXQiOjE2NjExMTEzODl9.rwqyKYO6WxRdxU-WUH7dy-DlCC92J4XofbpUxKLZO90"
+  },
+  {
+    "id": "3",
+    "username": "customer",
+    "password": "Customer",
+    "name": "Jelena",
+    "surname": "Janjic",
+    "birthDate": "26-11-2018",
+    "role": "3"
+  },
+  {
+    "id": "4",
+    "username": "administrator",
+    "password": "Administrator",
+    "name": "Milos",
+    "surname": "Jovanovic",
+    "birthDate": "26-02-2018",
+    "role": "0",
+    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjYyMjA2MjYyLCJpYXQiOjE2NjIyMDYyNTJ9.uf_sYDEypq51QyfAg2sysakBDBB8irjHrFZcBVY_E-o"
+  },
+  {
+    "id": "5",
+    "username": "borakonj",
+    "password": "borakonj",
+    "name": "Bora",
+    "surname": "Konj",
+    "gender": "FEMALE",
+    "birthDate": "07-06-2022",
+    "role": "3"
+  },
+  {
+    "id": "6",
+    "username": "pero",
+    "password": "pero",
+    "name": "pero",
+    "surname": "pero",
+    "gender": "MALE",
+    "birthDate": "23-06-2022",
+    "role": "3"
+  },
+  {
+    "id": "7",
+    "username": "dsada",
+    "password": "dasda",
+    "name": "dasda",
+    "surname": "dada",
+    "gender": "MALE",
+    "birthDate": "22-09-2022",
+    "role": "1"
+  }
+]
