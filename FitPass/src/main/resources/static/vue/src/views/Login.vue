@@ -73,8 +73,8 @@
       },
       SetUserInfo:function() {
         axios
-            .get('http://localhost:8081/userInfo', {headers : {"Authorization" : `Bearer ${localStorage.getItem('token')}`}})
-            .then(response => (localStorage.setItem('userRole',response.data)))
+            .get('http://localhost:8081/userRole', {headers : {"Authorization" : `Bearer ${localStorage.getItem('token')}`}})
+            .then(response => (localStorage.setItem('userRole', response.data)))
       }
   }
 }

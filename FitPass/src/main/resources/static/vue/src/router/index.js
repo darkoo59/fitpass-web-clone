@@ -3,6 +3,7 @@ import Home from '../views/Home'
 import Register from '../views/Register'
 import Login from "../views/Login"
 import AdministratorCreateProfiles from "../views/AdministratorCreateProfiles";
+import MyProfile from "@/views/MyProfile";
 
 const routes = [
     {
@@ -24,6 +25,11 @@ const routes = [
         path: '/administratorCreateProfiles',
         name: 'AdministratorCreateProfiles',
         component: AdministratorCreateProfiles
+    },
+    {
+        path: '/userInfo',
+        name: 'MyProfile',
+        component: MyProfile
     }
 
 ]

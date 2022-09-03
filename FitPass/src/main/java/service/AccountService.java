@@ -1,33 +1,34 @@
 package service;
 
-import com.esotericsoftware.kryo.util.IntMap;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.nimbusds.jwt.SignedJWT;
-import dao.IDao;
+import dao.IUserDAO;
 import dao.UserDAO;
+import dto.UserDTO;
 import io.jsonwebtoken.*;
 import model.Credentials;
 import model.User;
-import org.apache.spark.sql.catalyst.expressions.Base64;
-import scala.util.parsing.json.JSONObject;
-import scala.util.parsing.json.JSONObject$;
+import org.apache.commons.lang.StringUtils;
 import spark.Request;
 import utils.enums.GenderType;
 import utils.enums.RoleType;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
-import javax.annotation.Signed;
-import javax.management.relation.Role;
+import java.util.List;
 import javax.xml.bind.DatatypeConverter;
 
-import static utils.others.Decode.decode;
-
 public class AccountService {
-    private IDao userDAO;
+    private IUserDAO userDAO;
     private UserService userService;
     private static String key = "fhjdfddjsaildhadlHHHjjFHaFHAkflfhAFKLJhfk";
     private  static String base64Key = DatatypeConverter.printBase64Binary(key.getBytes());
@@ -80,30 +81,59 @@ public class AccountService {
         return null;
     }
 
-    public RoleType getLoggedUserRole(Request request) throws ParseException, IOException {
+    private String getPayload(Request request) throws ParseException {
         String[] splittedHeader = request.headers("Authorization").split("\\s+");
         String jwtToken = splittedHeader[1];
         SignedJWT decodedJWT = SignedJWT.parse(jwtToken);
         String payload = decodedJWT.getPayload().toString();
+        return payload;
+    }
+
+    public RoleType getLoggedUserRole(Request request) throws ParseException, IOException {
+        String payload = getPayload(request);
         String username = payload.substring(8,payload.lastIndexOf("\",\"exp\":"));
-        System.out.println(username);
         return userService.getRoleTypeByUsername(username);
     }
-    public User loginJWT(User user) {
 
-// Token je validan 10 sekundi!
+    public UserDTO getUserInfo(Request req) throws Exception {
+        String payload = getPayload(req);
+        String username = payload.substring(8,payload.lastIndexOf("\",\"exp\":"));
+        return userService.getUserDTOByUsername(username);
+    }
 
-        String jws =
-                Jwts.builder().setSubject(user.getUsername()).
-                        setExpiration(new Date(new Date().getTime() +
-                                1000*10L)).
-                        setIssuedAt(new Date()).
-                        signWith(SignatureAlgorithm.HS512,secretBytes).
-                        compact();
+    public void editUser(Request req) throws Exception {
+        User user = makeUserFromReqBody(req);
+        userDAO.updateUserInfo(user);
+    }
 
-        user.setJWT(jws);
+    private User makeUserFromReqBody(Request req) {
+        String id = StringUtils.substringBetween(req.body(), "\"id\":\"", "\",");
+        String username = StringUtils.substringBetween(req.body(), "\"username\":\"", "\",");
+        String name = StringUtils.substringBetween(req.body(), "\"name\":\"", "\",");
+        String surname = StringUtils.substringBetween(req.body(), "\"surname\":\"", "\",");
+        String sexString = StringUtils.substringBetween(req.body(), "\"gender\":\"", "\",");
+        GenderType sex;
+        if (sexString.equals("MALE")) {
+            sex = GenderType.MALE;
+        } else
+        {
+            sex = GenderType.FEMALE;
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(
+                StringUtils.substringBetween(req.body(), "\"birthDate\":\"", "\""), formatter);
 
-        System.out.println("Retuned JWT: " + jws);
+        return makeUserWith(id, username, name, surname, sex, date);
+    }
+
+    private User makeUserWith(String id, String username, String name, String surname, GenderType sex, LocalDate date) {
+        User user = new User();
+        user.setId(id);
+        user.setUsername(username);
+        user.setName(name);
+        user.setSurname(surname);
+        user.setGender(sex);
+        user.setBirthDate(date);
         return user;
     }
 }

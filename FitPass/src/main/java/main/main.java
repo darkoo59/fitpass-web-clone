@@ -10,10 +10,12 @@ import utils.others.CustomGsonBuilder;
 import static spark.Spark.*;
 
 public class main {
+
     public static Gson gson;
     private static CustomGsonBuilder customGsonBuilder;
     private static AccountService accountService;
     private static SportsFacilityService facilitiesService;
+
     public static void main(String[] args) throws Exception {
 
         initializeContext();
@@ -28,7 +30,9 @@ public class main {
         AccountController.postRegister();
         AccountController.postLogin();
         AccountController.getUser();
+        AccountController.getUserRole();
         AccountController.getUserInfo();
+        AccountController.postUserInfoEdit();
 
         SportsFacilityController.getSportsFacilites();
     }

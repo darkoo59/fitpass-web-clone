@@ -1,6 +1,7 @@
 package service;
 
 import dao.UserDAO;
+import dto.UserDTO;
 import model.User;
 import utils.enums.RoleType;
 
@@ -31,5 +32,24 @@ public class UserService {
             }
         }
         return null;
+    }
+
+    public UserDTO getUserDTOByUsername(String username) throws Exception {
+        UserDTO userDTO = new UserDTO();
+        for (User user : userDAO.getAll()) {
+            if (user.getUsername().equals(username)) {
+                mapUserToDTO(userDTO, user);
+            }
+        }
+        return userDTO;
+    }
+
+    private void mapUserToDTO(UserDTO userDTO, User user) {
+        userDTO.id = user.getId();
+        userDTO.username = user.getUsername();
+        userDTO.name = user.getName();
+        userDTO.surname = user.getSurname();
+        userDTO.gender = user.getGender();
+        userDTO.birthDate = user.getBirthDate();
     }
 }

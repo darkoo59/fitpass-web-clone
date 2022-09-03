@@ -13,7 +13,9 @@
               <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" href="#">CoachFeature1</a>
+              <router-link class="nav-link text-white" to="/userInfo">
+                My Profile
+              </router-link>
             </li>
             <li class="nav-item">
               <a class="nav-link text-white" href="#">CoachFeature2</a>

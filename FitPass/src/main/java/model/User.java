@@ -3,9 +3,7 @@ package model;
 import utils.enums.GenderType;
 import utils.enums.RoleType;
 
-import java.text.Format;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class User {
 

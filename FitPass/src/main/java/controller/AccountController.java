@@ -1,6 +1,7 @@
 package controller;
 
 import service.AccountService;
+import static main.main.gson;
 
 import static spark.Spark.*;
 
@@ -32,7 +33,18 @@ public class AccountController {
         });
     }
 
+    public static void getUserRole() {
+        get("/userRole", (req, res) -> accountService.getLoggedUserRole(req).toString());
+    }
+
     public static void getUserInfo() {
-        get("/userInfo", (req, res) -> accountService.getLoggedUserRole(req).toString());
+        get("/userInfo", (req, res) -> gson.toJson(accountService.getUserInfo(req)));
+    }
+
+    public static void postUserInfoEdit() {
+        post("/userInfo/edit", (req, res) -> {
+            accountService.editUser(req);
+            return "SUCCESS";
+        });
     }
 }

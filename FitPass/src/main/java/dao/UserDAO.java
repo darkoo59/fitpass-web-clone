@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class UserDAO implements IDao<User> {
+public class UserDAO implements IUserDAO {
 
     private final String path = "resources/users.json";
     public UserDAO()
@@ -51,7 +51,7 @@ public class UserDAO implements IDao<User> {
         gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateSerializer());
         gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateDeserializer());
         PrintWriter writer = new PrintWriter(new FileWriter(path));
-        Gson gson = gsonBuilder.create();
+        Gson gson = gsonBuilder.setPrettyPrinting().create();
         Type listType = new TypeToken<ArrayList<User>>() {}.getType();
         String str = gson.toJson(objs, listType);
         writer.write(str);
@@ -82,6 +82,21 @@ public class UserDAO implements IDao<User> {
         for (User user:users) {
             if(user.getId().equals(obj.getId())) {
                 users.remove(user);
+                save(users);
+                return;
+            }
+        }
+    }
+
+    public void updateUserInfo(User obj) throws IOException {
+        ArrayList<User> users = getAll();
+        for (User user:users) {
+            if(user.getId().equals(obj.getId())){
+                user.setUsername(obj.getUsername());
+                user.setName(obj.getName());
+                user.setSurname(obj.getSurname());
+                user.setGender(obj.getGender());
+                user.setBirthDate(obj.getBirthDate());
                 save(users);
                 return;
             }
