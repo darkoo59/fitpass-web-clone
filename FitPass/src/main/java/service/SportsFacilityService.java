@@ -4,6 +4,7 @@ import breeze.numerics.constants.Database;
 import dao.IDao;
 import dao.SportsFacilityDAO;
 import model.SportsFacility;
+import spark.Request;
 
 import java.io.IOException;
 import java.time.LocalTime;
@@ -40,5 +41,11 @@ public class SportsFacilityService {
             }
         });
         return sortedFacilities;
+    }
+
+    public SportsFacility getSportFacilityById(Request req) throws IOException {
+        String id = req.queryParams("id");
+        System.out.println("TEST : "+id);
+        return facilitiesDao.get(id);
     }
 }

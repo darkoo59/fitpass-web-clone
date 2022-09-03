@@ -1,5 +1,6 @@
 [
   {
+    "id": "1",
     "name": "Fitness klub Liman",
     "type": "gym",
     "content": [
@@ -26,7 +27,7 @@
     },
     "managerId":"2" 
   },
-  {
+  {"id": "2",
     "name": "Baš čelik",
     "type": "gym",
     "content": [
@@ -35,7 +36,7 @@
     ],
     "status": 0,
     "location": {
-		"id": "1",
+		"id": "2",
 		"longitude": "45.23594123700401",
 		"latitude": "19.834837813528818",
 		"address": {
@@ -53,6 +54,7 @@
     "managerId":null 
   },
   {
+    "id": "3",
     "name": "Flex gym",
     "type": "gym",
     "content": [
@@ -62,7 +64,7 @@
     ],
     "status": 1,
     "location": {
-		"id": "1",
+		"id": "3",
 		"longitude": "45.248517574105996",
 		"latitude": "19.844307253999684",
 		"address": {
@@ -80,6 +82,7 @@
     "managerId":null 
   },
   {
+    "id": "4",
     "name": "Non stop fitness",
     "type": "gym",
     "content": [
@@ -88,7 +91,7 @@
     ],
     "status": 0,
     "location": {
-		"id": "1",
+		"id": "4",
 		"longitude": "45.25279303703945",
 		"latitude": "19.843901113529405",
 		"address": {

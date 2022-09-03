@@ -18,4 +18,11 @@ public class SportsFacilityController {
             return gson.toJson(sportsFacilityService.getAllSorted());
         });
     }
+
+    public static void getSportFacility() {
+        get("/getSportFacility", (req,res) -> {
+            res.type("application/json");
+            return gson.toJson(sportsFacilityService.getSportFacilityById(req));
+        });
+    }
 }

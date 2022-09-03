@@ -47,6 +47,7 @@ public class main {
         AdministratorController.postCreateNewFacility();
 
         SportsFacilityController.getSportsFacilites();
+        SportsFacilityController.getSportFacility();
     }
 
     private static void initializeContext() throws IOException {

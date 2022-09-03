@@ -6,6 +6,7 @@ import AdministratorCreateProfiles from "../views/AdministratorCreateProfiles";
 import MyProfile from "@/views/MyProfile";
 import AllProfiles from "../views/AllProfiles";
 import CreateFacility from "../views/CreateFacility";
+import SportFacility from "../views/SportFacility";
 
 const routes = [
     {
@@ -42,6 +43,11 @@ const routes = [
         path: '/createFacility',
         name: 'CreateFacility',
         component: CreateFacility
+    },
+    {
+        path: '/sportFacility/:id',
+        name: 'SportFacility',
+        component: SportFacility
     }
 
 ]

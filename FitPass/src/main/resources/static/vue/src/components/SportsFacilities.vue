@@ -5,7 +5,7 @@
   <br>
   <div class="row">
     <div class="col-md-3"  v-for="facility in filtered" :key="facility.name">
-      <div class="card" style="width: 18rem;">
+      <div class="card" style="width: 18rem;" @click="openFacility(facility)">
         <img v-bind:src="require('../../public/images/'+facility.logo)" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">{{facility.name}}</h5>
@@ -44,8 +44,7 @@ export default {
       let resp = await axios.get('http://localhost:8081/sportsFacilities')
       this.facilities = resp.data
       this.filtered = resp.data
-    }
-,
+    },
   methods: {
     searchFacilities() {
       this.filtered = this.facilities.filter((facility) => {
@@ -55,15 +54,11 @@ export default {
             || facility.averageRating == parseFloat(this.input);
       })
     },
-    sortFacilities(){
-      this.filtered = this.filtered.sort((a, b) => {
-        if (Intl.parse(a.workHour.start) < Intl.parse(b.workHour.end) && Intl.parse(a.workHour.start) < Intl.parse(b.workHour.end)) {
-          return 1
-        } else if (Date.parse(a.date) < Date.parse(b.date)) {
-          return -1
-        } else {
-          return 0
-        }
+    openFacility(facility){
+      alert(facility.id)
+      this.$router.push({
+        name: 'SportFacility',
+        params: { id: facility.id }
       })
     }
   }
