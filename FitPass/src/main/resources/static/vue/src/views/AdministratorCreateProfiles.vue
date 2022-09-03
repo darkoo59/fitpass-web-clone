@@ -52,7 +52,7 @@
                   <div class="col-md-6 mb-4 pb-2">
 
                     <label class="form-label" for="datepicker">Date of birth</label>
-                    <input type="date" name="date" class="form-control form-control-lg" min="1900-01-01" max="2022-12-31" required/>
+                    <input type="date" id="date" name="date" class="form-control form-control-lg" min="1900-01-01" max="2022-12-31" required/>
 
                   </div>
 
@@ -62,13 +62,13 @@
 
                     <div class="col-md-12 mb-12 pb-2">
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleSex"
+                        <input class="form-check-input" type="radio" name="sexRadioOptions" id="femaleSex"
                                value="female" required/>
                         <label class="form-check-label" for="femaleSex">Female</label>
                       </div>
 
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleSex"
+                        <input class="form-check-input" type="radio" name="sexRadioOptions" id="maleSex"
                                value="male" required/>
                         <label class="form-check-label" for="maleSex">Male</label>
                       </div>
@@ -86,15 +86,15 @@
 
                     <div class="col-md-12 mb-12 pb-2">
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="managerRole"
+                        <input class="form-check-input" type="radio" name="roleRadioOptions" id="managerRole"
                                value="manager" required/>
                         <label class="form-check-label" for="managerRole">Manager</label>
                       </div>
 
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="trainerRole"
+                        <input class="form-check-input" type="radio" name="roleRadioOptions" id="trainerRole"
                                value="trainer" required/>
-                        <label class="form-check-label" for="trainerRole">Trainer</label>
+                        <label class="form-check-label" for="trainerRole">Coach</label>
                       </div>
                     </div>
 
@@ -103,7 +103,7 @@
                 </div>
 
                 <div class="mt-4 pt-2">
-                  <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+                    <input class="btn btn-primary btn-lg" type="submit" value="Submit"/>
                 </div>
 
               </form>
@@ -121,6 +121,51 @@ export default {
   name:'AdministratorCreateProfiles',
   components: {
     Menu
+  },
+  data () {
+    return {
+      lastPath: null
+    }
+  },
+  async mounted() {
+    this.$nextTick(function () {
+      // Code that will run only after the
+      // entire view has been rendered
+      let managerOption = document.getElementById('managerRole')
+      let coachOption = document.getElementById('trainerRole')
+      if (window.localStorage.getItem('createManager') === 'true') {
+        managerOption.checked = true
+        coachOption.disabled = true
+      }
+    })},
+  // },
+  // unmounted(){
+  //   window.localStorage.removeItem('createManager')
+  //   document.getElementById('firstName').value = ''
+  //   document.getElementById('lastName').value = ''
+  //   document.getElementById('username').value = ''
+  //   document.getElementById('password').value = ''
+  //   document.getElementById('date').value = ''
+  //   if(window.localStorage.getItem('createManager') === 'true')
+  //     this.$router.push('/createFacility')
+  //   else
+  //     this.$router.push('/')
+  // },
+  methods:{
+    submitForm()
+    {
+        document.getElementById('firstName').value = ''
+        document.getElementById('lastName').value = ''
+        document.getElementById('username').value = ''
+        document.getElementById('password').value = ''
+        document.getElementById('date').value = ''
+        if(window.localStorage.getItem('createManager') === 'true') {
+          window.localStorage.removeItem('createManager')
+          this.$router.push('/createFacility')
+        }
+        else
+          this.$router.push('/')
+    }
   }
 }
 </script>

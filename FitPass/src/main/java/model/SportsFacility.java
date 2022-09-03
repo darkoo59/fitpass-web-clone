@@ -18,8 +18,10 @@ public class SportsFacility {
     private double averageRating;
     private WorkHour workHour;
 
+    private String managerId;
+
     public SportsFacility(String name, String type, ArrayList<String> content, SportsFacilityStatus status,
-                          Location location, String logo, double averageRating, WorkHour workHour) {
+                          Location location, String logo, double averageRating, WorkHour workHour, String managerId) {
         this.name = name;
         this.type = type;
         this.content = content;
@@ -28,6 +30,7 @@ public class SportsFacility {
         this.logo = logo;
         this.averageRating = averageRating;
         this.workHour = workHour;
+        this.managerId = managerId;
     }
 
     public String getId() { return id; }
@@ -97,4 +100,8 @@ public class SportsFacility {
     public void setWorkHour(WorkHour workHour) {
         this.workHour = workHour;
     }
+
+    public String getManagerId() { return managerId; }
+
+    public void setManagerId(String managerId) { this.managerId = managerId; }
 }

@@ -4,6 +4,8 @@ import Register from '../views/Register'
 import Login from "../views/Login"
 import AdministratorCreateProfiles from "../views/AdministratorCreateProfiles";
 import MyProfile from "@/views/MyProfile";
+import AllProfiles from "../views/AllProfiles";
+import CreateFacility from "../views/CreateFacility";
 
 const routes = [
     {
@@ -30,6 +32,16 @@ const routes = [
         path: '/userInfo',
         name: 'MyProfile',
         component: MyProfile
+    },
+    {
+        path: '/allProfiles',
+        name: 'AllProfiles',
+        component: AllProfiles
+    },
+    {
+        path: '/createFacility',
+        name: 'CreateFacility',
+        component: CreateFacility
     }
 
 ]
