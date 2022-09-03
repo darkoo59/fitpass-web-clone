@@ -69,6 +69,11 @@
                 Create facility
               </router-link>
             </li>
+            <li>
+              <router-link class="nav-link text-white" to="/userInfo">
+                My Profile
+              </router-link>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 AdministratorFeature3
@@ -101,8 +106,10 @@
             <li class="nav-item">
               <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="#">ManagerFeature1</a>
+            <li>
+              <router-link class="nav-link text-white" to="/userInfo">
+                My Profile
+              </router-link>
             </li>
             <li class="nav-item">
               <a class="nav-link text-white" href="#">ManagerFeature2</a>
@@ -138,8 +145,10 @@
             <li class="nav-item">
               <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="#">CustomerFeature1</a>
+            <li>
+              <router-link class="nav-link text-white" to="/userInfo">
+                My Profile
+              </router-link>
             </li>
             <li class="nav-item">
               <a class="nav-link text-white" href="#">CustomerFeature2</a>
