@@ -19,10 +19,11 @@ import java.util.ArrayList;
 public class AdministratorService {
     private IDao userDAO;
     private SportsFacilityDAO facilityDAO;
-    public AdministratorService()
-    {
+    private ArrayList<User> allUsers;
+    public AdministratorService() throws IOException {
         userDAO = new UserDAO();
         facilityDAO = new SportsFacilityDAO();
+        allUsers = userDAO.getAll();
     }
     public void register(Request req) throws IOException {
         String name = req.queryParams("name");
@@ -40,6 +41,18 @@ public class AdministratorService {
         ArrayList<User> users = userDAO.getAll();
         users.add(newUser);
         userDAO.save(users);
+    }
+
+    public ArrayList<User> getSearchedProfiles(Request req) throws IOException {
+        ArrayList<User> searchedUsers = new ArrayList<User>();
+        for(User user : allUsers)
+        {
+            if(user.getName().contains(req.body()) || user.getSurname().contains(req.body()) || user.getUsername().contains(req.body()))
+                searchedUsers.add(user);
+        }
+        for(User user : searchedUsers)
+            System.out.println(user.getUsername());
+        return searchedUsers;
     }
 
     public ArrayList<User> getAllProfiles() throws IOException {

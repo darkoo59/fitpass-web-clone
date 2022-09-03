@@ -2,24 +2,34 @@
   <section class="vh-100 gradient-custom">
     <HomeHeader />
     <Menu/>
+
+    <br>
+    <input type="text" @input="searchProfiles" v-model="input" placeholder="Search profiles..." />
+    <div v-for="prof in filteredProfiles" :key="prof.id">
+      <h1 class="text-white">{{prof.username}}</h1>
+<!--      <h3>{{}}</h3>-->
+<!--      <h2>{{filteredProfiles.username}}</h2>-->
+    </div>
     <div id="accordion" class="w-50">
 
-      <div class="card" v-for="profile in profiles" :key="profile.username">
-        <div class="card-header">
-          <a class="btn" data-bs-toggle="collapse" href="#collapseOne">
-            {{profile.name}} {{profile.surname}}
-          </a>
-        </div>
-        <div id="collapseOne" class="collapse" data-bs-parent="#accordion">
-          <div class="card-body">
-            Name : {{profile.name}} <br>
-            Surname : {{profile.surname}} <br>
-            Username : {{profile.username}} <br>
-            Birth date : {{profile.birthDate}} <br>
-            Role : {{getRoleString(profile.role)}}
-          </div>
-        </div>
-      </div>
+<!--      <li v-for="profile in filteredProfiles" :key="profile.username">-->
+<!--        <div class="card">-->
+<!--          <div class="card-header">-->
+<!--            <a class="btn" data-bs-toggle="collapse" href="#collapseOne">-->
+<!--              {{profile.name}} {{profile.surname}}-->
+<!--            </a>-->
+<!--          </div>-->
+<!--          <div id="collapseOne" class="collapse" data-bs-parent="#accordion">-->
+<!--            <div class="card-body">-->
+<!--              Name : {{profile.name}} <br>-->
+<!--              Surname : {{profile.surname}} <br>-->
+<!--              Username : {{profile.username}} <br>-->
+<!--              Birth date : {{profile.birthDate}} <br>-->
+<!--              Role : {{getRoleString(profile.role)}}-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </li>-->
 
 <!--      <div class="card">-->
 <!--        <div class="card-header">-->
@@ -61,13 +71,16 @@ export default {
   },
   data: function () {
     return {
-      profiles: []
+      profiles: [],
+      filteredProfiles: [],
+      profilesNum: 0,
+      input: ""
     }
   },
-  async mounted()
-  {
+  async mounted() {
     let resp = await axios.get('http://localhost:8081/allProfiles')
     this.profiles = resp.data
+    this.filteredProfiles = resp.data
   },
   methods: {
     getRoleString(role) {
@@ -79,6 +92,16 @@ export default {
         return "Coach"
       else
         return "Customer"
+    },
+    incrementedNum() {
+      this.profilesNum = this.profilesNum + 1
+      return this.profilesNum.toString()
+    },
+    searchProfiles() {
+      axios.post('http://localhost:8081/sarchProfiles', this.input)
+          .then(response => (alert(response.data),
+                  this.filteredProfiles = response.data,
+                  alert(this.filteredProfiles)))
     }
   }
 }

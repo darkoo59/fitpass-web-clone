@@ -9,6 +9,9 @@ import service.AccountService;
 import service.AdministratorService;
 import service.SportsFacilityService;
 import utils.others.CustomGsonBuilder;
+
+import java.io.IOException;
+
 import static spark.Spark.*;
 
 public class main {
@@ -37,11 +40,12 @@ public class main {
         AdministratorController.postRegister();
         AdministratorController.getAllProfiles();
         AdministratorController.getManagersForNewFacility();
+        AdministratorController.getSearchedProfiles();
 
         SportsFacilityController.getSportsFacilites();
     }
 
-    private static void initializeContext() {
+    private static void initializeContext() throws IOException {
         accountService = new AccountService();
         AccountController.initializeService(accountService);
         facilitiesService = new SportsFacilityService();

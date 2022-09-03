@@ -34,4 +34,11 @@ public class AdministratorController {
             return gson.toJson(administratorService.getManagersForNewFacility());
         });
     }
+
+    public static void getSearchedProfiles() {
+        post("/sarchProfiles",(req,res) -> {
+            res.type("application/json");
+            return administratorService.getSearchedProfiles(req);
+        });
+    }
 }
