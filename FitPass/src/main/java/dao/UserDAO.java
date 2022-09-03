@@ -90,8 +90,8 @@ public class UserDAO implements IUserDAO {
 
     public void updateUserInfo(User obj) throws IOException {
         ArrayList<User> users = getAll();
-        for (User user:users) {
-            if(user.getId().equals(obj.getId())){
+        for (User user : users) {
+            if (user.getId().equals(obj.getId())) {
                 user.setUsername(obj.getUsername());
                 user.setName(obj.getName());
                 user.setSurname(obj.getSurname());
@@ -101,6 +101,8 @@ public class UserDAO implements IUserDAO {
                 return;
             }
         }
+    }
+
     public int getNewId() throws IOException {
         int id = 0;
         ArrayList<User> users = getAll();
