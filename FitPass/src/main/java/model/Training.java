@@ -1,86 +1,85 @@
 package model;
 
-import java.awt.*;
-import java.sql.Time;
+import utils.others.WorkHour;
 
 public class Training {
 
     private String id;
     private String name;
     private String type;
-    private SportsFacility facility;
-    private Time duration;
-    private Coach coach;
+    private String facilityId;
+    private WorkHour duration;
+    private String coachId;
     private String description;
-    private Image image;
+    private String image;
 
-    public Training(String name, String type, SportsFacility facility, Time duration, Coach coach, String description, Image image) {
+    public Training(java.lang.String name, java.lang.String type, String facility, WorkHour duration, String coachId, java.lang.String description, java.lang.String image) {
         this.name = name;
         this.type = type;
-        this.facility = facility;
+        this.facilityId = facility;
         this.duration = duration;
-        this.coach = coach;
+        this.coachId = coachId;
         this.description = description;
         this.image = image;
     }
 
-    public String getId() { return id; }
+    public java.lang.String getId() { return id; }
 
-    public void setId(String id) { this.id = id; }
+    public void setId(java.lang.String id) { this.id = id; }
 
-    public String getName() {
+    public java.lang.String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(java.lang.String name) {
         this.name = name;
     }
 
-    public String getType() {
+    public java.lang.String getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(java.lang.String type) {
         this.type = type;
     }
 
-    public SportsFacility getFacility() {
-        return facility;
+    public String getFacilityId() {
+        return facilityId;
     }
 
-    public void setFacility(SportsFacility facility) {
-        this.facility = facility;
+    public void setFacilityId(String facilityId) {
+        this.facilityId = facilityId;
     }
 
-    public Time getDuration() {
+    public WorkHour getDuration() {
         return duration;
     }
 
-    public void setDuration(Time duration) {
+    public void setDuration(WorkHour duration) {
         this.duration = duration;
     }
 
-    public Coach getCoach() {
-        return coach;
+    public String getCoachId() {
+        return coachId;
     }
 
-    public void setCoach(Coach coach) {
-        this.coach = coach;
+    public void setCoachId(String coachId) {
+        this.coachId = coachId;
     }
 
-    public String getDescription() {
+    public java.lang.String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(java.lang.String description) {
         this.description = description;
     }
 
-    public Image getImage() {
+    public java.lang.String getImage() {
         return image;
     }
 
-    public void setImage(Image image) {
+    public void setImage(java.lang.String image) {
         this.image = image;
     }
 }

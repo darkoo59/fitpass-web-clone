@@ -7,6 +7,7 @@ import MyProfile from "@/views/MyProfile";
 import AllProfiles from "../views/AllProfiles";
 import CreateFacility from "../views/CreateFacility";
 import SportFacility from "../views/SportFacility";
+import MyTrainings from "../views/MyTrainings";
 
 const routes = [
     {
@@ -48,6 +49,11 @@ const routes = [
         path: '/sportFacility/:id',
         name: 'SportFacility',
         component: SportFacility
+    },
+    {
+        path: '/myTrainings',
+        name: 'MyTrainings',
+        component: MyTrainings
     }
 
 ]

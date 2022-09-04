@@ -1,20 +1,26 @@
 package model;
 
+import utils.others.WorkHour;
+
 import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class TrainingHistory {
 
     private String id;
     private LocalDateTime applicationDateTime;
-    private Training training;
-    private Customer customer;
-    private Coach coach;
+    private String trainingId;
+    private String customerId;
+    private String coachId;
+    private ArrayList<LocalDate> trainingDates;
 
-    public TrainingHistory(LocalDateTime applicationDateTime, Training training, Customer customer, Coach coach) {
+    public TrainingHistory(LocalDateTime applicationDateTime, String training, String customer, String coach,ArrayList<LocalDate> dates) {
         this.applicationDateTime = applicationDateTime;
-        this.training = training;
-        this.customer = customer;
-        this.coach = coach;
+        this.trainingId = training;
+        this.customerId = customer;
+        this.coachId = coach;
+        this.trainingDates = dates;
     }
 
     public String getId() { return id; }
@@ -29,27 +35,35 @@ public class TrainingHistory {
         this.applicationDateTime = applicationDateTime;
     }
 
-    public Training getTraining() {
-        return training;
+    public String getTrainingId() {
+        return trainingId;
     }
 
-    public void setTraining(Training training) {
-        this.training = training;
+    public void setTrainingId(String trainingId) {
+        this.trainingId = trainingId;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
-    public Coach getCoach() {
-        return coach;
+    public String getCoachId() {
+        return coachId;
     }
 
-    public void setCoach(Coach coach) {
-        this.coach = coach;
+    public void setCoachId(String coach) {
+        this.coachId = coach;
+    }
+
+    public ArrayList<LocalDate> getTrainingDates() {
+        return trainingDates;
+    }
+
+    public void setTrainingDates(ArrayList<LocalDate> trainingDates) {
+        this.trainingDates = trainingDates;
     }
 }

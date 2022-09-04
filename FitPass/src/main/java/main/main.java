@@ -1,12 +1,11 @@
 package main;
 
 import com.google.gson.Gson;
-import controller.AccountController;
-import controller.AdministratorController;
-import controller.CORSController;
-import controller.SportsFacilityController;
+import controller.*;
+import model.Customer;
 import service.AccountService;
 import service.AdministratorService;
+import service.CustomerService;
 import service.SportsFacilityService;
 import utils.others.CustomGsonBuilder;
 
@@ -20,6 +19,8 @@ public class main {
     private static CustomGsonBuilder customGsonBuilder;
     private static AccountService accountService;
     private static SportsFacilityService facilitiesService;
+
+    private static CustomerService customerService;
 
     private static AdministratorService administratorService;
     public static void main(String[] args) throws Exception {
@@ -48,6 +49,10 @@ public class main {
 
         SportsFacilityController.getSportsFacilites();
         SportsFacilityController.getSportFacility();
+
+        CustomerController.getAllTrainings();
+        CustomerController.getMyTrainingsHistory();
+        CustomerController.getFacilityByTrainingId();
     }
 
     private static void initializeContext() throws IOException {
@@ -58,6 +63,8 @@ public class main {
         customGsonBuilder = new CustomGsonBuilder();
         administratorService = new AdministratorService();
         AdministratorController.initializeService(administratorService);
+        customerService = new CustomerService();
+        CustomerController.initializeService(customerService);
 
     }
 }

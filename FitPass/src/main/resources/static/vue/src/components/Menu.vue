@@ -143,7 +143,9 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
+              <router-link class="nav-link text-white" to="/">
+                Home
+              </router-link>
             </li>
             <li>
               <router-link class="nav-link text-white" to="/userInfo">
@@ -151,7 +153,9 @@
               </router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" href="#">CustomerFeature2</a>
+              <router-link class="nav-link text-white" to="/myTrainings">
+                My trainings
+              </router-link>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">

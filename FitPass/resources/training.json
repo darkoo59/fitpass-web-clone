@@ -1,0 +1,14 @@
+[{
+    "id": "1",
+    "name": "Kardio",
+    "type": "trcanje",
+    "facilityId": "1",
+    "duration": {
+        "start": "09:00:00",
+        "end": "10:00:00"
+        },
+    "coachId": "1",
+    "description": "Veoma zanimljiv i jak trening!",
+    "image": "bascelik.jpg"
+}
+]
