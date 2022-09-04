@@ -25,4 +25,10 @@ public class SportsFacilityController {
             return gson.toJson(sportsFacilityService.getSportFacilityById(req));
         });
     }
+
+    public static void postSportsFacilitesFilter() {
+        post("sportsFacilities/filter", (req, res) -> {
+            return gson.toJson(sportsFacilityService.filter(req));
+        });
+    }
 }

@@ -48,6 +48,7 @@ public class main {
 
         SportsFacilityController.getSportsFacilites();
         SportsFacilityController.getSportFacility();
+        SportsFacilityController.postSportsFacilitesFilter();
     }
 
     private static void initializeContext() throws IOException {
