@@ -46,6 +46,7 @@ public class main {
         AdministratorController.getSearchedProfiles();
 
         SportsFacilityController.getSportsFacilites();
+        SportsFacilityController.postSportsFacilitesFilter();
     }
 
     private static void initializeContext() throws IOException {
