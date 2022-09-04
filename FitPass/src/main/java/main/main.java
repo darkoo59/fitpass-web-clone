@@ -53,6 +53,7 @@ public class main {
         CustomerController.getAllTrainings();
         CustomerController.getMyTrainingsHistory();
         CustomerController.getFacilityByTrainingId();
+        SportsFacilityController.postSportsFacilitesFilter();
     }
 
     private static void initializeContext() throws IOException {
