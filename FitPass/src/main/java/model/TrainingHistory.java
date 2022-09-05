@@ -14,13 +14,15 @@ public class TrainingHistory {
     private String customerId;
     private String coachId;
     private ArrayList<LocalDate> trainingDates;
+    private LocalDate nextTrainingDate;
 
-    public TrainingHistory(LocalDateTime applicationDateTime, String training, String customer, String coach,ArrayList<LocalDate> dates) {
+    public TrainingHistory(LocalDateTime applicationDateTime, String training, String customer, String coach,ArrayList<LocalDate> dates, LocalDate startDate) {
         this.applicationDateTime = applicationDateTime;
         this.trainingId = training;
         this.customerId = customer;
         this.coachId = coach;
         this.trainingDates = dates;
+        this.nextTrainingDate = startDate;
     }
 
     public String getId() { return id; }
@@ -65,5 +67,13 @@ public class TrainingHistory {
 
     public void setTrainingDates(ArrayList<LocalDate> trainingDates) {
         this.trainingDates = trainingDates;
+    }
+
+    public LocalDate getNextTrainingDate() {
+        return nextTrainingDate;
+    }
+
+    public void setNextTrainingDate(LocalDate startDate) {
+        this.nextTrainingDate = startDate;
     }
 }

@@ -27,16 +27,6 @@ public class TrainingHistoryDAO implements IDao<TrainingHistory> {
     @Override
     public ArrayList<TrainingHistory> getAll() throws IOException {
         GsonBuilder gsonBuilder = new GsonBuilder();
-    /*    Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
-@Override
-public LocalDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-
-return LocalDateTime.parse(json.getAsString(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")); }
-
-}).create();
-
-Test test = gson.fromJson(stringJson, Test.class);
-     */
         gsonBuilder.registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
             @Override
             public LocalDateTime deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
@@ -68,9 +58,20 @@ Test test = gson.fromJson(stringJson, Test.class);
     @Override
     public void save(ArrayList<TrainingHistory> objs) throws IOException {
         GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.registerTypeAdapter(LocalTime.class, new LocalTimeConverter());
+        gsonBuilder.registerTypeAdapter(LocalDateTime.class, new JsonSerializer<LocalDateTime>() {
+            @Override
+            public JsonElement serialize(LocalDateTime localDateTime, Type type, JsonSerializationContext jsonSerializationContext) {
+                return new JsonPrimitive(localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+            }
+        }).create();
+        gsonBuilder.registerTypeAdapter(LocalDate.class, new JsonSerializer<LocalDate>() {
+            @Override
+            public JsonElement serialize(LocalDate localDate, Type type, JsonSerializationContext jsonSerializationContext) {
+                return new JsonPrimitive(localDate.format(DateTimeFormatter.ISO_LOCAL_DATE));
+            }
+        }).create();
         PrintWriter writer = new PrintWriter(new FileWriter(path));
-        Gson gson = gsonBuilder.create();
+        Gson gson = gsonBuilder.setPrettyPrinting().create();
         Type listType = new TypeToken<ArrayList<TrainingHistory>>() {}.getType();
         String str = gson.toJson(objs, listType);
         writer.write(str);

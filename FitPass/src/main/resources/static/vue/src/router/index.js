@@ -7,7 +7,8 @@ import MyProfile from "@/views/MyProfile";
 import AllProfiles from "../views/AllProfiles";
 import CreateFacility from "../views/CreateFacility";
 import SportFacility from "../views/SportFacility";
-import MyTrainings from "../views/MyTrainings";
+import MyTrainings from "../views/CustomerMyTrainings";
+import CoachMyTrainings from "../views/CoachMyTrainings";
 
 const routes = [
     {
@@ -54,8 +55,12 @@ const routes = [
         path: '/myTrainings',
         name: 'MyTrainings',
         component: MyTrainings
+    },
+    {
+        path: '/coachTrainings',
+        name: 'CoachMyTrainings',
+        component: CoachMyTrainings
     }
-
 ]
 
 const router = createRouter({

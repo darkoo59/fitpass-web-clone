@@ -6,4 +6,6 @@ public class Filter {
     public String type;
     public String rating;
     public String sort;
+    public String facilityType;
+    public String trainingType;
 }

@@ -1,7 +1,7 @@
 [{
     "id": "1",
     "name": "Kardio",
-    "type": "trcanje",
+    "type": "personalni",
     "facilityId": "1",
     "duration": {
         "start": "09:00:00",
@@ -9,6 +9,21 @@
         },
     "coachId": "1",
     "description": "Veoma zanimljiv i jak trening!",
+    "price": 2000,
+    "image": "bascelik.jpg"
+},
+{
+    "id": "2",
+    "name": "Hipertrofija",
+    "type": "grupni",
+    "facilityId": "2",
+    "duration": {
+        "start": "17:00:00",
+        "end": "18:00:00"
+        },
+    "coachId": "1",
+    "description": "Lake tezine!",
+    "price": 3000,
     "image": "bascelik.jpg"
 }
 ]

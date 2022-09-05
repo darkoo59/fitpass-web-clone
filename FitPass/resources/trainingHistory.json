@@ -1,9 +1,19 @@
 [{
     "id": "1",
-    "applicationDateTime": "2020-01-30 15:00",
+    "applicationDateTime": "2022-01-30 15:00",
     "trainingId": "1",
     "customerId": "3",
     "coachId": "1",
-    "trainingDates": ["2018-01-01","2018-01-02"]
+    "trainingDates": [],
+    "nextTrainingDate": "2022-09-08"
+},
+{
+    "id": "2",
+    "applicationDateTime": "2021-01-30 15:00",
+    "trainingId": "2",
+    "customerId": "3",
+    "coachId": "1",
+    "trainingDates": ["2022-10-01","2022-08-10"],
+    "nextTrainingDate": "2023-07-20"
 }
 ]

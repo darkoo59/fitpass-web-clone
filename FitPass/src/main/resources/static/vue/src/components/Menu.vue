@@ -18,7 +18,9 @@
               </router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" href="#">CoachFeature2</a>
+              <router-link class="nav-link text-white" to="/coachTrainings">
+                My Trainings
+              </router-link>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">

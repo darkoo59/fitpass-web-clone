@@ -13,7 +13,9 @@ public class Training {
     private String description;
     private String image;
 
-    public Training(java.lang.String name, java.lang.String type, String facility, WorkHour duration, String coachId, java.lang.String description, java.lang.String image) {
+    private int price;
+
+    public Training(java.lang.String name, java.lang.String type, String facility, WorkHour duration, String coachId, java.lang.String description, java.lang.String image,int price) {
         this.name = name;
         this.type = type;
         this.facilityId = facility;
@@ -21,6 +23,7 @@ public class Training {
         this.coachId = coachId;
         this.description = description;
         this.image = image;
+        this.price = price;
     }
 
     public java.lang.String getId() { return id; }
@@ -81,5 +84,13 @@ public class Training {
 
     public void setImage(java.lang.String image) {
         this.image = image;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

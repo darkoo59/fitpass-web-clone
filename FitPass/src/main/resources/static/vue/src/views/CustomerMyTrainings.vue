@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Trainings from "../components/Trainings"
+import Trainings from "../components/CustomerTrainings"
 import HomeHeader from "../components/HomeHeader";
 import Menu from "../components/Menu"
 
