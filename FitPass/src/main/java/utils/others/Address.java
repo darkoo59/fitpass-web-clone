@@ -1,22 +1,32 @@
 package utils.others;
 
 public class Address {
-    private String streetAndNumber;
+    private String street;
+    private String number;
     private String place;
     private String zipCode;
 
-    public Address(String streetAndNumber, String place, String zipCode) {
-        this.streetAndNumber = streetAndNumber;
+    public Address(String street, String number, String place, String zipCode) {
+        this.street = street;
+        this.number = number;
         this.place = place;
         this.zipCode = zipCode;
     }
 
-    public String getStreetAndNumber() {
-        return streetAndNumber;
+    public String getStreet() {
+        return street;
     }
 
-    public void setStreetAndNumber(String streetAndNumber) {
-        this.streetAndNumber = streetAndNumber;
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public String getPlace() {

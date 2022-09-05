@@ -34,7 +34,6 @@ public class SportsFacilityService {
                 // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
         return lhs.customInt > rhs.customInt ? -1 : (lhs.customInt < rhs.customInt) ? 1 : 0;
                  */
-                System.out.println("DARKOOO");
                 if(o1.getWorkHour().getStart().compareTo(LocalTime.now()) < 0 &&
                         o1.getWorkHour().getEnd().compareTo(LocalTime.now()) > 0)
                     return -1;
