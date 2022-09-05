@@ -14,25 +14,36 @@
     </div>
   </div>
   <GoogleMap api-key="AIzaSyBx8GVH-2qbiuswKuukDTH5bIbh9XZwSoI"
-             style="width: 70%; height: 500px" :center="center" :zoom="18"/>
+             style="width: 70%; height: 500px" :center="this.center" :zoom="18">
+    <Marker :options="this.marker"/>
+  </GoogleMap>
 </template>
 
 <script>
 import axios from "axios"
-import { GoogleMap } from 'vue3-google-map'
+import { GoogleMap, Marker } from 'vue3-google-map'
 
 export default {
   components: {
-    GoogleMap
+    GoogleMap,
+    Marker
   },
   name: "OpenedFacility",
   setup() {
     let facility = ''
     let center = {
-      lat: 0,
-      lng: 0
+      lat: 0.0,
+      lng: 0.0
     }
-    return { facility, center }
+    let marker = {
+      position: {
+        lat: 0.0,
+        lng: 0.0
+      },
+      label: "",
+      title: ""
+    }
+    return { facility, center, marker }
   },
   async mounted()
   {
@@ -42,8 +53,17 @@ export default {
       }
     })
     this.facility = resp.data
-    this.center.lat = this.facility.location.latitude
-    this.center.lng = this.facility.location.longitude
+    this.mapsSetup()
+  },
+  methods: {
+    mapsSetup() {
+      this.center.lat = this.facility.location.latitude
+      this.center.lng = this.facility.location.longitude
+      this.marker.position.lat = this.center.lat
+      this.marker.position.lng = this.center.lng
+      this.marker.label = this.facility.type
+      this.marker.title = this.facility.name
+    }
   }
 }
 </script>
