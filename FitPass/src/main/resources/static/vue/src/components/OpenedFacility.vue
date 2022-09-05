@@ -13,17 +13,26 @@
       </ul>
     </div>
   </div>
+  <GoogleMap api-key="AIzaSyBx8GVH-2qbiuswKuukDTH5bIbh9XZwSoI"
+             style="width: 70%; height: 500px" :center="center" :zoom="18"/>
 </template>
 
 <script>
-import axios from "axios";
+import axios from "axios"
+import { GoogleMap } from 'vue3-google-map'
 
 export default {
+  components: {
+    GoogleMap
+  },
   name: "OpenedFacility",
-  data: function () {
-    return {
-      facility: "",
+  setup() {
+    let facility = ''
+    let center = {
+      lat: 0,
+      lng: 0
     }
+    return { facility, center }
   },
   async mounted()
   {
@@ -33,7 +42,8 @@ export default {
       }
     })
     this.facility = resp.data
-    alert("../../public/images/"+this.facility.logo)
+    this.center.lat = this.facility.location.latitude
+    this.center.lng = this.facility.location.longitude
   }
 }
 </script>

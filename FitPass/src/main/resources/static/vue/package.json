@@ -16,7 +16,8 @@
     "jsonwebtoken": "^8.5.1",
     "vue": "^3.2.13",
     "vue-axios": "^3.4.1",
-    "vue-router": "^4.0.13"
+    "vue-router": "^4.0.13",
+    "vue3-google-map": "^0.15.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

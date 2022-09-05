@@ -74,7 +74,7 @@ public class SportsFacilityService {
                     filtered.remove(facility);
                 }
             }
-            if (rating(filter, facility)) {
+            if (!rating(filter, facility)) {
                 if (filtered.contains(facility)) {
                     filtered.remove(facility);
                 }
@@ -103,28 +103,28 @@ public class SportsFacilityService {
         switch (filter.rating) {
             case "1":
                 if (4.5 <= facility.getAverageRating() && facility.getAverageRating() <= 5.0)
-                    return false;
+                    return true;
                 break;
             case "2":
                 if (4.0 <= facility.getAverageRating() && facility.getAverageRating() <= 4.5)
-                    return false;
+                    return true;
                 break;
             case "3":
                 if (3.5 <= facility.getAverageRating() && facility.getAverageRating() <= 4.0)
-                    return false;
+                    return true;
                 break;
             case "4":
                 if (3.0 <= facility.getAverageRating() && facility.getAverageRating() <= 3.5)
-                    return false;
+                    return true;
                 break;
             case "5":
                 if (facility.getAverageRating() <= 3.0)
-                    return false;
+                    return true;
                 break;
             default:
-                return false;
+                return true;
         }
-        return true;
+        return false;
     }
 
     private ArrayList<SportsFacility> sort(Filter filter, ArrayList<SportsFacility> filtered) {
