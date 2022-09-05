@@ -11,10 +11,11 @@
     "status": 0,
     "location": {
 		"id": "1",
-		"longitude": "45.2399494527454",
-		"latitude": "19.846999867489547",
+        "latitude": "45.2399494527454",
+		"longitude": "19.846999867489547",
 		"address": {
-			"streetAndNumber": "Fruskogorska 30",
+			"street": "Fruskogorska",
+            "number": "30",
 			"place": "Novi Sad",
 			"zipCode": "21000"
 		}
@@ -37,10 +38,11 @@
     "status": 0,
     "location": {
 		"id": "2",
-		"longitude": "45.23594123700401",
-		"latitude": "19.834837813528818",
+        "latitude": "45.23594123700401",
+		"longitude": "19.834837813528818",
 		"address": {
-			"streetAndNumber": "Bulevar despota Stefana 11",
+			"street": "Bulevar despota Stefana",
+            "number": "11",
 			"place": "Novi Sad",
 			"zipCode": "21000"
 		}
@@ -65,10 +67,11 @@
     "status": 1,
     "location": {
 		"id": "3",
-		"longitude": "45.248517574105996",
-		"latitude": "19.844307253999684",
+        "latitude": "45.248517574105996",
+		"longitude": "19.844307253999684",
 		"address": {
-			"streetAndNumber": "Sutjeska 2",
+			"street": "Sutjeska",
+            "number": "2",
 			"place": "Novi Sad",
 			"zipCode": "21000"
 		}
@@ -92,10 +95,11 @@
     "status": 0,
     "location": {
 		"id": "4",
-		"longitude": "45.25279303703945",
-		"latitude": "19.843901113529405",
+        "latitude": "45.25279303703945",
+		"longitude": "19.843901113529405",
 		"address": {
-			"streetAndNumber": "Narodnih heroja 1",
+			"street": "Narodnih heroja",
+            "number": "1",
 			"place": "Novi Sad",
 			"zipCode": "21000"
 		}

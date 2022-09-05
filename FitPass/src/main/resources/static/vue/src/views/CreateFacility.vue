@@ -32,21 +32,15 @@
 
                 <div class="row">
                   <div class="col-md-6 mb-4">
-
-                    <div class="form-outline">
-                      <label for="City" class="form-label">City</label>
-                      <input type="text" id="city" name="city" class="form-control form-control-lg" required/>
-                    </div>
-
+                    <AddressFieldGroup
+                      v-model:street="addressForm.street"
+                      v-model:number="addressForm.number"
+                      v-model:place="addressForm.place"
+                      v-model:zip-code="addressForm.zipCode"
+                      v-model:lat="addressForm.lat"
+                      v-model:lng="addressForm.lng"
+                    />
                   </div>
-
-                  <div class="col-md-6 mb-4">
-                    <div class="form-outline">
-                      <label for="streetAndNumber" class="form-label">Street and number</label>
-                      <input type="streetAndNumber" id="streetAndNumber" name="streetAndNumber" class="form-control form-control-lg" required/>
-                    </div>
-                  </div>
-
                 </div>
 
                 <div class="row">
@@ -82,24 +76,37 @@
 <script>
 import Menu from "@/components/Menu";
 import axios from "axios";
+import AddressFieldGroup from "@/components/AddressFieldGroup.vue";
+import {ref} from "vue";
+
 export default {
   name:'CreateFacility',
   components: {
-    Menu
+    Menu,
+    AddressFieldGroup
   },
-
   data: function () {
     return {
       managers: []
     }
+  },
+  setup() {
+    let addressForm = ref({
+      street: '',
+      number: '',
+      place: '',
+      zipCode: '',
+      lat: 0.0,
+      lng: 0.0
+    })
+    return { addressForm }
   },
   methods: {
     createManager() {
       window.localStorage.setItem('createManager', 'true')
       this.$router.push('/administratorCreateProfiles')
     }
-  }
-  ,
+  },
   async mounted() {
     let resp = await axios.get('http://localhost:8081/managersForNewFacility')
     this.managers = resp.data
@@ -117,7 +124,7 @@ export default {
       else
         newManagerBtn.style.visibility = "hidden"
     })
-  }
+  },
 }
 </script>
 
