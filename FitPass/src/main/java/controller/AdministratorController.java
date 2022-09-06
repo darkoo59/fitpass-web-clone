@@ -47,8 +47,14 @@ public class AdministratorController {
     {
         post("/createFacility",(req,res) -> {
             administratorService.createNewFacility(req);
-            res.redirect("http://localhost:8080/");
             return "SUCCESS";
+        });
+    }
+
+    public static void postCreateNewFacilityLogo() {
+        post("/createFacility/logo/:name", (req, res) -> {
+            String name = req.params(":name");
+            return administratorService.createNewFacilityLogo(req, name);
         });
     }
 }

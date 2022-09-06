@@ -39,7 +39,6 @@ public class CustomerService {
         for(SportsFacility facility : facilityDAO.getAll())
         {
             if(facility.getId().equals(request.queryParams("facilityId"))) {
-                System.out.println(facility.getName());
                 return facility;
             }
         }

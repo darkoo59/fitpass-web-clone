@@ -9,14 +9,14 @@
           <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
             <div class="card-body p-4 p-md-5">
               <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Create new sport facility</h3>
-              <form method="post" action="http://localhost:8081/createFacility">
+              <form>
 
                 <div class="row">
                   <div class="col-md-6 mb-4">
 
                     <div class="form-outline">
                       <label class="form-label" for="name">Name</label>
-                      <input type="text" id="name" name="name" class="form-control form-control-lg" required/>
+                      <input type="text" v-model="name" id="name" name="name" class="form-control form-control-lg" required/>
                     </div>
 
                   </div>
@@ -24,7 +24,7 @@
 
                     <div class="form-outline">
                       <label class="form-label" for="type">Type</label>
-                      <input type="text" id="type" name="type" class="form-control form-control-lg" required/>
+                      <input type="text" v-model="type" id="type" name="type" class="form-control form-control-lg" required/>
                     </div>
 
                   </div>
@@ -47,20 +47,20 @@
                   <div class="col-md-6 mb-4 pb-2">
 
                     <label class="form-label" for="logo">Logo</label>
-                    <input type="file" name="logo" accept="image/png, image/gif, image/jpeg" class="form-control form-control-lg" required/>
+                    <input type="file" @change="onPhotoSelected" name="logo" accept="image/png, image/gif, image/jpeg" class="form-control form-control-lg" required/>
 
                   </div>
                   <div class="col-md-6 mb-4 pb-2">
                     <label for="managers">Choose manager:</label>
-                    <select name="managers" id="managersSelection">
-                        <option v-for="manager in managers" :value="manager">{{manager.name}} {{manager.surname}}</option>
+                    <select v-model="manager" name="managers" id="managersSelection">
+                        <option v-for="manager in managers" :value="manager" :key="manager">{{manager.name}} {{manager.surname}}</option>
                     </select>
                       <input class="btn btn-primary btn-lg" type="button" @click="createManager()" id="newManagerBtn" value="Create new manager first" />
                   </div>
                 </div>
 
                 <div class="mt-4 pt-2">
-                  <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+                  <input class="btn btn-primary btn-lg" @click="submitForm" value="Submit" />
                 </div>
 
               </form>
@@ -87,7 +87,12 @@ export default {
   },
   data: function () {
     return {
-      managers: []
+      managers: [],
+      name: '',
+      type: '',
+      manager: '',
+      selectedPhoto: null,
+      logoName: ''
     }
   },
   setup() {
@@ -96,15 +101,43 @@ export default {
       number: '',
       place: '',
       zipCode: '',
-      lat: 0.0,
-      lng: 0.0
+      lat: '',
+      lng: '',
     })
     return { addressForm }
   },
   methods: {
+    async submitForm() {
+      const formData = new FormData();
+      formData.append('photo', this.selectedPhoto)
+
+      let resp = await axios
+          .post("http://localhost:8081/createFacility/logo/" + this.name, formData)
+      this.logoName = resp.data
+
+      let data = [
+        this.name,
+        this.type,
+        this.manager.id,
+        this.addressForm.street,
+        this.addressForm.number,
+        this.addressForm.place,
+        this.addressForm.zipCode,
+        this.addressForm.lat,
+        this.addressForm.lng,
+        this.logoName
+      ]
+      await axios
+          .post("http://localhost:8081/createFacility", data)
+
+      await this.$router.push('/')
+    },
     createManager() {
       window.localStorage.setItem('createManager', 'true')
       this.$router.push('/administratorCreateProfiles')
+    },
+    onPhotoSelected(event) {
+      this.selectedPhoto = event.target.files[0]
     }
   },
   async mounted() {
@@ -119,7 +152,7 @@ export default {
       // entire view has been rendered
       let newManagerBtn = document.getElementById('newManagerBtn')
       let selection = document.getElementById('managersSelection');
-      if (selection.options.length == 0)
+      if (selection.options.length === 0)
         newManagerBtn.style.visibility = "visible"
       else
         newManagerBtn.style.visibility = "hidden"

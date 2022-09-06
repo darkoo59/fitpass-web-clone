@@ -43,7 +43,7 @@
   <div class="row">
     <div class="col-md-3"  v-for="facility in filtered" :key="facility.name">
       <div class="card" style="width: 18rem;" @click="openFacility(facility)">
-        <img v-bind:src="require('../../public/images/'+facility.logo)" class="card-img-top">
+        <img v-bind:src="require('@/assets/images/'+facility.logo)" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">{{ facility.name }}</h5>
           <p class="card-text">
@@ -51,7 +51,7 @@
             Average rating: {{ facility.averageRating }} <br>
             Working hours: {{ facility.workHour.start.substring(0, facility.workHour.start.length-3) }} -
             {{ facility.workHour.end.substring(0, facility.workHour.end.length-3) }} <br>
-            Location: {{ facility.location.address.streetAndNumber}}, {{facility.location.address.place }}
+            Location: {{ facility.location.address.street}} {{ facility.location.address.number}}, {{facility.location.address.place }}
           </p>
         </div>
       </div>
@@ -94,7 +94,6 @@ export default {
     },
   methods: {
     openFacility(facility) {
-      alert(facility.id)
       this.$router.push({
         name: 'SportFacility',
         params: { id: facility.id }

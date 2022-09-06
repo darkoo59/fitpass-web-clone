@@ -60,7 +60,6 @@ public class AccountService {
     public String loginUser(Request request) throws IOException {
         Credentials cred = new Credentials();
         cred = mapper.readValue(request.body(),Credentials.class);
-        System.out.println("Username = "+cred.getUsername()+" password = "+cred.getPassword());
         ArrayList<User> users = userDAO.getAll();
         for (User user:users) {
             if(user.getUsername().equals(cred.getUsername()) && user.getPassword().equals(cred.getPassword()))

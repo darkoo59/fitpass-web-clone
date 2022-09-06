@@ -45,7 +45,6 @@ public class CoachService {
     }
 
     public void cancelPersonalTraining(Request request) throws IOException {
-        System.out.println("test : " + request.queryParams("id"));
         TrainingHistory trainingToCancel = trainingHistoryDAO.get(request.queryParams("id"));
         trainingHistoryDAO.delete(trainingToCancel);
         return;

@@ -33,6 +33,14 @@
                placeholder="Zip code"/>
       </label>
 
+      <input type="hidden"
+             @input="$emit('update:lat', $event.target.value)"
+             :value="lat"/>
+
+      <input type="hidden"
+             @input="$emit('update:lng', $event.target.value)"
+             :value="lng"/>
+
     </label>
   </div>
 </template>
@@ -60,12 +68,12 @@ export default {
       default: ''
     },
     lat: {
-      type: Number,
-      default: 0.0
+      type: String,
+      default: ''
     },
     lng: {
-      type: Number,
-      default: 0.0
+      type: String,
+      default: ''
     }
   },
   setup(props, context) {
@@ -78,6 +86,9 @@ export default {
         types: ["address"],
         fields: ["address_components", "geometry"]
       })
+      autocomplete.setComponentRestrictions({
+        country: ["rs"],
+      });
 
       google.maps.event.addListener(autocomplete, "place_changed", () => {
         const mapping = {
@@ -89,22 +100,26 @@ export default {
           lng: "update:lng"
         }
 
-        for(const type in mapping) {
+        for (const type in mapping) {
           context.emit(mapping[type], "");
         }
 
         let place = {
           address_components: [],
+          geometry: [],
           ...autocomplete.getPlace()
         }
 
         place.address_components.forEach((component) => {
           component.types.forEach((type) => {
-            if(mapping.hasOwnProperty(type)){
+            if (mapping.hasOwnProperty(type)) {
               context.emit(mapping[type], component.long_name);
             }
           });
         });
+
+          context.emit(mapping["lat"], place.geometry.location.lat())
+          context.emit(mapping["lng"], place.geometry.location.lng())
       });
     });
 

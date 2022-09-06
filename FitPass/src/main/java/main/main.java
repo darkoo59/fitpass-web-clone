@@ -45,14 +45,15 @@ public class main {
         AdministratorController.getManagersForNewFacility();
         AdministratorController.getSearchedProfiles();
         AdministratorController.postCreateNewFacility();
+        AdministratorController.postCreateNewFacilityLogo();
 
         SportsFacilityController.getSportsFacilites();
         SportsFacilityController.getSportFacility();
+        SportsFacilityController.postSportsFacilitesFilter();
 
         CustomerController.getAllTrainings();
         CustomerController.getMyTrainingsHistory();
         CustomerController.getFacilityByTrainingId();
-        SportsFacilityController.postSportsFacilitesFilter();
 
         CoachController.getMyTrainingsHistory();
         CoachController.getAllTrainings();

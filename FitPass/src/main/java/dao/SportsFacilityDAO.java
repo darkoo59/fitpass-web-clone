@@ -46,7 +46,7 @@ public class SportsFacilityDAO implements IDao<SportsFacility>{
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(LocalTime.class, new LocalTimeConverter());
         PrintWriter writer = new PrintWriter(new FileWriter(path));
-        Gson gson = gsonBuilder.create();
+        Gson gson = gsonBuilder.setPrettyPrinting().create();
         Type listType = new TypeToken<ArrayList<SportsFacility>>() {}.getType();
         String str = gson.toJson(objs, listType);
         writer.write(str);

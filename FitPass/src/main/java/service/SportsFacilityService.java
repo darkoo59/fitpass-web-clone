@@ -49,7 +49,6 @@ public class SportsFacilityService {
 
     public SportsFacility getSportFacilityById(Request req) throws IOException {
         String id = req.queryParams("id");
-        System.out.println("TEST : "+id);
         return facilitiesDao.get(id);
     }
 

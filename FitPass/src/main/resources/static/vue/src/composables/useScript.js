@@ -30,11 +30,20 @@ export default function (src) {
 
         script.addEventListener("error", onScriptError)
 
+        let list = document.getElementsByTagName('script');
+
         onUnmounted(() => {
             if (document.head.contains(script)) {
                 script.removeEventListener("load", onScriptLoad)
                 script.removeEventListener("error", onScriptError)
                 document.head.removeChild(script)
+            }
+
+            let i = list.length
+            while (i--) {
+                if (list[i].src.startsWith("https://maps.googleapis.com/")) {
+                    document.head.removeChild(list[i])
+                }
             }
         })
     })

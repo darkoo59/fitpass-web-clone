@@ -13,57 +13,52 @@
       </ul>
     </div>
   </div>
-  <GoogleMap api-key="AIzaSyBx8GVH-2qbiuswKuukDTH5bIbh9XZwSoI"
-             style="width: 70%; height: 500px" :center="this.center" :zoom="18">
-    <Marker :options="this.marker"/>
-  </GoogleMap>
+  <div ref="mapDiv" style="width: 50%; height: 50%"/>
 </template>
 
 <script>
 import axios from "axios"
-import { GoogleMap, Marker } from 'vue3-google-map'
+import { Loader } from '@googlemaps/js-api-loader'
+import { onMounted, ref } from "vue";
+import { useRoute } from 'vue-router'
 
 export default {
-  components: {
-    GoogleMap,
-    Marker
-  },
   name: "OpenedFacility",
   setup() {
-    let facility = ''
+    const route = useRoute()
+    let facility = []
     let center = {
       lat: 0.0,
       lng: 0.0
     }
-    let marker = {
-      position: {
-        lat: 0.0,
-        lng: 0.0
-      },
-      label: "",
-      title: ""
-    }
-    return { facility, center, marker }
-  },
-  async mounted()
-  {
-    let resp = await axios.get('http://localhost:8081/getSportFacility', {
-      params: {
-        id: this.$route.path.substring(15)
-      }
+    const loader = new Loader({ apiKey: 'AIzaSyBx8GVH-2qbiuswKuukDTH5bIbh9XZwSoI'})
+    const mapDiv = ref(null)
+
+    onMounted(async () => {
+      let resp = await axios.get('http://localhost:8081/getSportFacility', {
+        params: {
+          id: route.params.id
+        }
+      })
+      facility = resp.data
+
+      center.lat = facility.location.latitude
+      center.lng = facility.location.longitude
+
+      await loader.load()
+      let map = new google.maps.Map(mapDiv.value, {
+        center: center,
+        zoom: 18
+      })
+
+      new google.maps.Marker({
+        position: center,
+        map,
+        title: facility.name,
+      });
     })
-    this.facility = resp.data
-    this.mapsSetup()
-  },
-  methods: {
-    mapsSetup() {
-      this.center.lat = this.facility.location.latitude
-      this.center.lng = this.facility.location.longitude
-      this.marker.position.lat = this.center.lat
-      this.marker.position.lng = this.center.lng
-      this.marker.label = this.facility.type
-      this.marker.title = this.facility.name
-    }
+
+    return { facility, center, mapDiv}
   }
 }
 </script>

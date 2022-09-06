@@ -1,20 +1,38 @@
 package service;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import controller.AdministratorController;
 import dao.IDao;
 import dao.SportsFacilityDAO;
 import dao.UserDAO;
+import model.Location;
 import model.SportsFacility;
 import model.User;
 import spark.*;
 import utils.enums.GenderType;
 import utils.enums.RoleType;
+import utils.enums.SportsFacilityStatus;
+import utils.others.Address;
+import utils.others.WorkHour;
 
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.http.Part;
+import javax.validation.Payload;
+import java.io.*;
 import java.lang.reflect.Array;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 
-import java.io.IOException;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collection;
+
+import static main.main.gson;
 
 public class AdministratorService {
     private IDao userDAO;
@@ -76,9 +94,60 @@ public class AdministratorService {
         return managers;
     }
 
-    public void createNewFacility(Request req) {
-        System.out.println(req.queryParams("name"));
-        return;
+    public void createNewFacility(Request req) throws Exception {
+        ArrayList<String> payload = gson.fromJson(req.body(), new TypeToken<ArrayList<String>>(){}.getType());
+        Address address = new Address(
+                payload.get(3),
+                payload.get(4),
+                payload.get(5),
+                payload.get(6)
+        );
+        Location location = new Location(
+                Double.parseDouble(payload.get(7)),
+                Double.parseDouble(payload.get(8)),
+                address
+        );
+        LocalTime time = LocalTime.of(0, 0);
+        WorkHour workHour = new WorkHour(time ,time);
+        SportsFacility facility = new SportsFacility(
+                payload.get(0),                 //name
+                payload.get(1),                 //type
+                null,                           //content
+                SportsFacilityStatus.WORKING,   //status
+                location,                       //location
+                payload.get(9),                 //logo
+                0.0,                            //averageRating
+                workHour,                       //workHour
+                payload.get(2)                  //managerID
+        );
+        ArrayList<SportsFacility> facilities = facilityDAO.getAll();
+        facility.setId(facilityDAO.getNewId());
+        facilities.add(facility);
+        facilityDAO.save(facilities);
     }
 
+    public String createNewFacilityLogo(Request req, String name) throws Exception {
+        String location = "";
+        long maxFileSize = 100000000;
+        long maxRequestSize = 100000000;
+        int fileSizeThreshold = 1024;
+
+        MultipartConfigElement multipartConfigElement = new MultipartConfigElement(
+                location, maxFileSize, maxRequestSize, fileSizeThreshold);
+        req.raw().setAttribute("org.eclipse.jetty.multipartConfig",
+                multipartConfigElement);
+
+        Part photo = req.raw().getPart("photo");
+        String photoName = photo.getSubmittedFileName();
+        String ext = photoName.substring(photoName.lastIndexOf(".") + 1);
+
+        Path out = Paths.get("src/main/resources/static/vue/src/assets/images/" + name + "." + ext);
+        try (final InputStream in = photo.getInputStream()) {
+            Files.copy(in, out);
+            photo.delete();
+        }
+        multipartConfigElement = null;
+        photo = null;
+        return name + "." + ext;
+    }
 }

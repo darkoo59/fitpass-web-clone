@@ -63,7 +63,6 @@
       {
         if(responseData === null){
           alert('Wrong credentials')
-          console.log("uslojee")
         }else {
           localStorage.setItem('token',responseData);
           this.SetUserInfo()
