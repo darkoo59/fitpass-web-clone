@@ -5,7 +5,9 @@ import dao.UserDAO;
 import model.TrainingHistory;
 import model.User;
 import spark.Request;
+import utils.enums.RoleType;
 
+import javax.management.relation.Role;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -22,7 +24,6 @@ public class RequestsUtils {
     public static String getIdFromPayload(String payload) throws IOException {
         String username = payload.substring(8,payload.lastIndexOf("\",\"exp\":"));
         String id = "";
-        ArrayList<TrainingHistory> allTrainings = new ArrayList<TrainingHistory>();
         UserDAO userDAO = new UserDAO();
         ArrayList<User> allUsers = userDAO.getAll();
         for(User user : allUsers)
@@ -36,7 +37,19 @@ public class RequestsUtils {
         return id;
     }
 
-    public static String getRoleFromPayload(String payload) throws IOException {
-        return "";
+    public static RoleType getRoleFromPayload(String payload) throws IOException {
+        String username = payload.substring(8,payload.lastIndexOf("\",\"exp\":"));
+        RoleType role = null;
+        UserDAO userDAO = new UserDAO();
+        ArrayList<User> allUsers = userDAO.getAll();
+        for(User user : allUsers)
+        {
+            if(user.getUsername().equals(username))
+            {
+                role = user.getRole();
+                break;
+            }
+        }
+        return role;
     }
 }

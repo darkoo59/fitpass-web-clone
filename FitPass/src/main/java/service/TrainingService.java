@@ -9,6 +9,7 @@ import model.Training;
 import model.TrainingHistory;
 import spark.Request;
 import spire.math.prime.SieveUtil;
+import utils.enums.RoleType;
 import utils.others.Filter;
 import utils.others.RequestsUtils;
 
@@ -38,12 +39,19 @@ public class TrainingService {
 
     public ArrayList<TrainingHistory> getMyTrainingsHistory(Request request) throws ParseException, IOException {
         System.out.println(RequestsUtils.getPayload(request));
-        String userId = RequestsUtils.getIdFromPayload(RequestsUtils.getPayload(request));
+        String payload = RequestsUtils.getPayload(request);
+        String userId = RequestsUtils.getIdFromPayload(payload);
+        RoleType userRole = RequestsUtils.getRoleFromPayload(payload);
         ArrayList<TrainingHistory> allTrainings = new ArrayList<>();
         for(TrainingHistory training : trainingHistoryDAO.getAll())
         {
-            if(training.getCoachId().equals(userId))
-                allTrainings.add(training);
+            if(userRole == RoleType.COACH) {
+                if (training.getCoachId().equals(userId))
+                    allTrainings.add(training);
+            }else if(userRole == RoleType.CUSTOMER) {
+                if(training.getCustomerId().equals(userId))
+                    allTrainings.add(training);
+            }
         }
         return allTrainings;
     }

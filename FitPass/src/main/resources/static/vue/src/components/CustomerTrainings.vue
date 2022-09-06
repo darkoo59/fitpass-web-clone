@@ -51,7 +51,7 @@
 
 
   <div class="row">
-    <div class="col-md-3" v-for="trainingHistory in customerTrainingsHistory" :key="trainingHistory.id">
+    <div class="col-md-3" v-for="trainingHistory in filteredCustomerTrainingsHistory" :key="trainingHistory.id">
       <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">{{getTrainingName(trainingHistory)}}</h5>
