@@ -9,6 +9,7 @@ import CreateFacility from "../views/CreateFacility";
 import SportFacility from "../views/SportFacility";
 import MyTrainings from "../views/CustomerMyTrainings";
 import CoachMyTrainings from "../views/CoachMyTrainings";
+import ManagerMyTrainings from "@/views/ManagerMyTrainings";
 
 const routes = [
     {
@@ -60,6 +61,11 @@ const routes = [
         path: '/coachTrainings',
         name: 'CoachMyTrainings',
         component: CoachMyTrainings
+    },
+    {
+        path: '/managerTrainings',
+        name: 'ManagerMyTrainings',
+        component: ManagerMyTrainings
     }
 ]
 

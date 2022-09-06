@@ -22,6 +22,8 @@ public class main {
     private static AdministratorService administratorService;
 
     private static CoachService coachService;
+
+    private static ManagerService managerService;
     public static void main(String[] args) throws Exception {
 
         initializeContext();
@@ -54,11 +56,16 @@ public class main {
         CustomerController.getAllTrainings();
         CustomerController.getMyTrainingsHistory();
         CustomerController.getFacilityByTrainingId();
+        CustomerController.postTrainingsFilter();
 
         CoachController.getMyTrainingsHistory();
         CoachController.getAllTrainings();
         CoachController.getCancelPersonalTraining();
         CoachController.postTrainingsFilter();
+
+        ManagerController.getMyTrainingsHistory();
+        ManagerController.getAllTrainings();
+        ManagerController.getManagerFacilities();
     }
 
     private static void initializeContext() throws IOException {
@@ -73,6 +80,8 @@ public class main {
         CustomerController.initializeService(customerService);
         coachService = new CoachService();
         CoachController.initializeService(coachService);
+        managerService = new ManagerService();
+        ManagerController.initializeService(managerService);
 
     }
 }
