@@ -1,5 +1,6 @@
 package service;
 
+import com.google.gson.Gson;
 import com.nimbusds.jwt.SignedJWT;
 import dao.*;
 import model.SportsFacility;
@@ -8,6 +9,8 @@ import model.TrainingHistory;
 import model.User;
 import spark.Request;
 import utils.enums.RoleType;
+import utils.others.Filter;
+import utils.others.RequestsUtils;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -22,12 +25,14 @@ public class CustomerService {
     private SportsFacilityDAO facilityDAO;
 
     private ArrayList<User> allUsers;
+    private TrainingService trainingService;
 
     public CustomerService() throws IOException {
         userDAO = new UserDAO();
         trainingDAO = new TrainingDAO();
         trainingHistoryDAO = new TrainingHistoryDAO();
         facilityDAO = new SportsFacilityDAO();
+        trainingService = new TrainingService();
         allUsers = userDAO.getAll();
     }
 
@@ -47,7 +52,7 @@ public class CustomerService {
     }
 
     public ArrayList<TrainingHistory> getMyTrainingsHistory(Request request) throws ParseException, IOException {
-        String payload = getPayload(request);
+        String payload = RequestsUtils.getPayload(request);
         String username = payload.substring(8,payload.lastIndexOf("\",\"exp\":"));
         String customerId = "";
         ArrayList<TrainingHistory> allTrainings = new ArrayList<TrainingHistory>();
@@ -67,11 +72,9 @@ public class CustomerService {
         return allTrainings;
     }
 
-    private String getPayload(Request request) throws ParseException {
-        String[] splittedHeader = request.headers("Authorization").split("\\s+");
-        String jwtToken = splittedHeader[1];
-        SignedJWT decodedJWT = SignedJWT.parse(jwtToken);
-        String payload = decodedJWT.getPayload().toString();
-        return payload;
+    public ArrayList<TrainingHistory> filter(Request req) throws Exception {
+        Gson gson = trainingService.getGsonBuilder().setPrettyPrinting().create();
+        Filter filter = gson.fromJson(req.body(), Filter.class);
+        return trainingService.filter(req,filter);
     }
 }

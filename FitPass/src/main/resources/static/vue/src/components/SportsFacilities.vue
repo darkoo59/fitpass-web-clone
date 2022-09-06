@@ -123,14 +123,14 @@ export default {
       }
       return types
     },
-    removeFilters() {
-      this.filtered = this.facilities
-      this.filter.searchInput = ""
-      this.filter.location = "Location"
-      this.filter.type = "Type"
-      this.filter.rating = "Rating"
-      this.filter.sort = "Sort by"
-    }
+  removeFilters() {
+    this.filtered = this.facilities
+    this.filter.searchInput = ""
+    this.filter.location = "Location"
+    this.filter.type = "Type"
+    this.filter.rating = "Rating"
+    this.filter.sort = "Sort by"
+  }
   }
 }
 

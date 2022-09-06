@@ -38,4 +38,10 @@ public class CustomerController {
             return gson.toJson(customerService.getFacilityByTrainingId(req));
         });
     }
+
+    public static void postTrainingsFilter() {
+        post("/customerTrainings/filter", (req, res) -> {
+            return gson.toJson(customerService.filter(req));
+        });
+    }
 }

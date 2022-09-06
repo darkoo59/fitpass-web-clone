@@ -1,15 +1,16 @@
 package service;
 
 import com.google.gson.*;
-import com.nimbusds.jwt.SignedJWT;
-import dao.*;
+import dao.SportsFacilityDAO;
+import dao.TrainingDAO;
+import dao.TrainingHistoryDAO;
 import model.SportsFacility;
 import model.Training;
 import model.TrainingHistory;
-import model.User;
-import org.apache.log4j.lf5.viewer.FilteredLogTableModel;
 import spark.Request;
+import spire.math.prime.SieveUtil;
 import utils.others.Filter;
+import utils.others.RequestsUtils;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -22,98 +23,37 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import static java.util.Comparator.comparing;
-import static main.main.gson;
 
-public class CoachService {
-
-    private IDao userDAO;
+public class TrainingService {
     private TrainingDAO trainingDAO;
+    private SportsFacilityDAO facilityDAO;
     private TrainingHistoryDAO trainingHistoryDAO;
 
-    private SportsFacilityDAO facilityDAO;
-
-    private ArrayList<User> allUsers;
-
-    public CoachService() throws IOException {
-        userDAO = new UserDAO();
-        trainingDAO = new TrainingDAO();
-        trainingHistoryDAO = new TrainingHistoryDAO();
-        facilityDAO = new SportsFacilityDAO();
-        allUsers = userDAO.getAll();
-    }
-
-    public ArrayList<Training> getAllTrainings(Request request) throws ParseException, IOException {
-        ArrayList<Training> allTrainings =  trainingDAO.getAll();
-        String coachId = getIdFromPayload(getPayload(request));
-        ArrayList<Training> coachTrainings = new ArrayList<>();
-        for (Training training:allTrainings) {
-            if(training.getCoachId().equals(training.getCoachId()))
-                coachTrainings.add(training);
-        }
-        return coachTrainings;
-    }
-
-    public void cancelPersonalTraining(Request request) throws IOException {
-        System.out.println("test : " + request.queryParams("id"));
-        TrainingHistory trainingToCancel = trainingHistoryDAO.get(request.queryParams("id"));
-        trainingHistoryDAO.delete(trainingToCancel);
-        return;
+    public TrainingService()
+    {
+        this.trainingDAO = new TrainingDAO();
+        this.facilityDAO = new SportsFacilityDAO();
+        this.trainingHistoryDAO = new TrainingHistoryDAO();
     }
 
     public ArrayList<TrainingHistory> getMyTrainingsHistory(Request request) throws ParseException, IOException {
-        String coachId = getIdFromPayload(getPayload(request));
+        System.out.println(RequestsUtils.getPayload(request));
+        String userId = RequestsUtils.getIdFromPayload(RequestsUtils.getPayload(request));
         ArrayList<TrainingHistory> allTrainings = new ArrayList<>();
         for(TrainingHistory training : trainingHistoryDAO.getAll())
         {
-            if(training.getCoachId().equals(coachId))
+            if(training.getCoachId().equals(userId))
                 allTrainings.add(training);
         }
         return allTrainings;
     }
 
-    private String getPayload(Request request) throws ParseException {
-        String[] splittedHeader = request.headers("Authorization").split("\\s+");
-        String jwtToken = splittedHeader[1];
-        SignedJWT decodedJWT = SignedJWT.parse(jwtToken);
-        String payload = decodedJWT.getPayload().toString();
-        return payload;
-    }
-
-    private String getIdFromPayload(String payload) {
-        String username = payload.substring(8,payload.lastIndexOf("\",\"exp\":"));
-        String coachId = "";
-        ArrayList<TrainingHistory> allTrainings = new ArrayList<TrainingHistory>();
-        for(User user :allUsers)
-        {
-            if(user.getUsername().equals(username))
-            {
-                coachId = user.getId();
-                break;
-            }
-        }
-        return coachId;
-    }
-
-    public ArrayList<TrainingHistory> filter(Request req) throws Exception {
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
-            @Override
-            public LocalDateTime deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
-                return LocalDateTime.parse(jsonElement.getAsString(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")); }
-        }).create();
-        gsonBuilder.registerTypeAdapter(LocalDate.class, new JsonDeserializer<LocalDate>() {
-            @Override
-            public LocalDate deserialize(JsonElement json, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
-                return LocalDate.parse(json.getAsJsonPrimitive().getAsString());
-            }
-        }).create();
-        Gson gsonn = gsonBuilder.setPrettyPrinting().create();
-        Filter filter = gsonn.fromJson(req.body(), Filter.class);
+    public ArrayList<TrainingHistory> filter(Request req,Filter filter) throws Exception {
         ArrayList<TrainingHistory> trainingHistories = getMyTrainingsHistory(req);
         ArrayList<TrainingHistory> filtered = new ArrayList<>();
         for (TrainingHistory training : trainingHistories) {
             if (name(filter,training) && !filtered.contains(training)) {
-                    filtered.add(training);
+                filtered.add(training);
             }
             if (!facilityType(filter, training)) {
                 if (filtered.contains(training)) {
@@ -137,6 +77,22 @@ public class CoachService {
             }
         }
         return sort(filter,filtered);
+    }
+    public GsonBuilder getGsonBuilder()
+    {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
+            @Override
+            public LocalDateTime deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+                return LocalDateTime.parse(jsonElement.getAsString(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")); }
+        }).create();
+        gsonBuilder.registerTypeAdapter(LocalDate.class, new JsonDeserializer<LocalDate>() {
+            @Override
+            public LocalDate deserialize(JsonElement json, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+                return LocalDate.parse(json.getAsJsonPrimitive().getAsString());
+            }
+        }).create();
+        return gsonBuilder;
     }
 
     private Boolean name(Filter filter, TrainingHistory training) throws IOException {
@@ -200,7 +156,7 @@ public class CoachService {
     private ArrayList<TrainingHistory> sort(Filter filter, ArrayList<TrainingHistory> filtered) throws IOException {
         switch (filter.sort) {
             case "1":
-                Collections.sort(filtered, comparing(TrainingHistory::getTrainingId, (t1,t2) -> {
+                Collections.sort(filtered, comparing(TrainingHistory::getTrainingId, (t1, t2) -> {
                     try {
                         Training training1 = trainingDAO.get(t1);
                         Training training2 = trainingDAO.get(t2);

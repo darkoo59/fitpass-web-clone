@@ -52,6 +52,7 @@ public class main {
         CustomerController.getAllTrainings();
         CustomerController.getMyTrainingsHistory();
         CustomerController.getFacilityByTrainingId();
+        CustomerController.postTrainingsFilter();
         SportsFacilityController.postSportsFacilitesFilter();
 
         CoachController.getMyTrainingsHistory();
