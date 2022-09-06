@@ -93,6 +93,16 @@ public class SportsFacilityDAO implements IDao<SportsFacility>{
             }
         }
         return String.valueOf(id);
+    }
 
+    public ArrayList<SportsFacility> getFacilitiesByManagerId(String id) throws IOException {
+        ArrayList<SportsFacility> facilities = getAll();
+        ArrayList<SportsFacility> managerFacilities = new ArrayList<SportsFacility>();
+        for (SportsFacility facility:facilities) {
+            if(facility.getManagerId().equals(id)) {
+                managerFacilities.add(facility);
+            }
+        }
+        return managerFacilities;
     }
 }

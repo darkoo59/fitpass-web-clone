@@ -51,6 +51,10 @@ public class TrainingService {
             }else if(userRole == RoleType.CUSTOMER) {
                 if(training.getCustomerId().equals(userId))
                     allTrainings.add(training);
+            }else if(userRole == RoleType.MANAGER) {
+                System.out.println(training.getTrainingId());
+                if(facilityDAO.get(trainingDAO.get(training.getTrainingId()).getFacilityId()).getManagerId().equals(userId))
+                    allTrainings.add(training);
             }
         }
         return allTrainings;

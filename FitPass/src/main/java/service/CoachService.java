@@ -56,24 +56,7 @@ public class CoachService {
         return coachTrainings;
     }
     public ArrayList<TrainingHistory> getMyTrainingsHistory(Request request) throws ParseException, IOException {
-        String payload = RequestsUtils.getPayload(request);
-        String username = payload.substring(8,payload.lastIndexOf("\",\"exp\":"));
-        String coachId = "";
-        ArrayList<TrainingHistory> allTrainings = new ArrayList<TrainingHistory>();
-        for(User user :allUsers)
-        {
-            if(user.getUsername().equals(username))
-            {
-                coachId = user.getId();
-                break;
-            }
-        }
-        for(TrainingHistory training : trainingHistoryDAO.getAll())
-        {
-            if(training.getCoachId().equals(coachId))
-                allTrainings.add(training);
-        }
-        return allTrainings;
+        return trainingService.getMyTrainingsHistory(request);
     }
 
     public void cancelPersonalTraining(Request request) throws IOException {
