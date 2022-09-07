@@ -3,7 +3,6 @@ package model;
 import utils.enums.SportsFacilityStatus;
 import utils.others.WorkHour;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class SportsFacility {

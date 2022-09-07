@@ -1,7 +1,5 @@
 package model;
 
-import utils.others.WorkHour;
-
 import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,7 +14,7 @@ public class TrainingHistory {
     private ArrayList<LocalDate> trainingDates;
     private LocalDate nextTrainingDate;
 
-    public TrainingHistory(LocalDateTime applicationDateTime, String training, String customer, String coach,ArrayList<LocalDate> dates, LocalDate startDate) {
+    public TrainingHistory(LocalDateTime applicationDateTime, String training, String customer, String coach, ArrayList<LocalDate> dates, LocalDate startDate) {
         this.applicationDateTime = applicationDateTime;
         this.trainingId = training;
         this.customerId = customer;

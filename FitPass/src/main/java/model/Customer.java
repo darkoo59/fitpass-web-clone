@@ -5,7 +5,6 @@ import utils.enums.RoleType;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Customer extends User{
     private Membership membership;
@@ -13,9 +12,9 @@ public class Customer extends User{
     private Double collectedPoints;
     private CustomerType type;
 
-    public Customer(String username, String password, String name, String surname, GenderType gender, LocalDate birthDate,
-                    RoleType role, Membership membership, ArrayList<SportsFacility> visitedFacilities,
-                    Double collectedPoints, CustomerType type) {
+    public Customer(java.lang.String username, java.lang.String password, java.lang.String name, java.lang.String surname, GenderType gender, LocalDate birthDate,
+                  RoleType role, Membership membership, ArrayList<SportsFacility> visitedFacilities,
+                  Double collectedPoints, CustomerType type) {
         super(username, password, name, surname, gender, birthDate, role);
         this.membership = membership;
         this.visitedFacilities = visitedFacilities;

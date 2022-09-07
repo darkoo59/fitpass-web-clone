@@ -1,0 +1,78 @@
+[{
+    "id": "1",
+    "name": "Pocetni paket",
+    "membershipType": "15 dana",
+    "price": 1000,
+    "dailyTerms": "1"
+},,
+{
+    "id": "2",
+    "name": "Osnovni paket",
+    "membershipType": "mesecni",
+    "price": 2000,
+    "dailyTerms": "1"
+},
+{
+    "id": "3",
+    "name": "Osnovni mega paket",
+    "membershipType": "godisnja",
+    "price": 18000,
+    "dailyTerms": "1"
+},
+{
+    "id": "4",
+    "name": "Srednji paket",
+    "membershipType": "mesecna",
+    "price": 3000,
+    "dailyTerms": "2"
+},
+{
+    "id": "5",
+    "name": "Srednji mega paket",
+    "membershipType": "godisnja",
+    "price": 21000,
+    "dailyTerms": "3"
+},
+{
+    "id": "6",
+    "name": "Napredni paket",
+    "membershipType": "mesecna",
+    "price": 4000,
+    "dailyTerms": "5"
+},
+{
+    "id": "7",
+    "name": "Napredni mega paket",
+    "membershipType": "godisnja",
+    "price": 25000,
+    "dailyTerms": "5"
+},
+{
+    "id": "8",
+    "name": "Premium paket",
+    "membershipType": "mesecna",
+    "price": 5000,
+    "dailyTerms": "neograniceno"
+},
+{
+    "id": "9",
+    "name": "Premium mega paket",
+    "membershipType": "godisnja",
+    "price": 35000,
+    "dailyTerms": "neograniceno"
+},
+{
+    "id": "10",
+    "name": "Student paket",
+    "membershipType": "mesecna",
+    "price": 1500,
+    "dailyTerms": "1"
+},
+{
+    "id": "11",
+    "name": "Student mega paket",
+    "membershipType": "godisnja",
+    "price": 12000,
+    "dailyTerms": "1"
+},
+]
