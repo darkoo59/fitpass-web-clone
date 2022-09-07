@@ -94,7 +94,6 @@ export default {
     },
   methods: {
     openFacility(facility) {
-      alert(facility.id)
       this.$router.push({
         name: 'SportFacility',
         params: { id: facility.id }

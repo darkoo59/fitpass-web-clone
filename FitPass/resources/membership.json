@@ -3,5 +3,6 @@
     "membershipId": "2",
     "paymentDate": "2022-08-15",
     "validityDateTime": "2022-09-15 00:00",
+    "customerId": "3",
     "status": 0
 }]

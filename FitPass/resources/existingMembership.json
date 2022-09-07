@@ -4,11 +4,11 @@
     "membershipType": "15 dana",
     "price": 1000,
     "dailyTerms": "1"
-},,
+},
 {
     "id": "2",
     "name": "Osnovni paket",
-    "membershipType": "mesecni",
+    "membershipType": "mesecna",
     "price": 2000,
     "dailyTerms": "1"
 },
@@ -74,5 +74,5 @@
     "membershipType": "godisnja",
     "price": 12000,
     "dailyTerms": "1"
-},
+}
 ]
