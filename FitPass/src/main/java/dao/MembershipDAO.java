@@ -90,17 +90,17 @@ public class MembershipDAO implements IDao<Membership>{
 
     @Override
     public void update(Membership obj) throws IOException {
-        ArrayList<Membership> memberships = getAll();
-        for (Membership membership:memberships) {
-            if(membership.getId().equals(obj.getId())){
-                membership.setMembershipId(obj.getMembershipId());
-                membership.setCustomerId(obj.getCustomerId());
-                membership.setStatus(obj.getStatus());
-                membership.setPaymentDate(obj.getPaymentDate());
-                membership.setValidityDateTime(obj.getValidityDateTime());
-                return;
-            }
-        }
+                    ArrayList<Membership> memberships = getAll();
+                    for (Membership membership:memberships) {
+                        if(membership.getId().equals(obj.getId())){
+                            membership.setMembershipId(obj.getMembershipId());
+                            membership.setCustomerId(obj.getCustomerId());
+                            membership.setStatus(obj.getStatus());
+                            membership.setPaymentDate(obj.getPaymentDate());
+                            membership.setValidityDateTime(obj.getValidityDateTime());
+                            return;
+                        }
+                    }
     }
 
     @Override
@@ -109,7 +109,7 @@ public class MembershipDAO implements IDao<Membership>{
         Random rd = new Random();
         StringBuilder sb = new StringBuilder();
         do{
-            for(int i=0;i<9;i++) {
+            for(int i=0;i<10;i++) {
                 char letter = abc.charAt(rd.nextInt(abc.length()));
                 sb.append(letter);
             }

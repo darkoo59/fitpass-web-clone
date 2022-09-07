@@ -1,13 +1,13 @@
 package service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import dao.ExistingMembershipDAO;
 import dao.IDao;
 import dao.MembershipDAO;
-import model.ExistingMembership;
-import model.Membership;
-import model.SportsFacility;
-import model.TrainingHistory;
+import model.*;
 import spark.Request;
+import utils.enums.MembershipStatus;
 import utils.enums.RoleType;
 import utils.others.RequestsUtils;
 
@@ -22,11 +22,13 @@ public class MembershipService {
 
     private IDao<Membership> membershipDAO;
     private IDao<ExistingMembership> existingMembershipDAO;
+    private ObjectMapper mapper;
 
     public MembershipService()
     {
         this.membershipDAO = new MembershipDAO();
         this.existingMembershipDAO = new ExistingMembershipDAO();
+        mapper = new ObjectMapper();
     }
 
     public ArrayList<ExistingMembership> getExistingMemberships() throws IOException {
@@ -43,5 +45,20 @@ public class MembershipService {
             }
         }
         return null;
+    }
+
+    public void postCreateMembership(Request request) throws IOException, ParseException {
+        Membership membership = new Membership();
+        mapper.registerModule(new JavaTimeModule());
+        membership = mapper.readValue(request.body(),Membership.class);
+        System.out.println("MemId="+membership.getMembershipId()+",CustId="+membership.getCustomerId()+",Id="+membership.getId()+
+                ",Status="+membership.getStatus()+",PayDat="+membership.getPaymentDate()+",ValdAT="+membership.getValidityDateTime());
+        membership.setCustomerId(RequestsUtils.getIdFromPayload(RequestsUtils.getPayload(request)));
+        membership.setId(membershipDAO.getNewId());
+        membership.setStatus(MembershipStatus.ACTIVE);
+        ArrayList<Membership> allMemberships = membershipDAO.getAll();
+        allMemberships.add(membership);
+        membershipDAO.save(allMemberships);
+
     }
 }

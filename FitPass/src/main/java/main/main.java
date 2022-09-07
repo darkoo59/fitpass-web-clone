@@ -24,6 +24,7 @@ public class main {
 
     private static ManagerService managerService;
     private static MembershipService membershipService;
+    private static PromoCodesService promoCodesService;
     public static void main(String[] args) throws Exception {
 
         initializeContext();
@@ -69,6 +70,9 @@ public class main {
 
         MembershipController.getExistingMemberships();
         MembershipController.getActiveMembership();
+        MembershipController.postCreateMembership();
+
+        PromoCodesController.getPromoCodes();
 
 
     }
@@ -89,6 +93,7 @@ public class main {
         ManagerController.initializeService(managerService);
         membershipService = new MembershipService();
         MembershipController.initializeService(membershipService);
-
+        promoCodesService = new PromoCodesService();
+        PromoCodesController.initializeService(promoCodesService);
     }
 }

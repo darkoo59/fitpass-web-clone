@@ -5,6 +5,7 @@ import service.SportsFacilityService;
 
 import static main.main.gson;
 import static spark.Spark.get;
+import static spark.Spark.post;
 
 public class MembershipController {
     private static MembershipService membershipService;
@@ -24,6 +25,13 @@ public class MembershipController {
         get("/activeMembership", (req, res) -> {
             res.type("application/json");
             return gson.toJson(membershipService.getActiveMembership(req));
+        });
+    }
+
+    public static void postCreateMembership() {
+        post("createMembership", (req, res) -> {
+            membershipService.postCreateMembership(req);
+            return "SUCCESS";
         });
     }
 
