@@ -10,6 +10,8 @@ import SportFacility from "../views/SportFacility";
 import MyTrainings from "../views/CustomerMyTrainings";
 import CoachMyTrainings from "../views/CoachMyTrainings";
 import ManagerMyTrainings from "@/views/ManagerMyTrainings";
+import Membership from "../views/Membership";
+import SelectedMembership from "../views/SelectedMembership";
 
 const routes = [
     {
@@ -66,7 +68,17 @@ const routes = [
         path: '/managerTrainings',
         name: 'ManagerMyTrainings',
         component: ManagerMyTrainings
-    }
+    },
+    {
+        path: '/membership',
+        name: 'Membership',
+        component: Membership
+    },
+    {
+        path: '/membership/:id',
+        name: 'SelectedMembership',
+        component: SelectedMembership
+    },
 ]
 
 const router = createRouter({

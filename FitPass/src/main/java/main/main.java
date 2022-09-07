@@ -23,6 +23,8 @@ public class main {
     private static CoachService coachService;
 
     private static ManagerService managerService;
+    private static MembershipService membershipService;
+    private static PromoCodesService promoCodesService;
     public static void main(String[] args) throws Exception {
 
         initializeContext();
@@ -66,6 +68,14 @@ public class main {
         ManagerController.getAllTrainings();
         ManagerController.getManagerFacilities();
         ManagerController.postTrainingsFilter();
+
+        MembershipController.getExistingMemberships();
+        MembershipController.getActiveMembership();
+        MembershipController.postCreateMembership();
+
+        PromoCodesController.getPromoCodes();
+
+
     }
 
     private static void initializeContext() throws IOException {
@@ -82,6 +92,9 @@ public class main {
         CoachController.initializeService(coachService);
         managerService = new ManagerService();
         ManagerController.initializeService(managerService);
-
+        membershipService = new MembershipService();
+        MembershipController.initializeService(membershipService);
+        promoCodesService = new PromoCodesService();
+        PromoCodesController.initializeService(promoCodesService);
     }
 }

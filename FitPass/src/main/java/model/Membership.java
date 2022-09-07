@@ -8,18 +8,25 @@ import java.time.LocalDateTime;
 public class Membership {
     private java.lang.String id;
     private String membershipId;
-    private LocalDate paymentDate;
+    private LocalDateTime paymentDate;
     private LocalDateTime validityDateTime;
     private String customerId;
     private MembershipStatus status;
 
-    public Membership(String membershipId, LocalDate paymentDate, LocalDateTime validityDateTime,
+    private Double priceDiscountPercentage;
+
+    public Membership()
+    {
+        this.priceDiscountPercentage = 0.0;
+    }
+    public Membership(String membershipId, LocalDateTime paymentDate, LocalDateTime validityDateTime,
                       String customerId, MembershipStatus status) {
         this.membershipId= membershipId;
         this.paymentDate = paymentDate;
         this.validityDateTime = validityDateTime;
         this.customerId = customerId;
         this.status = status;
+        this.priceDiscountPercentage = 0.0;
     }
 
     public String getId() {
@@ -38,11 +45,11 @@ public class Membership {
         this.membershipId = membershipId;
     }
 
-    public LocalDate getPaymentDate() {
+    public LocalDateTime getPaymentDate() {
         return paymentDate;
     }
 
-    public void setPaymentDate(LocalDate paymentDate) {
+    public void setPaymentDate(LocalDateTime paymentDate) {
         this.paymentDate = paymentDate;
     }
 
@@ -68,5 +75,13 @@ public class Membership {
 
     public void setStatus(MembershipStatus status) {
         this.status = status;
+    }
+
+    public Double getPriceDiscountPercentage() {
+        return priceDiscountPercentage;
+    }
+
+    public void setPriceDiscountPercentage(Double priceDiscountPercentage) {
+        this.priceDiscountPercentage = priceDiscountPercentage;
     }
 }

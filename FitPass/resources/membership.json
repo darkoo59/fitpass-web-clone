@@ -1,7 +1,19 @@
-[{
+[
+  {
     "id": "4Af4G24G05",
     "membershipId": "2",
-    "paymentDate": "2022-08-15",
+    "paymentDate": "2022-08-15 00:00",
     "validityDateTime": "2022-09-15 00:00",
-    "status": 0
-}]
+    "customerId": "3",
+    "priceDiscountPercentage": 0.0
+  },
+  {
+    "id": "OHKUFW7S3J",
+    "membershipId": "2",
+    "paymentDate": "2022-09-07 15:48",
+    "validityDateTime": "2022-10-07 15:48",
+    "customerId": "3",
+    "status": "ACTIVE",
+    "priceDiscountPercentage": 0.0
+  }
+]
