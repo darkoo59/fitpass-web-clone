@@ -52,7 +52,6 @@ public class TrainingService {
                 if(training.getCustomerId().equals(userId))
                     allTrainings.add(training);
             }else if(userRole == RoleType.MANAGER) {
-                System.out.println(training.getTrainingId());
                 if(facilityDAO.get(trainingDAO.get(training.getTrainingId()).getFacilityId()).getManagerId().equals(userId))
                     allTrainings.add(training);
             }
@@ -89,6 +88,32 @@ public class TrainingService {
             }
         }
         return sort(filter,filtered);
+    }
+
+    public ArrayList<TrainingHistory> managerFilter(Request req,Filter filter) throws Exception {
+        ArrayList<TrainingHistory> trainingHistories = getMyTrainingsHistory(req);
+        ArrayList<TrainingHistory> filtered = new ArrayList<>();
+        for (TrainingHistory training : trainingHistories) {
+            if (name(filter,training) && !filtered.contains(training)) {
+                filtered.add(training);
+            }
+            if (!trainingType(filter, training)) {
+                if (filtered.contains(training)) {
+                    filtered.remove(training);
+                }
+            }
+            if(!price(filter,training)) {
+                if(filtered.contains(training)) {
+                    filtered.remove(training);
+                }
+            }
+            if(!applicationDate(filter,training)) {
+                if(filtered.contains(training)) {
+                    filtered.remove(training);
+                }
+            }
+        }
+        return managerSort(filter,filtered);
     }
     public GsonBuilder getGsonBuilder()
     {
@@ -219,6 +244,42 @@ public class TrainingService {
                 Collections.sort(filtered, Comparator.comparing(TrainingHistory::getApplicationDateTime));
                 break;
             case "6":
+                Collections.sort(filtered, Comparator.comparing(TrainingHistory::getApplicationDateTime,Comparator.reverseOrder()));
+                break;
+            default:
+                return filtered;
+        }
+        return filtered;
+    }
+
+    private ArrayList<TrainingHistory> managerSort(Filter filter, ArrayList<TrainingHistory> filtered) throws IOException {
+        switch (filter.sort) {
+            case "1":
+                Collections.sort(filtered, comparing(TrainingHistory::getTrainingId, (t1,t2) -> {
+                    try {
+                        Training training1 = trainingDAO.get(t1);
+                        Training training2 = trainingDAO.get(t2);
+                        return training1.getPrice() - training2.getPrice();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }));
+                break;
+            case "2":
+                Collections.sort(filtered, comparing(TrainingHistory::getTrainingId, (t1,t2) -> {
+                    try {
+                        Training training1 = trainingDAO.get(t1);
+                        Training training2 = trainingDAO.get(t2);
+                        return training2.getPrice() - training1.getPrice();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }));
+                break;
+            case "3":
+                Collections.sort(filtered, Comparator.comparing(TrainingHistory::getApplicationDateTime));
+                break;
+            case "4":
                 Collections.sort(filtered, Comparator.comparing(TrainingHistory::getApplicationDateTime,Comparator.reverseOrder()));
                 break;
             default:

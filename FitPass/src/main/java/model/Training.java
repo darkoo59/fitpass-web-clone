@@ -15,7 +15,7 @@ public class Training {
 
     private int price;
 
-    public Training(java.lang.String name, java.lang.String type, String facility, WorkHour duration, String coachId, java.lang.String description, java.lang.String image,int price) {
+    public Training(java.lang.String name, java.lang.String type, String facility, WorkHour duration, String coachId, java.lang.String description, java.lang.String image, int price) {
         this.name = name;
         this.type = type;
         this.facilityId = facility;

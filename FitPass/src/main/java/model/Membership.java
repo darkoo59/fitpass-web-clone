@@ -6,25 +6,20 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Membership {
-    private String id;
-    private String membershipType;
+    private java.lang.String id;
+    private String membershipId;
     private LocalDate paymentDate;
     private LocalDateTime validityDateTime;
-    private Double price;
-    private Customer customer;
+    private String customerId;
     private MembershipStatus status;
-    private String dailyTerms;
 
-    public Membership(String id, String membershipType, LocalDate paymentDate, LocalDateTime validityDateTime,
-                      Double price, Customer customer, MembershipStatus status, String dailyTerms) {
-        this.id = id;
-        this.membershipType = membershipType;
+    public Membership(String membershipId, LocalDate paymentDate, LocalDateTime validityDateTime,
+                      String customerId, MembershipStatus status) {
+        this.membershipId= membershipId;
         this.paymentDate = paymentDate;
         this.validityDateTime = validityDateTime;
-        this.price = price;
-        this.customer = customer;
+        this.customerId = customerId;
         this.status = status;
-        this.dailyTerms = dailyTerms;
     }
 
     public String getId() {
@@ -35,12 +30,12 @@ public class Membership {
         this.id = id;
     }
 
-    public String getMembershipType() {
-        return membershipType;
+    public String getMembershipId() {
+        return membershipId;
     }
 
-    public void setMembershipType(String membershipType) {
-        this.membershipType = membershipType;
+    public void setMembershipId(String membershipId) {
+        this.membershipId = membershipId;
     }
 
     public LocalDate getPaymentDate() {
@@ -59,20 +54,12 @@ public class Membership {
         this.validityDateTime = validityDateTime;
     }
 
-    public Double getPrice() {
-        return price;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
     public MembershipStatus getStatus() {
@@ -81,13 +68,5 @@ public class Membership {
 
     public void setStatus(MembershipStatus status) {
         this.status = status;
-    }
-
-    public String getDailyTerms() {
-        return dailyTerms;
-    }
-
-    public void setDailyTerms(String dailyTerms) {
-        this.dailyTerms = dailyTerms;
     }
 }

@@ -1,11 +1,13 @@
 package service;
 
+import com.google.gson.Gson;
 import dao.*;
 import model.SportsFacility;
 import model.Training;
 import model.TrainingHistory;
 import model.User;
 import spark.Request;
+import utils.others.Filter;
 import utils.others.RequestsUtils;
 
 import java.io.IOException;
@@ -49,5 +51,11 @@ public class ManagerService {
     public ArrayList<SportsFacility> getManagerFacilities(Request request) throws ParseException, IOException {
         String managerId = RequestsUtils.getIdFromPayload(RequestsUtils.getPayload(request));
         return facilityDAO.getFacilitiesByManagerId(managerId);
+    }
+
+    public ArrayList<TrainingHistory> filter(Request req) throws Exception {
+        Gson gson = trainingService.getGsonBuilder().setPrettyPrinting().create();
+        Filter filter = gson.fromJson(req.body(), Filter.class);
+        return trainingService.managerFilter(req,filter);
     }
 }

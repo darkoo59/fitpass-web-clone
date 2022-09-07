@@ -5,6 +5,7 @@ import service.ManagerService;
 
 import static main.main.gson;
 import static spark.Spark.get;
+import static spark.Spark.post;
 
 public class ManagerController {
 
@@ -31,6 +32,13 @@ public class ManagerController {
         get("/managerFacilities", (req, res) -> {
             res.type("application/json");
             return gson.toJson(managerService.getManagerFacilities(req));
+        });
+    }
+    ///managerTrainings/filter
+
+    public static void postTrainingsFilter() {
+        post("/managerTrainings/filter", (req, res) -> {
+            return gson.toJson(managerService.filter(req));
         });
     }
 }

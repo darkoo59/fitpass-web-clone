@@ -4,7 +4,6 @@ import utils.enums.GenderType;
 import utils.enums.RoleType;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Coach extends User {
     private TrainingHistory trainingHistory;

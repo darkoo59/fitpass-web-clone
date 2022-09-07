@@ -4,28 +4,28 @@ import utils.enums.Rating;
 
 public class Comment {
 
-    private String id;
-    private Customer customer;
+    private java.lang.String id;
+    private String customer;
     private SportsFacility sportsFacility;
-    private String text;
+    private java.lang.String text;
     private Rating rating;
 
-    public Comment(Customer customer, SportsFacility sportsFacility, String text, Rating rating) {
+    public Comment(String customer, SportsFacility sportsFacility, java.lang.String text, Rating rating) {
         this.customer = customer;
         this.sportsFacility = sportsFacility;
         this.text = text;
         this.rating = rating;
     }
 
-    public String getId() { return id; }
+    public java.lang.String getId() { return id; }
 
-    public void setId(String id) { this.id = id; }
+    public void setId(java.lang.String id) { this.id = id; }
 
-    public Customer getCustomer() {
+    public String getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(String customer) {
         this.customer = customer;
     }
 
@@ -37,11 +37,11 @@ public class Comment {
         this.sportsFacility = sportsFacility;
     }
 
-    public String getText() {
+    public java.lang.String getText() {
         return text;
     }
 
-    public void setText(String text) {
+    public void setText(java.lang.String text) {
         this.text = text;
     }
 

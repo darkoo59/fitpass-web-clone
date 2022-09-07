@@ -2,7 +2,6 @@ package main;
 
 import com.google.gson.Gson;
 import controller.*;
-import model.Customer;
 import service.*;
 import utils.others.CustomGsonBuilder;
 
@@ -66,6 +65,7 @@ public class main {
         ManagerController.getMyTrainingsHistory();
         ManagerController.getAllTrainings();
         ManagerController.getManagerFacilities();
+        ManagerController.postTrainingsFilter();
     }
 
     private static void initializeContext() throws IOException {
