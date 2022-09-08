@@ -112,7 +112,7 @@ export default {
       formData.append('photo', this.selectedPhoto)
 
       let resp = await axios
-          .post("http://localhost:8081/createFacility/logo/" + this.name, formData)
+          .post(this.$port.value + "/createFacility/logo/" + this.name, formData)
       this.logoName = resp.data
 
       let data = [
@@ -128,7 +128,7 @@ export default {
         this.logoName
       ]
       await axios
-          .post("http://localhost:8081/createFacility", data)
+          .post(this.$port.value + "/createFacility", data)
 
       await this.$router.push('/')
     },
@@ -141,7 +141,7 @@ export default {
     }
   },
   async mounted() {
-    let resp = await axios.get('http://localhost:8081/managersForNewFacility')
+    let resp = await axios.get(this.$port.value + '/managersForNewFacility')
     this.managers = resp.data
     // if(selection.option)
     //   newManagerBtn.style.visibility = "visible"

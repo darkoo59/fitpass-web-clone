@@ -56,7 +56,7 @@
     methods: {
       submitForm:function()  {
         axios
-            .post('http://localhost:8081/login',this.formData)
+            .post(this.$port.value + '/login', this.formData)
             .then(response => (this.Redirect(response.data)))
       },
       Redirect:function(responseData)
@@ -72,7 +72,7 @@
       },
       SetUserInfo:function() {
         axios
-            .get('http://localhost:8081/userRole', {headers : {"Authorization" : `Bearer ${localStorage.getItem('token')}`}})
+            .get(this.$port.value + '/userRole', {headers : {"Authorization" : `Bearer ${localStorage.getItem('token')}`}})
             .then(response => (localStorage.setItem('userRole', response.data)))
       }
   }

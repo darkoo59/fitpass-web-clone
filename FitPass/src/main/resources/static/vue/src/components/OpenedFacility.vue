@@ -30,6 +30,7 @@ import { Loader } from '@googlemaps/js-api-loader'
 import { onMounted, ref } from "vue";
 import { useRoute } from 'vue-router'
 import CommentsSection from "./CommentsSection"
+import { app } from "../main";
 
 export default {
   name: "OpenedFacility",
@@ -38,13 +39,11 @@ export default {
   },
   data() {
     return {
-      port: 'http://localhost:8081',
       comments: [],
       facilityData: []
     }
   },
   setup() {
-    const port = 'http://localhost:8081'
     const route = useRoute()
     let facility = []
     let center = {
@@ -55,7 +54,7 @@ export default {
     const mapDiv = ref(null)
 
     onMounted(async () => {
-      let res = await axios.get(port + '/facility', {
+      let res = await axios.get(app.config.globalProperties.$port.value + '/facility', {
         params: {
           id: route.params.id
         }
@@ -81,16 +80,16 @@ export default {
     return { facility, center, mapDiv }
   },
   async mounted() {
-    let res = await axios.get(this.port + '/facility', {
+    let res = await axios.get(this.$port.value + '/facility', {
       params: {
         id: this.$route.params.id
       }
     })
     this.facilityData = res.data
 
-    let role = await axios.get(this.port + '/userRole', {headers : {"Authorization" : `Bearer ${localStorage.getItem('token')}`}})
+    let role = await axios.get(this.$port.value + '/userRole', {headers : {"Authorization" : `Bearer ${localStorage.getItem('token')}`}})
 
-    let res2 = await axios.post(this.port + '/facility/' + this.facilityData.id + '/comments', role.data)
+    let res2 = await axios.post(this.$port.value + '/facility/' + this.facilityData.id + '/comments', role.data)
 
     this.comments = res2.data
   }

@@ -75,7 +75,7 @@ export default {
   methods: {
     async GetUserInfo() {
       let result = await axios
-          .get('http://localhost:8081/userInfo', {headers: this.createHeadersWithToken() })
+          .get(this.$port.value + '/userInfo', {headers: this.createHeadersWithToken() })
       this.user = result.data
       this.user.birthDate = this.formatDate(this.user.birthDate)
     },
@@ -110,8 +110,7 @@ export default {
       }
       let postData = this.user
       axios
-          .post('http://localhost:8081/userInfo/edit', postData)
-      // .then(this.Redirect("/userInfo"))
+          .post(this.$port.value + '/userInfo/edit', postData)
     },
     cancelForm() {
       this.GetUserInfo();

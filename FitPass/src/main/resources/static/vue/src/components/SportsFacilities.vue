@@ -86,7 +86,7 @@ export default {
   },
    async mounted()
     {
-      let resp = await axios.get('http://localhost:8081/sportsFacilities')
+      let resp = await axios.get(this.$port.value + '/sportsFacilities')
       this.facilities = resp.data
       this.filtered = resp.data
       this.cities = this.getCitiesFromResponse(resp.data)
@@ -101,7 +101,7 @@ export default {
     },
     async searchFacilities() {
       let resp = await axios
-          .post('http://localhost:8081/sportsFacilities/filter', this.filter)
+          .post(this.$port.value + '/sportsFacilities/filter', this.filter)
       this.filtered = resp.data
     },
     getCitiesFromResponse(data) {

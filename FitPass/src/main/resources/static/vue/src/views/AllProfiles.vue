@@ -78,7 +78,7 @@ export default {
     }
   },
   async mounted() {
-    let resp = await axios.get('http://localhost:8081/allProfiles')
+    let resp = await axios.get(this.$port.value + '/allProfiles')
     this.profiles = resp.data
     this.filteredProfiles = resp.data
   },
@@ -98,7 +98,7 @@ export default {
       return this.profilesNum.toString()
     },
     searchProfiles() {
-      axios.post('http://localhost:8081/sarchProfiles', this.input)
+      axios.post(this.$port.value + '/sarchProfiles', this.input)
           .then(response => (alert(response.data),
                   this.filteredProfiles = response.data,
                   alert(this.filteredProfiles)))

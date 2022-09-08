@@ -40,7 +40,7 @@ export default {
   },
   async mounted()
   {
-    let resp = await axios.get('http://localhost:8081/membershipById',{headers: this.createHeadersWithToken(),
+    let resp = await axios.get(this.$port.value + '/membershipById',{headers: this.createHeadersWithToken(),
       params: {
         id: this.$route.path.substring(12)
       }})
@@ -52,7 +52,7 @@ export default {
       this.membershipData.validityDateTime = moment(new Date()).add(1,'M')
     else if(this.existingMembership.membershipType === 'godisnja')
       this.membershipData.validityDateTime = moment(new Date()).add(1,'years')
-    let resp2 = await axios.get('http://localhost:8081/promoCodes')
+    let resp2 = await axios.get(this.$port.value + '/promoCodes')
     this.promoCodes = resp2.data
   },
   methods: {
@@ -73,7 +73,7 @@ export default {
               this.selectedPromoCode = code
               this.membershipActivation()
               axios
-                  .get('http://localhost:8081/decrementPromoCode',{params: {
+                  .get(this.$port.value + '/decrementPromoCode',{params: {
               id: code.id
             }})
           }
@@ -84,7 +84,7 @@ export default {
     {
       this.membershipData.membershipId = this.existingMembership.id
       axios
-          .post('http://localhost:8081/createMembership',this.membershipData,{headers: this.createHeadersWithToken()})
+          .post(this.$port.value + '/createMembership',this.membershipData,{headers: this.createHeadersWithToken()})
       this.$router.push('/membership')
     }
   }

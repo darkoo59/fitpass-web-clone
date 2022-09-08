@@ -3,7 +3,7 @@
     <h4 class="text-white">Comments and ratings ({{ numberOfRatings }})</h4>
     <div>
       <div class="row">
-        <p class="text-white col-auto"> {{ Math.round( averageRating * 100 + Number.EPSILON ) / 100 }} </p>
+        <p class="text-white col-auto"> {{ Math.round( averageRating * 100 + Number.EPSILON ) / 100  || ''}} </p>
         <Rating class="col"
             :read-only="true"
             :increment="0.01"

@@ -89,19 +89,19 @@ export default {
     }
   },
   async mounted() {
-    let response1 = await axios.get('http://localhost:8081/managerTrainingsHistory', {headers: this.createHeadersWithToken()})
+    let response1 = await axios.get(this.$port.value + '/managerTrainingsHistory', {headers: this.createHeadersWithToken()})
     this.managerTrainingsHistory = response1.data
     this.filteredManagerTrainingsHistory = response1.data
-    let response2 = await axios.get('http://localhost:8081/managerTrainingsInfo', {headers: this.createHeadersWithToken()})
+    let response2 = await axios.get(this.$port.value + '/managerTrainingsInfo', {headers: this.createHeadersWithToken()})
     this.managerTrainings = response2.data
-    let response3 = await axios.get('http://localhost:8081/managerFacilities',{headers: this.createHeadersWithToken()})
+    let response3 = await axios.get(this.$port.value + '/managerFacilities',{headers: this.createHeadersWithToken()})
     this.managerFacilities = response3.data
     this.trainingTypes = this.getTrainingTypes(this.managerTrainings)
   },
   methods: {
     async searchTrainings() {
       let resp = await axios
-          .post('http://localhost:8081/managerTrainings/filter', this.filter, {headers : this.createHeadersWithToken()})
+          .post(this.$port.value + '/managerTrainings/filter', this.filter, {headers : this.createHeadersWithToken()})
       this.filteredManagerTrainingsHistory = resp.data
     },
     getTrainingTypes(allTrainings){

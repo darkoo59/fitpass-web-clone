@@ -106,12 +106,12 @@ export default {
     }
   },
   async mounted() {
-    let response1 = await axios.get('http://localhost:8081/coachTrainingsHistory', {headers: this.createHeadersWithToken()})
+    let response1 = await axios.get(this.$port.value + '/coachTrainingsHistory', {headers: this.createHeadersWithToken()})
     this.coachTrainingsHistory = response1.data
     this.filteredCoachTrainingsHistory = response1.data
-    let response2 = await axios.get('http://localhost:8081/coachTrainingsInfo', {headers: this.createHeadersWithToken()})
+    let response2 = await axios.get(this.$port.value + '/coachTrainingsInfo', {headers: this.createHeadersWithToken()})
     this.coachTrainings = response2.data
-    let response3 = await axios.get('http://localhost:8081/sportsFacilities')
+    let response3 = await axios.get(this.$port.value + '/sportsFacilities')
     this.allFacilities = response3.data
     this.facilityTypes = this.getFacilityTypesFromAllFacilities(this.allFacilities)
     this.trainingTypes = this.getTrainingTypes(this.coachTrainings)
@@ -120,7 +120,7 @@ export default {
       {
         async searchTrainings() {
           let resp = await axios
-              .post('http://localhost:8081/coachTrainings/filter', this.filter, {headers : this.createHeadersWithToken()})
+              .post(this.$port.value + '/coachTrainings/filter', this.filter, {headers : this.createHeadersWithToken()})
           this.filteredCoachTrainingsHistory = resp.data
         },
         getTrainingTypes(allTrainings){
@@ -196,7 +196,7 @@ export default {
           }
         },
         cancelPersonalTraining(trainingHistory) {
-          axios.get('http://localhost:8081/cancelPersonalTraining', {
+          axios.get(this.$port.value + '/cancelPersonalTraining', {
             params: {id: trainingHistory.trainingId}
           }).then(this.$router.go());
         },

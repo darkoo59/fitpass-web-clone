@@ -97,12 +97,12 @@ export default {
     }
   },
   async mounted() {
-    let response1 = await axios.get('http://localhost:8081/myTrainings', {headers: this.createHeadersWithToken()})
+    let response1 = await axios.get(this.$port.value + '/myTrainings', {headers: this.createHeadersWithToken()})
     this.customerTrainingsHistory = response1.data
     this.filteredCustomerTrainingsHistory = response1.data
-    let response2 = await axios.get('http://localhost:8081/myTrainingsInfo', {headers: this.createHeadersWithToken()})
+    let response2 = await axios.get(this.$port.value + '/myTrainingsInfo', {headers: this.createHeadersWithToken()})
     this.customerTrainings = response2.data
-    let response3 = await axios.get('http://localhost:8081/sportsFacilities')
+    let response3 = await axios.get(this.$port.value + '/sportsFacilities')
     this.allFacilities = response3.data
     this.facilityTypes = this.getFacilityTypesFromAllFacilities(this.allFacilities)
     this.trainingTypes = this.getTrainingTypes(this.customerTrainings)
@@ -111,7 +111,7 @@ export default {
   {
     async searchTrainings() {
       let resp = await axios
-          .post('http://localhost:8081/customerTrainings/filter', this.filter, {headers : this.createHeadersWithToken()})
+          .post(this.$port.value + '/customerTrainings/filter', this.filter, {headers : this.createHeadersWithToken()})
       this.filteredCustomerTrainingsHistory = resp.data
     },
     createHeadersWithToken() {

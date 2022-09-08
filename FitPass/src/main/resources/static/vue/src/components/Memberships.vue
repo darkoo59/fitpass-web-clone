@@ -32,9 +32,9 @@ export default {
   },
   async mounted()
   {
-    let resp = await axios.get('http://localhost:8081/existingMemberships')
+    let resp = await axios.get(this.$port.value + '/existingMemberships')
     this.existingMemberships = resp.data
-    let response = await axios.get('http://localhost:8081/activeMembership', {headers: this.createHeadersWithToken()})
+    let response = await axios.get(this.$port.value + '/activeMembership', {headers: this.createHeadersWithToken()})
     if(response.data == '')
       this.activeMembership = 'None'
     else

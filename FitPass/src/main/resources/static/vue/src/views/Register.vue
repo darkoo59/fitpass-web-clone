@@ -7,7 +7,7 @@
           <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
             <div class="card-body p-4 p-md-5">
               <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Become a member of the FitPass community</h3>
-              <form method="post" action="http://localhost:8081/register">
+              <form method="post" :action="port + '/register'">
 
                 <div class="row">
                   <div class="col-md-6 mb-4">
@@ -93,7 +93,12 @@
 <script>
 import HomeHeader from "@/components/HomeHeader";
 export default {
-  components: {HomeHeader}
+  components: {HomeHeader},
+  data() {
+    return {
+      port: this.$port.value
+    }
+  }
 }
 </script>
 
