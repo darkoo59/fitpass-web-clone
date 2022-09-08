@@ -3,25 +3,21 @@ package service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import dao.ExistingMembershipDAO;
-import dao.IDao;
+import dao.IDAO;
 import dao.MembershipDAO;
 import model.*;
 import spark.Request;
 import utils.enums.MembershipStatus;
-import utils.enums.RoleType;
 import utils.others.RequestsUtils;
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-import static main.main.gson;
-import static spark.Spark.get;
-
 public class MembershipService {
 
     private MembershipDAO membershipDAO;
-    private IDao<ExistingMembership> existingMembershipDAO;
+    private IDAO<ExistingMembership> existingMembershipDAO;
     private ObjectMapper mapper;
 
     public MembershipService()

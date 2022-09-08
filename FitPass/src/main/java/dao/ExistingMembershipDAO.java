@@ -18,7 +18,7 @@ import java.nio.file.Paths;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class ExistingMembershipDAO implements IDao<ExistingMembership> {
+public class ExistingMembershipDAO implements IDAO<ExistingMembership> {
 
     private final String path = "resources/existingMembership.json";
     @Override

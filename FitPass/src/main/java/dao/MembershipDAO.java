@@ -21,7 +21,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class MembershipDAO implements IDao<Membership>{
+public class MembershipDAO implements IDAO<Membership>{
     private final String path = "resources/membership.json";
     @Override
     public ArrayList<Membership> getAll() throws IOException {

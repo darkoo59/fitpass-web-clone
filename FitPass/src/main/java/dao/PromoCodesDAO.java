@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class PromoCodesDAO implements IDao<PromoCodes>{
+public class PromoCodesDAO implements IDAO<PromoCodes>{
 
     private final String path = "resources/promoCodes.json";
     @Override
