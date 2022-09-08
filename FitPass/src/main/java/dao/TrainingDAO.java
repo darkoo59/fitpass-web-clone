@@ -3,7 +3,6 @@ package dao;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import model.SportsFacility;
 import model.Training;
 import utils.others.LocalTimeConverter;
 
@@ -18,7 +17,7 @@ import java.nio.file.Paths;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class TrainingDAO implements IDao<Training>{
+public class TrainingDAO implements IDAO<Training> {
 
     private final String path = "resources/training.json";
     @Override

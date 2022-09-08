@@ -1,9 +1,6 @@
 package service;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.nimbusds.jwt.SignedJWT;
 import dao.IUserDAO;
 import dao.UserDAO;
@@ -18,13 +15,10 @@ import utils.enums.RoleType;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import javax.xml.bind.DatatypeConverter;
 
 public class AccountService {
@@ -58,7 +52,7 @@ public class AccountService {
     }
 
     public String loginUser(Request request) throws IOException {
-        Credentials cred = new Credentials();
+        Credentials cred;
         cred = mapper.readValue(request.body(),Credentials.class);
         ArrayList<User> users = userDAO.getAll();
         for (User user:users) {
@@ -98,6 +92,11 @@ public class AccountService {
         String payload = getPayload(req);
         String username = payload.substring(8,payload.lastIndexOf("\",\"exp\":"));
         return userService.getUserDTOByUsername(username);
+    }
+
+    public String getUsername(Request req) throws Exception {
+        String id = req.params(":id");
+        return userService.getUsernameById(id);
     }
 
     public void editUser(Request req) throws Exception {

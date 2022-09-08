@@ -20,15 +20,19 @@ public class SportsFacilityController {
     }
 
     public static void getSportFacility() {
-        get("/getSportFacility", (req,res) -> {
+        get("/facility", (req,res) -> {
             res.type("application/json");
             return gson.toJson(sportsFacilityService.getSportFacilityById(req));
         });
     }
 
     public static void postSportsFacilitesFilter() {
-        post("sportsFacilities/filter", (req, res) -> {
-            return gson.toJson(sportsFacilityService.filter(req));
-        });
+        post("sportsFacilities/filter", (req, res) ->
+                gson.toJson(sportsFacilityService.filter(req)));
+    }
+
+    public static void postSportFacilityComments() {
+        post("/facility/:id/comments", (req,res) ->
+                gson.toJson(sportsFacilityService.getSportFacilityComments(req)));
     }
 }

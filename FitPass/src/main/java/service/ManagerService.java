@@ -15,7 +15,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 public class ManagerService {
-    private IDao userDAO;
+    private IDAO userDAO;
     private TrainingDAO trainingDAO;
     private TrainingHistoryDAO trainingHistoryDAO;
 

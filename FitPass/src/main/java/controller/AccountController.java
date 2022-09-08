@@ -41,6 +41,10 @@ public class AccountController {
         get("/userInfo", (req, res) -> gson.toJson(accountService.getUserInfo(req)));
     }
 
+    public static void getUsername() {
+        get("/user/:id", (req, res) -> gson.toJson(accountService.getUsername(req)));
+    }
+
     public static void postUserInfoEdit() {
         post("/userInfo/edit", (req, res) -> {
             accountService.editUser(req);

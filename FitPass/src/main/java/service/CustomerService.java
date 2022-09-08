@@ -1,14 +1,12 @@
 package service;
 
 import com.google.gson.Gson;
-import com.nimbusds.jwt.SignedJWT;
 import dao.*;
 import model.SportsFacility;
 import model.Training;
 import model.TrainingHistory;
 import model.User;
 import spark.Request;
-import utils.enums.RoleType;
 import utils.others.Filter;
 import utils.others.RequestsUtils;
 
@@ -18,7 +16,7 @@ import java.util.ArrayList;
 
 public class CustomerService {
 
-    private IDao userDAO;
+    private IDAO userDAO;
     private TrainingDAO trainingDAO;
     private TrainingHistoryDAO trainingHistoryDAO;
 

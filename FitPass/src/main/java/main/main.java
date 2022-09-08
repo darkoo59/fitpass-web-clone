@@ -15,16 +15,14 @@ public class main {
     private static CustomGsonBuilder customGsonBuilder;
     private static AccountService accountService;
     private static SportsFacilityService facilitiesService;
-
     private static CustomerService customerService;
-
     private static AdministratorService administratorService;
-
     private static CoachService coachService;
-
     private static ManagerService managerService;
     private static MembershipService membershipService;
     private static PromoCodesService promoCodesService;
+    private static CommentService commentService;
+
     public static void main(String[] args) throws Exception {
 
         initializeContext();
@@ -42,6 +40,7 @@ public class main {
         AccountController.getUserRole();
         AccountController.getUserInfo();
         AccountController.postUserInfoEdit();
+        AccountController.getUsername();
 
         AdministratorController.postRegister();
         AdministratorController.getAllProfiles();
@@ -53,6 +52,7 @@ public class main {
         SportsFacilityController.getSportsFacilites();
         SportsFacilityController.getSportFacility();
         SportsFacilityController.postSportsFacilitesFilter();
+        SportsFacilityController.postSportFacilityComments();
 
         CustomerController.getAllTrainings();
         CustomerController.getMyTrainingsHistory();
@@ -77,7 +77,7 @@ public class main {
         PromoCodesController.getPromoCodes();
         PromoCodesController.getDecrementSelectedPromoCode();
 
-
+        CommentController.getAllComments();
     }
 
     private static void initializeContext() throws IOException {
@@ -98,5 +98,7 @@ public class main {
         MembershipController.initializeService(membershipService);
         promoCodesService = new PromoCodesService();
         PromoCodesController.initializeService(promoCodesService);
+        commentService = new CommentService();
+        CommentController.initializeService(commentService);
     }
 }

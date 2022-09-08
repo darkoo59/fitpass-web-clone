@@ -1,0 +1,26 @@
+[
+	{
+		"id": "1",
+		"customerId": "1",
+		"sportsFacilityId": "1",
+		"text": "Sranje objekat",
+		"rating": 3,
+		"status": 1
+	},
+	{
+		"id": "2",
+		"customerId": "3",
+		"sportsFacilityId": "1",
+		"text": "Najjaci objekat",
+		"rating": 2,
+		"status": 0
+	},
+	{
+		"id": "3",
+		"customerId": "3",
+		"sportsFacilityId": "1",
+		"text": "Najjaci objekat",
+		"rating": 3,
+		"status": 0
+	}
+]

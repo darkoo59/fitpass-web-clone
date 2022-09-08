@@ -1,9 +1,7 @@
 package service;
 
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import controller.AdministratorController;
-import dao.IDao;
+import dao.IDAO;
 import dao.SportsFacilityDAO;
 import dao.UserDAO;
 import model.Location;
@@ -18,11 +16,7 @@ import utils.others.WorkHour;
 
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.http.Part;
-import javax.validation.Payload;
 import java.io.*;
-import java.lang.reflect.Array;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -30,12 +24,11 @@ import java.time.LocalDate;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import static main.main.gson;
 
 public class AdministratorService {
-    private IDao userDAO;
+    private IDAO userDAO;
     private SportsFacilityDAO facilityDAO;
     private ArrayList<User> allUsers;
     public AdministratorService() throws IOException {
