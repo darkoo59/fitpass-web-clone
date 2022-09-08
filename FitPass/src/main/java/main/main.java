@@ -71,8 +71,10 @@ public class main {
         MembershipController.getExistingMemberships();
         MembershipController.getActiveMembership();
         MembershipController.postCreateMembership();
+        MembershipController.getExistingMembershipById();
 
         PromoCodesController.getPromoCodes();
+        PromoCodesController.getDecrementSelectedPromoCode();
 
 
     }

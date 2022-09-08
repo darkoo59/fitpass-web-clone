@@ -166,15 +166,10 @@
                 Membership
               </router-link>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                CustomerFeature3
-              </a>
-              <ul class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="#">CustomerFeature3a</a></li>
-                <li><a class="dropdown-item" href="#">CustomerFeature3b</a></li>
-                <li><a class="dropdown-item" href="#">CustomerFeature3c</a></li>
-              </ul>
+            <li class="nav-item">
+              <router-link class="nav-link text-white" to="/trainNow">
+                Train now
+              </router-link>
             </li>
           </ul>
         </div>
