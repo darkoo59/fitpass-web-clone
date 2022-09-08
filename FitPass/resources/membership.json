@@ -1,19 +1,56 @@
 [
   {
-    "id": "4Af4G24G05",
-    "membershipId": "2",
-    "paymentDate": "2022-08-15 00:00",
-    "validityDateTime": "2022-09-15 00:00",
+    "id": "XSCM8SR2PR",
+    "membershipId": "5",
+    "paymentDate": "2022-09-08 09:46",
+    "validityDateTime": "2023-09-08 09:46",
     "customerId": "3",
+    "status": "NOT_ACTIVE",
     "priceDiscountPercentage": 0.0
   },
   {
-    "id": "OHKUFW7S3J",
-    "membershipId": "2",
-    "paymentDate": "2022-09-07 15:48",
-    "validityDateTime": "2022-10-07 15:48",
+    "id": "IN37J8RWWN",
+    "membershipId": "11",
+    "paymentDate": "2022-09-08 10:03",
+    "validityDateTime": "2023-09-08 10:03",
+    "customerId": "3",
+    "status": "NOT_ACTIVE",
+    "priceDiscountPercentage": 30.0
+  },
+  {
+    "id": "E8XHYDJ2YR",
+    "membershipId": "8",
+    "paymentDate": "2022-09-08 10:07",
+    "validityDateTime": "2022-10-08 10:07",
+    "customerId": "3",
+    "status": "NOT_ACTIVE",
+    "priceDiscountPercentage": 30.0
+  },
+  {
+    "id": "UTJS3AZQLP",
+    "membershipId": "1",
+    "paymentDate": "2022-09-08 10:07",
+    "validityDateTime": "2022-09-23 10:07",
+    "customerId": "3",
+    "status": "NOT_ACTIVE",
+    "priceDiscountPercentage": 30.0
+  },
+  {
+    "id": "TPGYJQF80I",
+    "membershipId": "9",
+    "paymentDate": "2022-09-08 10:08",
+    "validityDateTime": "2023-09-08 10:08",
+    "customerId": "3",
+    "status": "NOT_ACTIVE",
+    "priceDiscountPercentage": 30.0
+  },
+  {
+    "id": "ULL9X4DJDJ",
+    "membershipId": "11",
+    "paymentDate": "2022-09-08 10:26",
+    "validityDateTime": "2023-09-08 10:26",
     "customerId": "3",
     "status": "ACTIVE",
-    "priceDiscountPercentage": 0.0
+    "priceDiscountPercentage": 30.0
   }
 ]

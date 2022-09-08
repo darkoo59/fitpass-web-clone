@@ -20,7 +20,7 @@ import static spark.Spark.get;
 
 public class MembershipService {
 
-    private IDao<Membership> membershipDAO;
+    private MembershipDAO membershipDAO;
     private IDao<ExistingMembership> existingMembershipDAO;
     private ObjectMapper mapper;
 
@@ -40,7 +40,9 @@ public class MembershipService {
         String userId = RequestsUtils.getIdFromPayload(payload);
         for(Membership membership1 : membershipDAO.getAll())
         {
-            if(membership1.getCustomerId().equals(userId)){
+            System.out.println("UserId : "+userId + ",MemStatus : "+membership1.getStatus());
+            if(membership1.getCustomerId().equals(userId) && membership1.getStatus() == MembershipStatus.ACTIVE){
+                System.out.println(membership1.getMembershipId());
                 return existingMembershipDAO.get(membership1.getMembershipId());
             }
         }
@@ -56,9 +58,16 @@ public class MembershipService {
         membership.setCustomerId(RequestsUtils.getIdFromPayload(RequestsUtils.getPayload(request)));
         membership.setId(membershipDAO.getNewId());
         membership.setStatus(MembershipStatus.ACTIVE);
+        membershipDAO.setNotActiveMembership(membership.getCustomerId());
         ArrayList<Membership> allMemberships = membershipDAO.getAll();
         allMemberships.add(membership);
         membershipDAO.save(allMemberships);
 
+    }
+
+    public ExistingMembership getExistingMembershipById(Request req) throws IOException {
+        String id = req.queryParams("id");
+        System.out.println("Id:"+id);
+        return existingMembershipDAO.get(id);
     }
 }

@@ -19,4 +19,11 @@ public class PromoCodesController {
             return gson.toJson(promoCodesService.getPromoCodes());
         });
     }
+
+    public static void getDecrementSelectedPromoCode() {
+        get("decrementPromoCode", (req,res) -> {
+            promoCodesService.getDecrementSelectedPromoCode(req);
+            return "SUCCESS";
+        });
+    }
 }

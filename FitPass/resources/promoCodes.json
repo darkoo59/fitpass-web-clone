@@ -1,7 +1,9 @@
-[{
+[
+  {
     "id": "1",
     "code": "PROMOGYM",
-    "validUntil": "2022-01-30 15:00",
-    "discountPercentage": 30,
-    "maxUsage": 5
-}]
+    "validUntil": "2023-01-30 15:00",
+    "maxUsage": 4,
+    "discountPercentage": 30.0
+  }
+]

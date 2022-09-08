@@ -35,5 +35,12 @@ public class MembershipController {
         });
     }
 
-    //getExistingMembership
+    public static void getExistingMembershipById() {
+        get("membershipById", (req,res) -> {
+            res.type("application/json");
+            return gson.toJson(membershipService.getExistingMembershipById(req));
+        });
+    }
+
+    //membershipById
 }

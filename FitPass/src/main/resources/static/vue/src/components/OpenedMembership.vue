@@ -29,17 +29,21 @@ export default {
       membershipData: {
         membershipId : '',
         paymentDate: '',
-        validityDateTime:''
+        validityDateTime:'',
+        priceDiscountPercentage: 0.0
       },
       existingMembership: '',
       promoCodes: '',
       promoCode: '',
-      activatedPromoCode: false
+      selectedPromoCode: ''
     }
   },
   async mounted()
   {
-    let resp = await axios.get('http://localhost:8081/activeMembership',{headers: this.createHeadersWithToken()})
+    let resp = await axios.get('http://localhost:8081/membershipById',{headers: this.createHeadersWithToken(),
+      params: {
+        id: this.$route.path.substring(12)
+      }})
     this.existingMembership = resp.data
     this.membershipData.paymentDate = moment(new Date())
     if(this.existingMembership.membershipType === '15 dana')
@@ -57,7 +61,7 @@ export default {
     },
     confirmMembership() {
       if(this.promoCode == '')
-        this.activationWithoutPromoCode()
+        this.membershipActivation()
       else
       {
         for(const code of this.promoCodes){
@@ -65,22 +69,23 @@ export default {
               this.existingMembership.price = this.existingMembership.price - ((code.discountPercentage/100)*
                   this.existingMembership.price)
               alert('Price with discount is ' + this.existingMembership.price)
-              this.activatedPromoCode = true
-              this.activationWithPromoCode()
+              this.membershipData.priceDiscountPercentage = code.discountPercentage
+              this.selectedPromoCode = code
+              this.membershipActivation()
+              axios
+                  .get('http://localhost:8081/decrementPromoCode',{params: {
+              id: code.id
+            }})
           }
         }
       }
     },
-    activationWithoutPromoCode()
+    membershipActivation()
     {
       this.membershipData.membershipId = this.existingMembership.id
       axios
           .post('http://localhost:8081/createMembership',this.membershipData,{headers: this.createHeadersWithToken()})
       this.$router.push('/membership')
-    },
-    activationWithPromoCode()
-    {
-
     }
   }
 }

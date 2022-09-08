@@ -7,6 +7,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ membership.name }}</h5>
           <p class="card-text">
+            <b>Id:</b> {{membership.id}} <br>
             <b>Type:</b> {{ membership.membershipType }} <br>
             <b>Daily terms:</b> {{ membership.dailyTerms }} <br>
               <b>Price:</b> {{membership.price}} RSD

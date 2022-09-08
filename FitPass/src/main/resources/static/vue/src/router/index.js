@@ -78,7 +78,7 @@ const routes = [
         path: '/membership/:id',
         name: 'SelectedMembership',
         component: SelectedMembership
-    },
+    }
 ]
 
 const router = createRouter({

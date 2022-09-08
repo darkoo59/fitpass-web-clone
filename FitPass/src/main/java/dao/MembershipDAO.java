@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import model.Membership;
 import model.Training;
 import model.TrainingHistory;
+import utils.enums.MembershipStatus;
 
 import javax.swing.plaf.metal.MetalMenuBarUI;
 import java.io.FileWriter;
@@ -115,5 +116,17 @@ public class MembershipDAO implements IDao<Membership>{
             }
         }while(get(sb.toString()) != null);
         return sb.toString();
+    }
+
+    public void setNotActiveMembership(String customerId) throws IOException {
+        ArrayList<Membership> memberships = new ArrayList<Membership>();
+        memberships = getAll();
+        for (Membership membership : memberships)
+        {
+            if(membership.getCustomerId().equals(customerId))
+                membership.setStatus(MembershipStatus.NOT_ACTIVE);
+        }
+        save(memberships);
+        return;
     }
 }
