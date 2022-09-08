@@ -52,4 +52,13 @@ public class UserService {
         userDTO.gender = user.getGender();
         userDTO.birthDate = user.getBirthDate();
     }
+
+    public String getUsernameById(String id) throws Exception{
+        for (User user : userDAO.getAll()) {
+            if (user.getId().equals(id)) {
+                return user.getUsername();
+            }
+        }
+        return null;
+    }
 }

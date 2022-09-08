@@ -1,40 +1,43 @@
 package model;
 
+import utils.enums.CommentStatus;
 import utils.enums.Rating;
 
 public class Comment {
 
     private String id;
-    private Customer customer;
-    private SportsFacility sportsFacility;
+    private String customerId;
+    private String sportsFacilityId;
     private String text;
     private Rating rating;
+    private CommentStatus status;
 
-    public Comment(Customer customer, SportsFacility sportsFacility, String text, Rating rating) {
-        this.customer = customer;
-        this.sportsFacility = sportsFacility;
+    public Comment(String customerId, String sportsFacilityId, String text, Rating rating, CommentStatus status) {
+        this.customerId = customerId;
+        this.sportsFacilityId = sportsFacilityId;
         this.text = text;
         this.rating = rating;
+        this.status = status;
     }
 
     public String getId() { return id; }
 
     public void setId(String id) { this.id = id; }
 
-    public Customer getCustomer() {
-        return customer;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerId(String customerId) {
+            this.customerId = customerId;
     }
 
-    public SportsFacility getSportsFacility() {
-        return sportsFacility;
+    public String getSportsFacilityId() {
+        return sportsFacilityId;
     }
 
-    public void setSportsFacility(SportsFacility sportsFacility) {
-        this.sportsFacility = sportsFacility;
+    public void setSportsFacilityId(String sportsFacilityId) {
+        this.sportsFacilityId = sportsFacilityId;
     }
 
     public String getText() {
@@ -51,5 +54,13 @@ public class Comment {
 
     public void setRating(Rating rating) {
         this.rating = rating;
+    }
+
+    public CommentStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(CommentStatus status) {
+        this.status = status;
     }
 }

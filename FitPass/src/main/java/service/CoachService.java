@@ -1,33 +1,23 @@
 package service;
 
 import com.google.gson.*;
-import com.nimbusds.jwt.SignedJWT;
 import dao.*;
-import model.SportsFacility;
 import model.Training;
 import model.TrainingHistory;
 import model.User;
-import org.apache.log4j.lf5.viewer.FilteredLogTableModel;
 import spark.Request;
 import utils.others.Filter;
 import utils.others.RequestsUtils;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.text.ParseException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 import static java.util.Comparator.comparing;
-import static main.main.gson;
 
 public class CoachService {
 
-    private IDao userDAO;
+    private IDAO userDAO;
     private TrainingDAO trainingDAO;
     private TrainingHistoryDAO trainingHistoryDAO;
 

@@ -2,7 +2,6 @@ package main;
 
 import com.google.gson.Gson;
 import controller.*;
-import model.Customer;
 import service.*;
 import utils.others.CustomGsonBuilder;
 
@@ -16,14 +15,12 @@ public class main {
     private static CustomGsonBuilder customGsonBuilder;
     private static AccountService accountService;
     private static SportsFacilityService facilitiesService;
-
     private static CustomerService customerService;
-
     private static AdministratorService administratorService;
-
     private static CoachService coachService;
-
     private static ManagerService managerService;
+    private static CommentService commentService;
+
     public static void main(String[] args) throws Exception {
 
         initializeContext();
@@ -41,6 +38,7 @@ public class main {
         AccountController.getUserRole();
         AccountController.getUserInfo();
         AccountController.postUserInfoEdit();
+        AccountController.getUsername();
 
         AdministratorController.postRegister();
         AdministratorController.getAllProfiles();
@@ -52,6 +50,7 @@ public class main {
         SportsFacilityController.getSportsFacilites();
         SportsFacilityController.getSportFacility();
         SportsFacilityController.postSportsFacilitesFilter();
+        SportsFacilityController.postSportFacilityComments();
 
         CustomerController.getAllTrainings();
         CustomerController.getMyTrainingsHistory();
@@ -66,6 +65,8 @@ public class main {
         ManagerController.getMyTrainingsHistory();
         ManagerController.getAllTrainings();
         ManagerController.getManagerFacilities();
+
+        CommentController.getAllComments();
     }
 
     private static void initializeContext() throws IOException {
@@ -82,6 +83,7 @@ public class main {
         CoachController.initializeService(coachService);
         managerService = new ManagerService();
         ManagerController.initializeService(managerService);
-
+        commentService = new CommentService();
+        CommentController.initializeService(commentService);
     }
 }

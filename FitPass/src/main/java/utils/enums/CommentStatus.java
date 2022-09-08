@@ -2,15 +2,11 @@ package utils.enums;
 
 import com.google.gson.annotations.SerializedName;
 
-public enum Rating {
+public enum CommentStatus {
     @SerializedName("0")
-    ONE,
+    PENDING,
     @SerializedName("1")
-    TWO,
+    ACCEPTED,
     @SerializedName("2")
-    THREE,
-    @SerializedName("3")
-    FOUR,
-    @SerializedName("4")
-    FIVE
+    REJECTED
 }

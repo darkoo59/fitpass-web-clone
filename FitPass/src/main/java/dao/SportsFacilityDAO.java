@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import model.SportsFacility;
-import model.User;
 import utils.others.LocalTimeConverter;
 
 import java.io.FileWriter;
@@ -18,7 +17,7 @@ import java.nio.file.Paths;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class SportsFacilityDAO implements IDao<SportsFacility>{
+public class SportsFacilityDAO implements IDAO<SportsFacility> {
     private final String path = "resources/sportsFacilities.json";
     @Override
     public ArrayList<SportsFacility> getAll() throws IOException {

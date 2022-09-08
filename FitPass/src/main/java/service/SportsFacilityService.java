@@ -1,25 +1,25 @@
 package service;
 
-import breeze.numerics.constants.Database;
-import dao.IDao;
+import dao.IDAO;
 import dao.SportsFacilityDAO;
+import dto.CommentDTO;
+import model.Comment;
 import model.SportsFacility;
 import utils.others.Filter;
 import spark.Request;
 
-import java.io.IOException;
+import java.io.IOException;;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Collections;
 import java.util.Comparator;
 
 import static main.main.gson;
 
 public class SportsFacilityService {
-    private IDao<SportsFacility> facilitiesDao;
+    private IDAO<SportsFacility> facilitiesDao;
+    private CommentService commentService;
+
     public SportsFacilityService()
     {
         facilitiesDao = new SportsFacilityDAO();
@@ -143,5 +143,32 @@ public class SportsFacilityService {
                 return filtered;
         }
         return filtered;
+    }
+    public ArrayList<CommentDTO> getSportFacilityComments(Request req) throws Exception {
+        String id = req.params(":id");
+        ArrayList<Comment> comments;
+        commentService = new CommentService();
+        if (req.body().equals("ADMINISTRATOR") || req.body().equals("MANAGER")) {
+            comments = commentService.getCommentsFromFacility(id, false);
+        } else {
+            comments = commentService.getCommentsFromFacility(id, true);
+        }
+        ArrayList<CommentDTO> commentsDTO = new ArrayList<>();
+        commentService = null;
+        mapCommentsToDTO(comments, commentsDTO);
+        return commentsDTO;
+    }
+
+    private void mapCommentsToDTO(ArrayList<Comment> comments, ArrayList<CommentDTO> commentsDTO) throws Exception {
+        UserService userService = new UserService();
+        for (Comment comment : comments) {
+            CommentDTO commentDTO = new CommentDTO();
+            commentDTO.id = comment.getId();
+            commentDTO.username = userService.getUsernameById(comment.getCustomerId());
+            commentDTO.status = comment.getStatus();
+            commentDTO.text = comment.getText();
+            commentDTO.rating = comment.getRating();
+            commentsDTO.add(commentDTO);
+        }
     }
 }

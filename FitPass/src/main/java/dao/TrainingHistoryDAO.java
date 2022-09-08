@@ -2,26 +2,20 @@ package dao;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import model.Training;
 import model.TrainingHistory;
-import model.User;
-import utils.others.LocalDateDeserializer;
-import utils.others.LocalDateSerializer;
-import utils.others.LocalTimeConverter;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.lang.reflect.Type;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class TrainingHistoryDAO implements IDao<TrainingHistory> {
+public class TrainingHistoryDAO implements IDAO<TrainingHistory> {
 
     private final String path = "resources/trainingHistory.json";
     @Override
