@@ -38,6 +38,7 @@ import { onMounted, ref } from "vue";
 import { useRoute } from 'vue-router'
 import CommentsSection from "./CommentsSection"
 import LeaveComment from "@/components/LeaveComment"
+import { app } from "../main"
 
 export default {
   name: "OpenedFacility",
