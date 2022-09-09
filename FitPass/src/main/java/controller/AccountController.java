@@ -51,4 +51,8 @@ public class AccountController {
             return "SUCCESS";
         });
     }
+
+    public static void getUserId() {
+        get("/userId", (req, res) -> accountService.getUserId(req));
+    }
 }

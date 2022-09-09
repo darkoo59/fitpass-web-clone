@@ -32,8 +32,6 @@ public class main {
 
         CORSController.enableCORS();
 
-        get("/home" , (req,res) -> "index.html");
-
         AccountController.postRegister();
         AccountController.postLogin();
         AccountController.getUser();
@@ -41,6 +39,7 @@ public class main {
         AccountController.getUserInfo();
         AccountController.postUserInfoEdit();
         AccountController.getUsername();
+        AccountController.getUserId();
 
         AdministratorController.postRegister();
         AdministratorController.getAllProfiles();
@@ -53,6 +52,8 @@ public class main {
         SportsFacilityController.getSportFacility();
         SportsFacilityController.postSportsFacilitesFilter();
         SportsFacilityController.postSportFacilityComments();
+        SportsFacilityController.postSportFacilityAddComment();
+        SportsFacilityController.getSportFacilityAddCommentAllowed();
 
         CustomerController.getAllTrainings();
         CustomerController.getMyTrainingsHistory();

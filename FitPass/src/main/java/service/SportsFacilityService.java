@@ -1,12 +1,16 @@
 package service;
 
+import com.google.gson.reflect.TypeToken;
 import dao.IDAO;
 import dao.SportsFacilityDAO;
 import dto.CommentDTO;
 import model.Comment;
 import model.SportsFacility;
+import utils.enums.CommentStatus;
+import utils.enums.Rating;
 import utils.others.Filter;
 import spark.Request;
+import utils.others.RequestsUtils;
 
 import java.io.IOException;;
 import java.time.LocalTime;
@@ -170,5 +174,48 @@ public class SportsFacilityService {
             commentDTO.rating = comment.getRating();
             commentsDTO.add(commentDTO);
         }
+    }
+
+    public void sportFacilityAddComment(Request req) throws Exception {
+        String id = req.params(":id");
+        ArrayList<String> payload = gson.fromJson(req.body(), new TypeToken<ArrayList<String>>(){}.getType());
+        Rating rating = stringToRating(payload.get(2));
+        Comment comment = new Comment(
+                payload.get(0),
+                id,
+                payload.get(1),
+                rating,
+                CommentStatus.PENDING
+        );
+        CommentService commentService = new CommentService();
+        commentService.addCommentToList(comment);
+    }
+
+    private Rating stringToRating(String number) {
+        switch (number) {
+            case "1":
+                return Rating.ONE;
+            case "2":
+                return Rating.TWO;
+            case "3":
+                return Rating.THREE;
+            case "4":
+                return Rating.FOUR;
+            case "5":
+                return Rating.FIVE;
+            default:
+                return null;
+        }
+    }
+
+    public Boolean getSportFacilityAddCommentAllowed(Request req) throws Exception {
+        String id = req.params(":id");
+        String payload = RequestsUtils.getPayload(req);
+        String customerId = RequestsUtils.getIdFromPayload(payload);
+        TrainingService trainingService = new TrainingService();
+        if (trainingService.getCustomerTrainingHistoryFromFacility(customerId, id).isEmpty()) {
+            return false;
+        }
+        return true;
     }
 }

@@ -34,5 +34,9 @@ public class CommentService {
         }
         return comments;
     }
-
+    public void addCommentToList(Comment comment) throws Exception {
+        ArrayList<Comment> comments = getAllComments();
+        comments.add(comment);
+        commentDAO.save(comments);
+    }
 }

@@ -287,4 +287,22 @@ public class TrainingService {
         }
         return filtered;
     }
+
+    public ArrayList<TrainingHistory> getCustomerTrainingHistoryFromFacility(String customerId, String facilityId) throws Exception {
+        ArrayList<TrainingHistory> trainingHistoryFromAllFacilities = new ArrayList<>();
+        for (TrainingHistory training : trainingHistoryDAO.getAll()) {
+            if (training.getCustomerId().equals(customerId)) {
+                trainingHistoryFromAllFacilities.add(training);
+            }
+        }
+        ArrayList<TrainingHistory> trainingHistory = new ArrayList<>();
+        for (TrainingHistory tHistory : trainingHistoryFromAllFacilities) {
+            for (Training training : trainingDAO.getAll()) {
+                if (tHistory.getTrainingId().equals(training.getId()) && training.getFacilityId().equals(facilityId)) {
+                    trainingHistory.add(tHistory);
+                }
+            }
+        }
+        return trainingHistory;
+    }
 }
