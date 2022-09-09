@@ -35,4 +35,16 @@ public class SportsFacilityController {
         post("/facility/:id/comments", (req,res) ->
                 gson.toJson(sportsFacilityService.getSportFacilityComments(req)));
     }
+
+    public static void postSportFacilityAddComment() {
+        post("/facility/:id/comments/add", (req,res) -> {
+            sportsFacilityService.sportFacilityAddComment(req);
+            return "SUCCESS";
+        });
+    }
+
+    public static void getSportFacilityAddCommentAllowed() {
+        get("/facility/:id/comments/add/allowed", (req, res) ->
+                gson.toJson(sportsFacilityService.getSportFacilityAddCommentAllowed(req)));
+    }
 }

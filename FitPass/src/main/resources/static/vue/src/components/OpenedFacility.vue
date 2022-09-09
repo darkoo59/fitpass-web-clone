@@ -18,7 +18,14 @@
         <div ref="mapDiv" style="width: 100%; height: 100%"/>
       </div>
       <div class="col">
-        <CommentsSection :comments="comments" :facility="facility"/>
+        <div class="row">
+          <div v-if="canLeaveComment">
+            <LeaveComment @clicked="onClick"/>
+          </div>
+        </div>
+        <div class="row">
+          <CommentsSection :comments="comments" :facility="facility"/>
+        </div>
       </div>
     </div>
   </div>
@@ -30,17 +37,23 @@ import { Loader } from '@googlemaps/js-api-loader'
 import { onMounted, ref } from "vue";
 import { useRoute } from 'vue-router'
 import CommentsSection from "./CommentsSection"
+import LeaveComment from "@/components/LeaveComment"
 
 export default {
   name: "OpenedFacility",
   components: {
+    LeaveComment,
     CommentsSection
   },
   data() {
     return {
       port: 'http://localhost:8081',
       comments: [],
-      facilityData: []
+      facilityData: [],
+      customerId: '',
+      text: '',
+      rating: '',
+      canLeaveComment: false
     }
   },
   setup() {
@@ -88,11 +101,36 @@ export default {
     })
     this.facilityData = res.data
 
-    let role = await axios.get(this.port + '/userRole', {headers : {"Authorization" : `Bearer ${localStorage.getItem('token')}`}})
 
-    let res2 = await axios.post(this.port + '/facility/' + this.facilityData.id + '/comments', role.data)
+    let role = await axios.get(this.$port.value + '/userRole', {headers : this.createHeadersWithToken()})
 
-    this.comments = res2.data
+    if (role.data === "CUSTOMER") {
+      let res2 = await axios.get(this.$port.value + '/facility/' + this.facilityData.id + '/comments/add/allowed', {headers: this.createHeadersWithToken()})
+      if (res2.data === true) this.canLeaveComment = true
+      else this.canLeaveComment = false
+    }
+
+    let res3 = await axios.post(this.$port.value + '/facility/' + this.facilityData.id + '/comments', role.data)
+
+    this.comments = res3.data
+  },
+  methods: {
+    createHeadersWithToken() {
+      return {"Authorization": `Bearer ${localStorage.getItem('token')}`}
+    },
+    async onClick(value) {
+      let customerId = await this.getCustomerId()
+      this.customerId = customerId.toString()
+      this.text = value.text
+      this.rating = value.rating.toString()
+      let data = [this.customerId, this.text, this.rating]
+      await axios.post(this.$port.value + '/facility/' + this.facilityData.id + '/comments/add', data)
+    },
+    async getCustomerId() {
+      let res = await axios
+          .get(this.$port.value + '/userId', {headers : this.createHeadersWithToken()})
+      return res.data
+    }
   }
 }
 </script>

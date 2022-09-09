@@ -226,4 +226,58 @@ public class TrainingService {
         }
         return filtered;
     }
+
+    private ArrayList<TrainingHistory> managerSort(Filter filter, ArrayList<TrainingHistory> filtered) throws IOException {
+        switch (filter.sort) {
+            case "1":
+                Collections.sort(filtered, comparing(TrainingHistory::getTrainingId, (t1,t2) -> {
+                    try {
+                        Training training1 = trainingDAO.get(t1);
+                        Training training2 = trainingDAO.get(t2);
+                        return training1.getPrice() - training2.getPrice();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }));
+                break;
+            case "2":
+                Collections.sort(filtered, comparing(TrainingHistory::getTrainingId, (t1,t2) -> {
+                    try {
+                        Training training1 = trainingDAO.get(t1);
+                        Training training2 = trainingDAO.get(t2);
+                        return training2.getPrice() - training1.getPrice();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }));
+                break;
+            case "3":
+                Collections.sort(filtered, Comparator.comparing(TrainingHistory::getApplicationDateTime));
+                break;
+            case "4":
+                Collections.sort(filtered, Comparator.comparing(TrainingHistory::getApplicationDateTime,Comparator.reverseOrder()));
+                break;
+            default:
+                return filtered;
+        }
+        return filtered;
+    }
+
+    public ArrayList<TrainingHistory> getCustomerTrainingHistoryFromFacility(String customerId, String facilityId) throws Exception {
+        ArrayList<TrainingHistory> trainingHistoryFromAllFacilities = new ArrayList<>();
+        for (TrainingHistory training : trainingHistoryDAO.getAll()) {
+            if (training.getCustomerId().equals(customerId)) {
+                trainingHistoryFromAllFacilities.add(training);
+            }
+        }
+        ArrayList<TrainingHistory> trainingHistory = new ArrayList<>();
+        for (TrainingHistory tHistory : trainingHistoryFromAllFacilities) {
+            for (Training training : trainingDAO.getAll()) {
+                if (tHistory.getTrainingId().equals(training.getId()) && training.getFacilityId().equals(facilityId)) {
+                    trainingHistory.add(tHistory);
+                }
+            }
+        }
+        return trainingHistory;
+    }
 }

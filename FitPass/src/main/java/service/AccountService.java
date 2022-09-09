@@ -134,4 +134,9 @@ public class AccountService {
         user.setBirthDate(date);
         return user;
     }
+
+    public String getUserId(Request req) throws Exception {
+        UserDTO dto = getUserInfo(req);
+        return dto.id;
+    }
 }

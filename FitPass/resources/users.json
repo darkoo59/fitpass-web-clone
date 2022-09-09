@@ -7,7 +7,7 @@
     "surname": "Jovanovic",
     "birthDate": "26-05-2018",
     "role": "2",
-    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb2FjaCIsImV4cCI6MTY2MjYzNjE2MCwiaWF0IjoxNjYyNjM2MTUwfQ.9kMyUQB_jf0OgpM4N2jBDNxEZcevFivNI86h-TVQ5KY"
+    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb2FjaCIsImV4cCI6MTY2MjcyMDYwOCwiaWF0IjoxNjYyNzIwNTk4fQ.5ncSdRzvPVkUdd9Ld9LsYuAQAMZ0A0GH2NXuy3zuEqs"
   },
   {
     "id": "2",
@@ -27,7 +27,7 @@
     "surname": "Janjic",
     "birthDate": "26-11-2018",
     "role": "3",
-    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lciIsImV4cCI6MTY2MjQ3NTgwMiwiaWF0IjoxNjYyNDc1NzkyfQ.DnSzCHptO6zpjBXk1yTsP9b9bRtKX6ANV8r8nfj2uC0"
+    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lciIsImV4cCI6MTY2MjcyMTcyOCwiaWF0IjoxNjYyNzIxNzE4fQ.tCbQvnlCwbGyfshwv4C-JlKcEDuHY1Vf46cXp4TYPds"
   },
   {
     "id": "4",
@@ -37,7 +37,7 @@
     "surname": "Jovanovic",
     "birthDate": "26-02-2018",
     "role": "0",
-    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjYyNjM2MjIwLCJpYXQiOjE2NjI2MzYyMTB9.T0jUz3iInFue98PwxP7c1MczgUHzosc5hofi_hY5oMw"
+    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjYyNzIxNzQwLCJpYXQiOjE2NjI3MjE3MzB9.jjUlT1L2z90FafsJKsLr1owsG-qC7sgEQQLY0I7zLag"
   },
   {
     "id": "5",
