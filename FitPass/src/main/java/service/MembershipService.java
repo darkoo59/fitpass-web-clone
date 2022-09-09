@@ -23,11 +23,12 @@ public class MembershipService {
     private MembershipDAO membershipDAO;
     private IDao<ExistingMembership> existingMembershipDAO;
     private ObjectMapper mapper;
+    private TrainingService trainingService;
 
-    public MembershipService()
-    {
+    public MembershipService() {
         this.membershipDAO = new MembershipDAO();
         this.existingMembershipDAO = new ExistingMembershipDAO();
+        this.trainingService = new TrainingService();
         mapper = new ObjectMapper();
     }
 
@@ -38,10 +39,9 @@ public class MembershipService {
     public ExistingMembership getActiveMembership(Request request) throws ParseException, IOException {
         String payload = RequestsUtils.getPayload(request);
         String userId = RequestsUtils.getIdFromPayload(payload);
-        for(Membership membership1 : membershipDAO.getAll())
-        {
-            System.out.println("UserId : "+userId + ",MemStatus : "+membership1.getStatus());
-            if(membership1.getCustomerId().equals(userId) && membership1.getStatus() == MembershipStatus.ACTIVE){
+        for (Membership membership1 : membershipDAO.getAll()) {
+            System.out.println("UserId : " + userId + ",MemStatus : " + membership1.getStatus());
+            if (membership1.getCustomerId().equals(userId) && membership1.getStatus() == MembershipStatus.ACTIVE) {
                 System.out.println(membership1.getMembershipId());
                 return existingMembershipDAO.get(membership1.getMembershipId());
             }
@@ -52,9 +52,9 @@ public class MembershipService {
     public void postCreateMembership(Request request) throws IOException, ParseException {
         Membership membership = new Membership();
         mapper.registerModule(new JavaTimeModule());
-        membership = mapper.readValue(request.body(),Membership.class);
-        System.out.println("MemId="+membership.getMembershipId()+",CustId="+membership.getCustomerId()+",Id="+membership.getId()+
-                ",Status="+membership.getStatus()+",PayDat="+membership.getPaymentDate()+",ValdAT="+membership.getValidityDateTime());
+        membership = mapper.readValue(request.body(), Membership.class);
+        System.out.println("MemId=" + membership.getMembershipId() + ",CustId=" + membership.getCustomerId() + ",Id=" + membership.getId() +
+                ",Status=" + membership.getStatus() + ",PayDat=" + membership.getPaymentDate() + ",ValdAT=" + membership.getValidityDateTime());
         membership.setCustomerId(RequestsUtils.getIdFromPayload(RequestsUtils.getPayload(request)));
         membership.setId(membershipDAO.getNewId());
         membership.setStatus(MembershipStatus.ACTIVE);
@@ -67,7 +67,34 @@ public class MembershipService {
 
     public ExistingMembership getExistingMembershipById(Request req) throws IOException {
         String id = req.queryParams("id");
-        System.out.println("Id:"+id);
+        System.out.println("Id:" + id);
         return existingMembershipDAO.get(id);
+    }
+
+    public String getTodayTermsNum(Request req) throws IOException, ParseException {
+        String payload = RequestsUtils.getPayload(req);
+        String userId = RequestsUtils.getIdFromPayload(payload);
+        ExistingMembership existingMembership = getMembershipProgramByCustomerId(userId);
+        String maxTerms = existingMembership.getDailyTerms();
+        if(maxTerms.equals("neograniceno"))
+            return maxTerms;
+        else{
+            int maxTermsToday = Integer.parseInt(maxTerms);
+            maxTermsToday = maxTermsToday - trainingService.getTodayTrainingsNum(userId);
+            return String.valueOf(maxTermsToday);
+        }
+
+    }
+
+    public ExistingMembership getMembershipProgramByCustomerId(String customerId) throws IOException {
+        for (Membership mem : membershipDAO.getAll()) {
+            if (mem.getCustomerId().equals(customerId) && mem.getStatus() == MembershipStatus.ACTIVE) {
+                for (ExistingMembership exMembership : existingMembershipDAO.getAll()) {
+                    if (exMembership.getId().equals(mem.getMembershipId()))
+                        return exMembership;
+                }
+            }
+        }
+        return null;
     }
 }

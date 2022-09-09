@@ -44,4 +44,11 @@ public class CustomerController {
             return gson.toJson(customerService.filter(req));
         });
     }
+
+    public static void getAddTrainingHistory() {
+        get("/addTrainingHistory", (req, res) -> {
+            customerService.addTrainingHistory(req);
+            return "SUCCESS";
+        });
+    }
 }

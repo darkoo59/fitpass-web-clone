@@ -14,6 +14,8 @@ import utils.others.RequestsUtils;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class CustomerService {
@@ -75,5 +77,17 @@ public class CustomerService {
         Gson gson = trainingService.getGsonBuilder().setPrettyPrinting().create();
         Filter filter = gson.fromJson(req.body(), Filter.class);
         return trainingService.filter(req,filter);
+    }
+
+    public void addTrainingHistory(Request req) throws ParseException, IOException {
+        trainingService.addTrainingHistory(req);
+        String payload = RequestsUtils.getPayload(req);
+        String username = payload.substring(8,payload.lastIndexOf("\",\"exp\":"));
+        String applicationDateTime = req.queryParams("applicationDateTime");
+        String trainingId = req.queryParams("trainingId");
+        System.out.println("Date : "+applicationDateTime + ",id : "+trainingId);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(applicationDateTime, formatter);
+
     }
 }

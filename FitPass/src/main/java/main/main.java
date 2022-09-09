@@ -58,6 +58,7 @@ public class main {
         CustomerController.getMyTrainingsHistory();
         CustomerController.getFacilityByTrainingId();
         CustomerController.postTrainingsFilter();
+        CustomerController.getAddTrainingHistory();
 
         CoachController.getMyTrainingsHistory();
         CoachController.getAllTrainings();
@@ -73,6 +74,7 @@ public class main {
         MembershipController.getActiveMembership();
         MembershipController.postCreateMembership();
         MembershipController.getExistingMembershipById();
+        MembershipController.getTodayTermsNum();
 
         PromoCodesController.getPromoCodes();
         PromoCodesController.getDecrementSelectedPromoCode();
