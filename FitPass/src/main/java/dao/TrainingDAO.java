@@ -46,7 +46,7 @@ public class TrainingDAO implements IDAO<Training> {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(LocalTime.class, new LocalTimeConverter());
         PrintWriter writer = new PrintWriter(new FileWriter(path));
-        Gson gson = gsonBuilder.create();
+        Gson gson = gsonBuilder.setPrettyPrinting().create();
         Type listType = new TypeToken<ArrayList<Training>>() {}.getType();
         String str = gson.toJson(objs, listType);
         writer.write(str);

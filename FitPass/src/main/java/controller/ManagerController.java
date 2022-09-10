@@ -41,4 +41,11 @@ public class ManagerController {
             return gson.toJson(managerService.filter(req));
         });
     }
+
+    public static void postAddNewTraining() {
+        post("/addNewTraining", (req, res) -> {
+            managerService.addNewTraining(req);
+            return "SUCCESS";
+        });
+    }
 }

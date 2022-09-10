@@ -13,6 +13,13 @@ public class CoachController {
         coachService = service;
     }
 
+    public static void getAllCoaches() {
+        get("/allCoaches", (req, res) -> {
+            res.type("application/json");
+
+            return gson.toJson(coachService.getAllCoaches());
+        });
+    }
     public static void getMyTrainingsHistory() {
         get("/coachTrainingsHistory", (req, res) -> {
             res.type("application/json");

@@ -115,12 +115,33 @@
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                ManagerFeature3
+                Add new
               </a>
-              <ul class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="#">ManagerFeature3a</a></li>
-                <li><a class="dropdown-item" href="#">ManagerFeature3b</a></li>
-                <li><a class="dropdown-item" href="#">ManagerFeature3c</a></li>
+              <ul class="dropdown-menu gradient-custom" aria-labelledby="navbarDropdownMenuLink">
+                <li class="nav-item">
+                <router-link class="nav-link text-white  dropdown-item" to="/newContent">
+                  Content
+                </router-link>
+                <router-link class="nav-link text-white dropdown-item" to="/newTraining">
+                  Training
+                </router-link>
+                </li>
+              </ul>
+                </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Edit
+              </a>
+              <ul class="dropdown-menu gradient-custom" aria-labelledby="navbarDropdownMenuLink">
+                <li class="nav-item">
+                  <router-link class="nav-link text-white  dropdown-item" to="/editContent">
+                    Content
+                  </router-link>
+                  <router-link class="nav-link text-white dropdown-item" to="/">
+                    Trainings
+                  </router-link>
+                </li>
               </ul>
             </li>
           </ul>
