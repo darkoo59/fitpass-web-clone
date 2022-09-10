@@ -2,10 +2,7 @@ package service;
 
 import com.google.gson.Gson;
 import dao.*;
-import model.SportsFacility;
-import model.Training;
-import model.TrainingHistory;
-import model.User;
+import model.*;
 import spark.Request;
 import utils.others.Filter;
 import utils.others.RequestsUtils;
@@ -23,6 +20,7 @@ public class ManagerService {
 
     private ArrayList<User> allUsers;
     private TrainingService trainingService;
+    private CustomerService customerService;
 
     public ManagerService() throws IOException {
         userDAO = new UserDAO();
@@ -31,6 +29,7 @@ public class ManagerService {
         facilityDAO = new SportsFacilityDAO();
         allUsers = userDAO.getAll();
         trainingService = new TrainingService();
+        customerService = new CustomerService();
     }
 
     public ArrayList<TrainingHistory> getMyTrainingsHistory(Request request) throws ParseException, IOException {
@@ -53,6 +52,16 @@ public class ManagerService {
         return facilityDAO.getFacilitiesByManagerId(managerId);
     }
 
+    public SportsFacility getManagerFacility(Request request) throws ParseException, IOException {
+        String managerId = RequestsUtils.getIdFromPayload(RequestsUtils.getPayload(request));
+        for(SportsFacility facility : facilityDAO.getAll())
+        {
+            if(facility.getManagerId().equals(managerId))
+                return facility;
+        }
+        return null;
+    }
+
     public ArrayList<TrainingHistory> filter(Request req) throws Exception {
         Gson gson = trainingService.getGsonBuilder().setPrettyPrinting().create();
         Filter filter = gson.fromJson(req.body(), Filter.class);
@@ -61,5 +70,16 @@ public class ManagerService {
 
     public void addNewTraining(Request req) throws ParseException, IOException {
         trainingService.addNewTraining(req);
+    }
+
+    public ArrayList<User> getAllCoachesForFacility(Request req) throws IOException, ParseException {
+        String managerId = RequestsUtils.getIdFromPayload(RequestsUtils.getPayload(req));
+        return trainingService.getAllCoachesForManager(managerId);
+    }
+
+    public ArrayList<Customer> getAllCustomersForFacility(Request req) throws ParseException, IOException {
+        SportsFacility sportsFacility = getManagerFacility(req);
+        String facilityId = sportsFacility.getId();
+        return customerService.getAllCustomersWhoVisited(facilityId);
     }
 }

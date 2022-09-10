@@ -8,7 +8,7 @@
       "personal training",
       "sauna"
     ],
-    "status": 0,
+    "status": "0",
     "location": {
 		"id": "1",
         "latitude": "45.2399494527454",
@@ -35,7 +35,7 @@
       "group training",
       "personal training"
     ],
-    "status": 0,
+    "status": "0",
     "location": {
 		"id": "2",
         "latitude": "45.23594123700401",
@@ -53,7 +53,7 @@
       "start": "09:00:00",
       "end": "10:00:00"
     },
-    "managerId":"2"
+    "managerId":"7"
   },
   {
     "id": "3",
@@ -64,7 +64,7 @@
       "personal training",
       "sauna"
     ],
-    "status": 1,
+    "status": "1",
     "location": {
 		"id": "3",
         "latitude": "45.248517574105996",
@@ -92,7 +92,7 @@
       "group training",
       "personal training"
     ],
-    "status": 0,
+    "status": "0",
     "location": {
 		"id": "4",
         "latitude": "45.25279303703945",

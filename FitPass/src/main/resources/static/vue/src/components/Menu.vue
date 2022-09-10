@@ -144,6 +144,24 @@
                 </li>
               </ul>
             </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Show
+              </a>
+              <ul class="dropdown-menu gradient-custom" aria-labelledby="navbarDropdownMenuLink">
+                <li class="nav-item">
+                  <router-link class="nav-link text-white  dropdown-item" to="/managerSportFacility">
+                    Sport Facility
+                  </router-link>
+                  <router-link class="nav-link text-white dropdown-item" to="/managerSportFacilityCoaches">
+                    Coaches
+                  </router-link>
+                  <router-link class="nav-link text-white dropdown-item" to="/managerSportFacilityCustomers">
+                    Customers
+                  </router-link>
+                </li>
+              </ul>
+            </li>
           </ul>
         </div>
         <router-link to="/">

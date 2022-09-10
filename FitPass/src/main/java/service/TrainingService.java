@@ -4,10 +4,8 @@ import com.google.gson.*;
 import dao.SportsFacilityDAO;
 import dao.TrainingDAO;
 import dao.TrainingHistoryDAO;
-import model.Content;
-import model.SportsFacility;
-import model.Training;
-import model.TrainingHistory;
+import dao.UserDAO;
+import model.*;
 import org.apache.commons.lang.time.DateUtils;
 import spark.Request;
 import utils.enums.RoleType;
@@ -34,12 +32,14 @@ public class TrainingService {
     private TrainingDAO trainingDAO;
     private SportsFacilityDAO facilityDAO;
     private TrainingHistoryDAO trainingHistoryDAO;
+    private UserDAO userDAO;
 
     public TrainingService()
     {
         this.trainingDAO = new TrainingDAO();
         this.facilityDAO = new SportsFacilityDAO();
         this.trainingHistoryDAO = new TrainingHistoryDAO();
+        this.userDAO = new UserDAO();
     }
 
     public void addTrainingHistory(Request req) throws ParseException, IOException {
@@ -399,5 +399,21 @@ public class TrainingService {
                 return facility.getManagerId();
         }
         return "";
+    }
+
+    public ArrayList<User> getAllCoachesForManager(String managerId) throws IOException {
+        String facilityId = getFacilityIdByManagerId(managerId);
+        ArrayList<String> coachesIds = new ArrayList<String>();
+        for(Training training : trainingDAO.getAll())
+        {
+            if(training.getFacilityId().equals(facilityId))
+                coachesIds.add(training.getCoachId());
+        }
+        ArrayList<User> coaches = new ArrayList<User>();
+        for(String id : coachesIds)
+        {
+            coaches.add(userDAO.get(id));
+        }
+        return coaches;
     }
 }

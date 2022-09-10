@@ -44,28 +44,6 @@
     "deleted": false
   },
   {
-    "id": "5",
-    "username": "borakonj",
-    "password": "borakonj",
-    "name": "Bora",
-    "surname": "Konj",
-    "gender": "FEMALE",
-    "birthDate": "07-06-2022",
-    "role": "3",
-    "deleted": false
-  },
-  {
-    "id": "6",
-    "username": "pero",
-    "password": "pero",
-    "name": "pero",
-    "surname": "pero",
-    "gender": "MALE",
-    "birthDate": "23-06-2022",
-    "role": "3",
-    "deleted": false
-  },
-  {
     "id": "7",
     "username": "dsada",
     "password": "dasda",
