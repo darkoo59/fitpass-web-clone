@@ -34,6 +34,13 @@ public class ManagerController {
             return gson.toJson(managerService.getManagerFacilities(req));
         });
     }
+
+    public static void getManagerFacility() {
+        get("/managerFacility", (req, res) -> {
+            res.type("application/json");
+            return gson.toJson(managerService.getManagerFacility(req));
+        });
+    }
     ///managerTrainings/filter
 
     public static void postTrainingsFilter() {
@@ -46,6 +53,20 @@ public class ManagerController {
         post("/addNewTraining", (req, res) -> {
             managerService.addNewTraining(req);
             return "SUCCESS";
+        });
+    }
+
+    public static void getAllCoachesForFacility() {
+        get("/facilityCoaches", (req, res) -> {
+            res.type("application/json");
+            return gson.toJson(managerService.getAllCoachesForFacility(req));
+        });
+    }
+
+    public static void getAllCustomersForFacility() {
+        get("/facilityCustomers", (req, res) -> {
+            res.type("application/json");
+            return gson.toJson(managerService.getAllCustomersForFacility(req));
         });
     }
 }

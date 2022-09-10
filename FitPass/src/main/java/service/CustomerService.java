@@ -97,4 +97,17 @@ public class CustomerService {
         String id = RequestsUtils.getIdFromPayload(payload);
         return customerDAO.get(id);
     }
+
+    public ArrayList<Customer> getAllCustomersWhoVisited(String facilityId) throws IOException {
+        ArrayList<Customer> customers = new ArrayList<Customer>();
+        for(Customer customer:customerDAO.getAll())
+        {
+            for(String id : customer.getVisitedFacilities())
+            {
+                if(id.equals(facilityId))
+                    customers.add(customer);
+            }
+        }
+        return customers;
+    }
 }

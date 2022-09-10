@@ -78,6 +78,9 @@ public class main {
         ManagerController.getManagerFacilities();
         ManagerController.postTrainingsFilter();
         ManagerController.postAddNewTraining();
+        ManagerController.getManagerFacility();
+        ManagerController.getAllCoachesForFacility();
+        ManagerController.getAllCustomersForFacility();
 
         MembershipController.getExistingMemberships();
         MembershipController.getActiveMembership();

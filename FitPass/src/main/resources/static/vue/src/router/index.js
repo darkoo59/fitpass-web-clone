@@ -14,8 +14,11 @@ import Membership from "../views/Membership";
 import SelectedMembership from "../views/SelectedMembership";
 import TrainNow from "../views/TrainNow"
 import PromoCode from "../views/PromoCode"
-import NewContent from "@/views/NewContent";
-import NewTraining from "@/views/NewTraining";
+import NewContent from "../views/NewContent";
+import NewTraining from "../views/NewTraining";
+import ManagerFacility from "@/views/ManagerFacility";
+import ManagerCoaches from "@/views/ManagerCoaches";
+import ManagerCustomers from "@/views/ManagerCustomers";
 
 const routes = [
     {
@@ -102,6 +105,21 @@ const routes = [
         path: '/newTraining',
         name: 'NewTraining',
         component: NewTraining
+    },
+    {
+        path: '/managerSportFacility',
+        name: 'ManagerFacility',
+        component: ManagerFacility
+    },
+    {
+        path: '/managerSportFacilityCoaches',
+        name: 'ManagerCoaches',
+        component: ManagerCoaches
+    },
+    {
+        path: '/managerSportFacilityCustomers',
+        name: 'ManagerCustomers',
+        component: ManagerCustomers
     }
 ]
 
