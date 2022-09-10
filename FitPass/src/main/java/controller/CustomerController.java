@@ -51,4 +51,18 @@ public class CustomerController {
             return "SUCCESS";
         });
     }
+
+    public static void getCustomer() {
+        get("/getCustomer", (req, res) -> {
+            res.type("application/json");
+            return gson.toJson(customerService.getCustomer(req));
+        });
+    }
+
+    public static void getAllCustomers() {
+        get("/getAllCustomers", (req, res) -> {
+            res.type("application/json");
+            return gson.toJson(customerService.getAllCustomers());
+        });
+    }
 }

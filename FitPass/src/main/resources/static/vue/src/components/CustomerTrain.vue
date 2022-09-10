@@ -88,7 +88,7 @@ export default {
     createHeadersWithToken() {
       return {"Authorization" : `Bearer ${localStorage.getItem('token')}`}
     },
-    facilityClick(facility) {
+    facilityClick() {
       if(this.selectedTraining.name === undefined)
         alert('Please select training first')
       else if(this.activeMembership === 'None')
@@ -103,6 +103,8 @@ export default {
             applicationDateTime: moment().format('yyyy-MM-DD hh:mm'),
             trainingId: this.selectedTraining.id
           }})
+        alert('Training successfully added to training history')
+        this.$router.push('/trainNow')
       }
     },
     isTermsNumberValid()

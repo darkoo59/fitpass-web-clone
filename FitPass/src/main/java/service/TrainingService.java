@@ -9,7 +9,6 @@ import model.Training;
 import model.TrainingHistory;
 import org.apache.commons.lang.time.DateUtils;
 import spark.Request;
-import spire.math.prime.SieveUtil;
 import utils.enums.RoleType;
 import utils.others.Filter;
 import utils.others.RequestsUtils;
@@ -87,6 +86,23 @@ public class TrainingService {
         }
         System.out.println(todayTrainigs);
         return todayTrainigs;
+    }
+
+    public int getUsedTermsInInterval(String customerId, LocalDate from, LocalDate to) throws IOException {
+        int termsNum = 0;
+        for(TrainingHistory training : trainingHistoryDAO.getAll())
+        {
+            if(training.getCustomerId().equals(customerId))
+            {
+                for (LocalDate date : training.getTrainingDates())
+                {
+                    if(date.isAfter(from) && date.isBefore(to))
+                        termsNum++;
+                }
+            }
+        }
+        System.out.println("Terms useddd : "+termsNum);
+        return termsNum;
     }
 
     public ArrayList<TrainingHistory> getMyTrainingsHistory(Request request) throws ParseException, IOException {

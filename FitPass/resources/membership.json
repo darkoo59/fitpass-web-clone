@@ -47,10 +47,10 @@
   {
     "id": "ULL9X4DJDJ",
     "membershipId": "9",
-    "paymentDate": "2022-09-08 10:26",
-    "validityDateTime": "2023-09-08 10:26",
+    "paymentDate": "2021-09-08 10:26",
+    "validityDateTime": "2022-09-08 10:26",
     "customerId": "3",
-    "status": "ACTIVE",
+    "status": "NOT_ACTIVE",
     "priceDiscountPercentage": 30.0
   }
 ]

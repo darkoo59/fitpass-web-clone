@@ -47,4 +47,10 @@ public class AccountController {
             return "SUCCESS";
         });
     }
+
+    public static void getFilteredProfiles() {
+        post("/searchProfiles", (req, res) -> {
+            return gson.toJson(accountService.filter(req));
+        });
+    }
 }

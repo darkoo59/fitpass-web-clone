@@ -6,20 +6,21 @@
     "customerId": "3",
     "coachId": "1",
     "trainingDates": [
-      "2022-09-08",
-      "2022-09-08"
+      "2022-09-01",
+      "2022-09-02",
+      "2022-09-03"
     ],
     "nextTrainingDate": "2022-09-08"
   },
   {
     "id": "2",
     "applicationDateTime": "2021-01-30 15:00",
-    "trainingId": "1",
+    "trainingId": "2",
     "customerId": "3",
     "coachId": "1",
     "trainingDates": [
-      "2022-09-05",
-      "2022-08-10"
+      "2022-09-04",
+      "2022-08-05"
     ],
     "nextTrainingDate": "2023-07-20"
   }

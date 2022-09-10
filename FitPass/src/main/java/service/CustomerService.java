@@ -3,10 +3,7 @@ package service;
 import com.google.gson.Gson;
 import com.nimbusds.jwt.SignedJWT;
 import dao.*;
-import model.SportsFacility;
-import model.Training;
-import model.TrainingHistory;
-import model.User;
+import model.*;
 import spark.Request;
 import utils.enums.RoleType;
 import utils.others.Filter;
@@ -28,6 +25,7 @@ public class CustomerService {
 
     private ArrayList<User> allUsers;
     private TrainingService trainingService;
+    private CustomerDAO customerDAO;
 
     public CustomerService() throws IOException {
         userDAO = new UserDAO();
@@ -36,6 +34,11 @@ public class CustomerService {
         facilityDAO = new SportsFacilityDAO();
         trainingService = new TrainingService();
         allUsers = userDAO.getAll();
+        customerDAO = new CustomerDAO();
+    }
+
+    public ArrayList<Customer> getAllCustomers() throws IOException {
+        return customerDAO.getAll();
     }
 
     public ArrayList<Training> getAllTrainings(Request request) throws ParseException, IOException {
@@ -89,5 +92,11 @@ public class CustomerService {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(applicationDateTime, formatter);
 
+    }
+
+    public Customer getCustomer(Request req) throws IOException, ParseException {
+        String payload = RequestsUtils.getPayload(req);
+        String id = RequestsUtils.getIdFromPayload(payload);
+        return customerDAO.get(id);
     }
 }
