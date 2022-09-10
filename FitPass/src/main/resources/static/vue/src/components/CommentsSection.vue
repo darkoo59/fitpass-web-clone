@@ -11,7 +11,7 @@
             :star-size="30"
             :show-rating="false"/>
       </div>
-      <Comment :comment="comment" v-for="comment in comments" :key="comment.id"></Comment>
+      <Comment :comment="comment" :administrator="administrator" @deleted="deleteComment" v-for="comment in comments" :key="comment.id"></Comment>
     </div>
   </div>
 
@@ -25,7 +25,8 @@ export default {
   name: 'CommentsSection',
   props: {
     facility: Object,
-    comments: Array
+    comments: Array,
+    administrator: Boolean
   },
   components: {
     Comment,
@@ -44,6 +45,11 @@ export default {
     }
     this.averageRating = avg / this.comments.length
     this.numberOfRatings = this.comments.length
+  },
+  methods: {
+    deleteComment(id) {
+      this.$emit('deleted', id)
+    }
   }
 }
 </script>

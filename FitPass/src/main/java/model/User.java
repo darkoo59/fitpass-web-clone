@@ -16,6 +16,7 @@ public class User {
     private LocalDate birthDate;
     private RoleType role;
     private String JWT;
+    private boolean deleted;
 
     public User()
     {
@@ -91,7 +92,11 @@ public class User {
         this.role = role;
     }
 
-    public String getJWT() {return JWT;}
+    public String getJWT() { return JWT; }
 
     public void setJWT(String JWT) { this.JWT = JWT; }
+
+    public boolean isDeleted() { return deleted; }
+
+    public void setDeleted(boolean deleted) { this.deleted = deleted; }
 }

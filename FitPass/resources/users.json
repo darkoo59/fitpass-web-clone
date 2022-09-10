@@ -7,7 +7,8 @@
     "surname": "Jovanovic",
     "birthDate": "26-05-2018",
     "role": "2",
-    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb2FjaCIsImV4cCI6MTY2MjcyMDYwOCwiaWF0IjoxNjYyNzIwNTk4fQ.5ncSdRzvPVkUdd9Ld9LsYuAQAMZ0A0GH2NXuy3zuEqs"
+    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb2FjaCIsImV4cCI6MTY2MjgyMTI0MSwiaWF0IjoxNjYyODIxMjMxfQ.9ZP2T4UUUPK9r9o4c8Z2Yzympwks7vFsv42Krys_yik",
+    "deleted": false
   },
   {
     "id": "2",
@@ -17,7 +18,8 @@
     "surname": "Markovic",
     "birthDate": "26-03-2018",
     "role": "1",
-    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyIiwiZXhwIjoxNjYyNjUzNTY0LCJpYXQiOjE2NjI2NTM1NTR9.G6JdwH1x5ku6Xp-Zb9eG_hhqcUN0LIYbp8mju7uGxAw"
+    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyIiwiZXhwIjoxNjYyNjUzNTY0LCJpYXQiOjE2NjI2NTM1NTR9.G6JdwH1x5ku6Xp-Zb9eG_hhqcUN0LIYbp8mju7uGxAw",
+    "deleted": false
   },
   {
     "id": "3",
@@ -27,7 +29,8 @@
     "surname": "Janjic",
     "birthDate": "26-11-2018",
     "role": "3",
-    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lciIsImV4cCI6MTY2MjcyMTcyOCwiaWF0IjoxNjYyNzIxNzE4fQ.tCbQvnlCwbGyfshwv4C-JlKcEDuHY1Vf46cXp4TYPds"
+    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lciIsImV4cCI6MTY2MjgwNjk4MSwiaWF0IjoxNjYyODA2OTcxfQ.TBWfQdJBbWR-wbEBKWLDi5hTOys3xE6QjafG7J5WOYI",
+    "deleted": false
   },
   {
     "id": "4",
@@ -37,7 +40,8 @@
     "surname": "Jovanovic",
     "birthDate": "26-02-2018",
     "role": "0",
-    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjYyNzIxNzQwLCJpYXQiOjE2NjI3MjE3MzB9.jjUlT1L2z90FafsJKsLr1owsG-qC7sgEQQLY0I7zLag"
+    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjYyODIxMjUyLCJpYXQiOjE2NjI4MjEyNDJ9.GNemRW1_mt968WRlvrGFEZXFz4QvRBcCNF7jJPIOaXI",
+    "deleted": false
   },
   {
     "id": "5",
@@ -47,7 +51,8 @@
     "surname": "Konj",
     "gender": "FEMALE",
     "birthDate": "07-06-2022",
-    "role": "3"
+    "role": "3",
+    "deleted": false
   },
   {
     "id": "6",
@@ -57,7 +62,8 @@
     "surname": "pero",
     "gender": "MALE",
     "birthDate": "23-06-2022",
-    "role": "3"
+    "role": "3",
+    "deleted": false
   },
   {
     "id": "7",
@@ -67,6 +73,7 @@
     "surname": "dada",
     "gender": "MALE",
     "birthDate": "22-09-2022",
-    "role": "1"
+    "role": "1",
+    "deleted": false
   }
 ]

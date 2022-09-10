@@ -9,10 +9,13 @@ import utils.others.LocalDateSerializer;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import static main.main.gson;
 
 public class UserDAO implements IUserDAO {
 
@@ -29,9 +32,20 @@ public class UserDAO implements IUserDAO {
         gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateDeserializer());
         Gson gson = gsonBuilder.setPrettyPrinting().create();
         Reader reader = Files.newBufferedReader(Paths.get(path));
-        ArrayList<User> users = null;
-        users = gson.fromJson(reader,new TypeToken<ArrayList<User>>(){}.getType());
-        return users;
+        ArrayList<User> users = gson.fromJson(reader,new TypeToken<ArrayList<User>>(){}.getType());
+        ArrayList<User> nonDeletedusers = new ArrayList<>();
+        for (User user : users) {
+            if (!user.isDeleted()) {
+                nonDeletedusers.add(user);
+            }
+        }
+        return nonDeletedusers;
+    }
+
+    @Override
+    public ArrayList<User> getAllAndDeleted() throws IOException {
+        Reader reader = Files.newBufferedReader(Paths.get(path), StandardCharsets.UTF_8);
+        return gson.fromJson(reader, new TypeToken<ArrayList<User>>(){}.getType());
     }
 
     @Override

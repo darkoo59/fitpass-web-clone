@@ -17,7 +17,6 @@ public class AdministratorController {
     public static void postRegister() {
         post("/administratorCreateProfile", (req, res) -> {
               administratorService.register(req);
-              res.redirect("http://localhost:8080/");
               return "SUCCESS";
         });
     }

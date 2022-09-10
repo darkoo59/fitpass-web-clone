@@ -54,23 +54,23 @@
       }
     },
     methods: {
-      submitForm:function()  {
-        axios
+      async submitForm() {
+        let res = await axios
             .post(this.$port.value + '/login', this.formData)
-            .then(response => (this.Redirect(response.data)))
+        this.redirect(res.data)
       },
-      Redirect:function(responseData)
+      redirect(responseData)
       {
-        if(responseData === null){
-          alert('Wrong credentials')
-        }else {
+        if (responseData === 'BAD'){
+          this.$toast.error("Wrong username or password", {position: 'top', duration: 2500, maxToasts: 1})
+        } else {
           localStorage.setItem('token',responseData);
-          this.SetUserInfo()
+          this.setUserInfo()
           localStorage.setItem('showMenu','true')
           this.$router.push('/')
         }
       },
-      SetUserInfo:function() {
+      setUserInfo() {
         axios
             .get(this.$port.value + '/userRole', {headers : {"Authorization" : `Bearer ${localStorage.getItem('token')}`}})
             .then(response => (localStorage.setItem('userRole', response.data)))

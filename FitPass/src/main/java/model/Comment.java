@@ -11,6 +11,7 @@ public class Comment {
     private String text;
     private Rating rating;
     private CommentStatus status;
+    private boolean deleted;
 
     public Comment(String customerId, String sportsFacilityId, String text, Rating rating, CommentStatus status) {
         this.customerId = customerId;
@@ -62,5 +63,13 @@ public class Comment {
 
     public void setStatus(CommentStatus status) {
         this.status = status;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 }

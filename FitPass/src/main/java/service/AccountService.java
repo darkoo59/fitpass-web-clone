@@ -1,12 +1,14 @@
 package service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.reflect.TypeToken;
 import com.nimbusds.jwt.SignedJWT;
 import dao.IUserDAO;
 import dao.UserDAO;
 import dto.UserDTO;
 import io.jsonwebtoken.*;
 import model.Credentials;
+import model.Customer;
 import model.User;
 import org.apache.commons.lang.StringUtils;
 import spark.Request;
@@ -20,6 +22,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.xml.bind.DatatypeConverter;
+
+import static main.main.gson;
 
 public class AccountService {
     private IUserDAO userDAO;
@@ -36,17 +40,20 @@ public class AccountService {
     }
 
     public void register(Request req) throws IOException {
-        String name = req.queryParams("name");
-        String surname = req.queryParams("surname");
-        String username = req.queryParams("username");
-        String password = req.queryParams("password");
-        String membership = req.queryParams("membership");
-        String date = req.queryParams("date");
+        System.out.println(req.body());
+        ArrayList<String> payload = gson.fromJson(req.body(), new TypeToken<ArrayList<String>>(){}.getType());
+        String name = payload.get(0);
+        String surname = payload.get(1);
+        String username = payload.get(2);
+        String password = payload.get(3);
+        String date = payload.get(4);
         LocalDate parsedDate = LocalDate.parse(date);
-        String sex = req.queryParams("inlineRadioOptions");
+        String sex = payload.get(5);
         GenderType type = sex.equals("male") ? GenderType.MALE : GenderType.FEMALE;
         User newUser = new User(username, password, name, surname, type, parsedDate, RoleType.CUSTOMER);
-        ArrayList<User> users = userDAO.getAll();
+        ArrayList<User> users = userDAO.getAllAndDeleted();
+        Customer customer = new Customer(newUser, null, null, 0.0, null);
+        newUser.setId(userDAO.getNewId());
         users.add(newUser);
         userDAO.save(users);
     }
@@ -71,7 +78,7 @@ public class AccountService {
                 return user.getJWT();
             }
         }
-        return null;
+        return "BAD";
     }
 
     private String getPayload(Request request) throws ParseException {

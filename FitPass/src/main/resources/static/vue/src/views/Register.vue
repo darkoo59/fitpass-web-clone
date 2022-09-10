@@ -7,14 +7,14 @@
           <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
             <div class="card-body p-4 p-md-5">
               <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Become a member of the FitPass community</h3>
-              <form method="post" :action="port + '/register'">
+              <form @submit.prevent="register">
 
                 <div class="row">
                   <div class="col-md-6 mb-4">
 
                     <div class="form-outline">
                       <label class="form-label" for="firstName">Name</label>
-                      <input type="text" id="firstName" name="name" class="form-control form-control-lg" required/>
+                      <input type="text" v-model="name" id="firstName" name="name" class="form-control form-control-lg" required/>
                     </div>
 
                   </div>
@@ -22,7 +22,7 @@
 
                     <div class="form-outline">
                       <label class="form-label" for="lastName">Surname</label>
-                      <input type="text" id="lastName" name="surname" class="form-control form-control-lg" required/>
+                      <input type="text" v-model="surname" id="lastName" name="surname" class="form-control form-control-lg" required/>
                     </div>
 
                   </div>
@@ -33,7 +33,7 @@
 
                     <div class="form-outline">
                       <label for="username" class="form-label">Username</label>
-                      <input type="text" id="username" name="username" class="form-control form-control-lg" required/>
+                      <input type="text" v-model="username" id="username" name="username" class="form-control form-control-lg" required/>
                     </div>
 
                   </div>
@@ -41,7 +41,7 @@
                   <div class="col-md-6 mb-4">
                     <div class="form-outline">
                       <label for="password" class="form-label">Password</label>
-                      <input type="password" id="password" name="password" class="form-control form-control-lg" required/>
+                      <input type="password" v-model="password" id="password" name="password" class="form-control form-control-lg" required/>
                     </div>
                   </div>
 
@@ -51,7 +51,7 @@
                   <div class="col-md-6 mb-4 pb-2">
 
                     <label class="form-label" for="datepicker">Date of birth</label>
-                    <input type="date" name="date" class="form-control form-control-lg" min="1900-01-01" max="2022-12-31" required/>
+                    <input type="date" v-model="date" name="date" class="form-control form-control-lg" min="1900-01-01" max="2022-12-31" required/>
 
                   </div>
 
@@ -61,24 +61,25 @@
 
                     <div class="col-md-12 mb-12 pb-2">
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleSex"
+                        <input class="form-check-input" v-model="sex" type="radio" name="inlineRadioOptions" id="femaleSex"
                                value="female" required/>
                         <label class="form-check-label" for="femaleSex">Female</label>
                       </div>
 
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleSex"
+                        <input class="form-check-input" v-model="sex" type="radio" name="inlineRadioOptions" id="maleSex"
                                value="male" required/>
                         <label class="form-check-label" for="maleSex">Male</label>
                       </div>
                     </div>
 
+                    <span v-show="passwordError" class="text-danger">Password must be at least 8 characters long</span>
 
                   </div>
                 </div>
 
                 <div class="mt-4 pt-2">
-                  <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+                  <button class="btn btn-primary btn-lg" type="submit">Submit</button>
                 </div>
 
               </form>
@@ -92,11 +93,39 @@
 
 <script>
 import HomeHeader from "@/components/HomeHeader";
+import axios from "axios";
 export default {
   components: {HomeHeader},
   data() {
     return {
-      port: this.$port.value
+      name: '',
+      surname: '',
+      username: '',
+      password: '',
+      date: '',
+      sex: '',
+      passwordError: false
+    }
+  },
+  methods: {
+    async register() {
+      this.passwordError = false
+      if (this.validate()) {
+        let data = [ this.name, this.surname, this.username, this.password, this.date, this.sex]
+        await axios.post(this.$port.value + '/register', data)
+        this.$toast.success("Successful registration", {position: 'top', duration: 4000, maxToasts: 1})
+        await this.$router.push('/')
+      }
+    },
+    validate() {
+      if (this.name && this.surname && this.username && this.validatePassword() && this.date && this.sex)
+        return true
+      else
+        return false
+    },
+    validatePassword() {
+      this.passwordError = true
+      return this.password.trim().length >= 8;
     }
   }
 }
@@ -104,10 +133,7 @@ export default {
 
 <style scoped>
 .gradient-custom {
-  /* Chrome 10-25, Safari 5.1-6 */
   background: -webkit-linear-gradient(to bottom right, #000428, #004e92);
-
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background: linear-gradient(to bottom right, #000428, #004e92);
 }
 

@@ -1,6 +1,7 @@
 package service;
 
 import com.google.gson.reflect.TypeToken;
+import dao.CommentDAO;
 import dao.IDAO;
 import dao.SportsFacilityDAO;
 import dto.CommentDTO;
@@ -187,6 +188,8 @@ public class SportsFacilityService {
                 rating,
                 CommentStatus.PENDING
         );
+        CommentDAO commentDAO = new CommentDAO();
+        comment.setId(commentDAO.getNewId());
         CommentService commentService = new CommentService();
         commentService.addCommentToList(comment);
     }

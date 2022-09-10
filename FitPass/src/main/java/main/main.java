@@ -34,7 +34,6 @@ public class main {
 
         AccountController.postRegister();
         AccountController.postLogin();
-        AccountController.getUser();
         AccountController.getUserRole();
         AccountController.getUserInfo();
         AccountController.postUserInfoEdit();
@@ -79,6 +78,9 @@ public class main {
         PromoCodesController.getDecrementSelectedPromoCode();
 
         CommentController.getAllComments();
+        CommentController.deleteComment();
+        CommentController.putAcceptComment();
+        CommentController.putRejectComment();
     }
 
     private static void initializeContext() throws IOException {

@@ -20,9 +20,19 @@ public class CommentDAO implements IDAO<Comment> {
     @Override
     public ArrayList<Comment> getAll() throws IOException {
         Reader reader = Files.newBufferedReader(Paths.get(path), StandardCharsets.UTF_8);
-        ArrayList<Comment> comment = null;
-        comment = gson.fromJson(reader, new TypeToken<ArrayList<Comment>>(){}.getType());
-        return comment;
+        ArrayList<Comment> comments = gson.fromJson(reader, new TypeToken<ArrayList<Comment>>(){}.getType());
+        ArrayList<Comment> nonDeletedComments = new ArrayList<>();
+        for (Comment comment : comments) {
+            if (!comment.isDeleted()) {
+                nonDeletedComments.add(comment);
+            }
+        }
+        return nonDeletedComments;
+    }
+
+    public ArrayList<Comment> getAllAndDeleted() throws IOException {
+        Reader reader = Files.newBufferedReader(Paths.get(path), StandardCharsets.UTF_8);
+        return gson.fromJson(reader, new TypeToken<ArrayList<Comment>>(){}.getType());
     }
 
     @Override

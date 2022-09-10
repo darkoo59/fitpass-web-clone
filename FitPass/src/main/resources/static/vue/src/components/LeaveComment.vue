@@ -29,7 +29,10 @@ export default {
   },
   methods: {
     onButtonClick() {
-      this.$emit('clicked', this.comment)
+      this.$emit('clicked', { ...this.comment })
+      this.comment.text = ''
+      this.comment.rating = 0
+      this.$toast.success("Comment submitted", {position: 'top', duration: 1500, maxToasts: 1})
     }
   }
 }

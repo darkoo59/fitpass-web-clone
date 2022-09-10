@@ -12,10 +12,20 @@ public class Customer extends User{
     private Double collectedPoints;
     private CustomerType type;
 
-    public Customer(java.lang.String username, java.lang.String password, java.lang.String name, java.lang.String surname, GenderType gender, LocalDate birthDate,
+    public Customer(String username, String password, String name, String surname, GenderType gender, LocalDate birthDate,
                   RoleType role, Membership membership, ArrayList<SportsFacility> visitedFacilities,
                   Double collectedPoints, CustomerType type) {
         super(username, password, name, surname, gender, birthDate, role);
+        this.membership = membership;
+        this.visitedFacilities = visitedFacilities;
+        this.collectedPoints = collectedPoints;
+        this.type = type;
+    }
+
+    public Customer(User user, Membership membership, ArrayList<SportsFacility> visitedFacilities,
+                    Double collectedPoints, CustomerType type) {
+        super(user.getUsername(), user.getPassword(), user.getName(), user.getSurname(),
+                user.getGender(), user.getBirthDate(), user.getRole());
         this.membership = membership;
         this.visitedFacilities = visitedFacilities;
         this.collectedPoints = collectedPoints;

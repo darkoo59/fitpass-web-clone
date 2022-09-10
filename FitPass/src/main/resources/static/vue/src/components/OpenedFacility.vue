@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="row">
-          <CommentsSection :comments="comments" :facility="facility"/>
+          <CommentsSection :comments="comments" :facility="facility" @deleted="reloadCommentSection" :administrator="administrator"/>
         </div>
       </div>
     </div>
@@ -53,7 +53,8 @@ export default {
       customerId: '',
       text: '',
       rating: '',
-      canLeaveComment: false
+      canLeaveComment: false,
+      administrator: false
     }
   },
   setup() {
@@ -109,6 +110,10 @@ export default {
       else this.canLeaveComment = false
     }
 
+    if (role.data === "ADMINISTRATOR") {
+      this.administrator = true
+    }
+
     let res3 = await axios.post(this.$port.value + '/facility/' + this.facilityData.id + '/comments', role.data)
 
     this.comments = res3.data
@@ -129,6 +134,10 @@ export default {
       let res = await axios
           .get(this.$port.value + '/userId', {headers : this.createHeadersWithToken()})
       return res.data
+    },
+    reloadCommentSection(id) {
+      console.log(id)
+      this.comments = this.comments.filter(comment => comment.id !== id)
     }
   }
 }
