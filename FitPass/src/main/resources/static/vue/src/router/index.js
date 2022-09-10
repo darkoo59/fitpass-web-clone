@@ -12,6 +12,7 @@ import CoachMyTrainings from "../views/CoachMyTrainings";
 import ManagerMyTrainings from "@/views/ManagerMyTrainings";
 import Membership from "../views/Membership";
 import SelectedMembership from "../views/SelectedMembership";
+import TrainNow from "../views/TrainNow"
 
 const routes = [
     {
@@ -78,6 +79,11 @@ const routes = [
         path: '/membership/:id',
         name: 'SelectedMembership',
         component: SelectedMembership
+    },
+    {
+        path: '/trainNow',
+        name: 'TrainNow',
+        component: TrainNow
     }
 ]
 

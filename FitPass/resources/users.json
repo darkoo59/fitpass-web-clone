@@ -37,36 +37,6 @@
     "surname": "Jovanovic",
     "birthDate": "26-02-2018",
     "role": "0",
-    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjYyNzIxNzQwLCJpYXQiOjE2NjI3MjE3MzB9.jjUlT1L2z90FafsJKsLr1owsG-qC7sgEQQLY0I7zLag"
-  },
-  {
-    "id": "5",
-    "username": "borakonj",
-    "password": "borakonj",
-    "name": "Bora",
-    "surname": "Konj",
-    "gender": "FEMALE",
-    "birthDate": "07-06-2022",
-    "role": "3"
-  },
-  {
-    "id": "6",
-    "username": "pero",
-    "password": "pero",
-    "name": "pero",
-    "surname": "pero",
-    "gender": "MALE",
-    "birthDate": "23-06-2022",
-    "role": "3"
-  },
-  {
-    "id": "7",
-    "username": "dsada",
-    "password": "dasda",
-    "name": "dasda",
-    "surname": "dada",
-    "gender": "MALE",
-    "birthDate": "22-09-2022",
-    "role": "1"
+    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjYyMjA2MjYyLCJpYXQiOjE2NjIyMDYyNTJ9.uf_sYDEypq51QyfAg2sysakBDBB8irjHrFZcBVY_E-o"
   }
 ]

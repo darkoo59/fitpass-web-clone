@@ -2,16 +2,17 @@ package service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nimbusds.jwt.SignedJWT;
+import dao.CustomerDAO;
 import dao.IUserDAO;
 import dao.UserDAO;
 import dto.UserDTO;
 import io.jsonwebtoken.*;
-import model.Credentials;
-import model.User;
+import model.*;
 import org.apache.commons.lang.StringUtils;
 import spark.Request;
 import utils.enums.GenderType;
 import utils.enums.RoleType;
+import utils.others.Filter;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -19,10 +20,15 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.*;
 import javax.xml.bind.DatatypeConverter;
+
+import static java.util.Comparator.comparing;
+import static main.main.gson;
 
 public class AccountService {
     private IUserDAO userDAO;
+    private CustomerDAO customerDAO;
     private UserService userService;
     private static String key = "fhjdfddjsaildhadlHHHjjFHaFHAkflfhAFKLJhfk";
     private  static String base64Key = DatatypeConverter.printBase64Binary(key.getBytes());
@@ -31,6 +37,7 @@ public class AccountService {
 
     public AccountService() {
         userDAO = new UserDAO();
+        customerDAO = new CustomerDAO();
         userService = new UserService();
         mapper = new ObjectMapper();
     }
@@ -138,5 +145,151 @@ public class AccountService {
     public String getUserId(Request req) throws Exception {
         UserDTO dto = getUserInfo(req);
         return dto.id;
+    }
+    
+    public ArrayList<User> filter(Request req) throws Exception {
+        Filter filter = gson.fromJson(req.body(), Filter.class);
+        ArrayList<User> users = userDAO.getAll();
+        ArrayList<User> filtered = new ArrayList<>();
+        for (User user : users) {
+            if (name(filter, user)) {
+                if (!filtered.contains(user)) {
+                    filtered.add(user);
+                }
+            }
+            if (!role(filter, user)) {
+                if (filtered.contains(user)) {
+                    filtered.remove(user);
+                }
+            }
+            if (!customerType(filter, user)) {
+                if (filtered.contains(user)) {
+                    filtered.remove(user);
+                }
+            }
+        }
+        return sort(filter, filtered);
+    }
+
+    private Boolean name(Filter filter, User user) {
+//        System.out.println(user.getName());
+////        System.out.println(filter.searchInput);
+//        return true;
+        return user.getName().toLowerCase().contains(filter.searchInput.toLowerCase()) ||
+                user.getSurname().toLowerCase().contains(filter.searchInput.toLowerCase()) ||
+                user.getUsername().toLowerCase().contains(filter.searchInput.toLowerCase());
+    }
+
+    private Boolean role(Filter filter, User user) {
+        if (filter.role.equals("Role"))
+            return true;
+        return String.valueOf(user.getRole()) == roleNumToString(filter.role);
+    }
+
+    private String roleNumToString(String role)
+    {
+        switch(role){
+            case "1" :
+                return "ADMINISTRATOR";
+            case "2" :
+                return "MANAGER";
+            case "3" :
+                return "COACH";
+            case "4" :
+                return "CUSTOMER";
+            default:
+                return "";
+        }
+    }
+
+    private Boolean customerType(Filter filter, User user) throws IOException {
+        if (filter.type.equals("Customer type"))
+            return true;
+        if(user.getRole() != RoleType.CUSTOMER)
+            return false;
+        return (customerDAO.get(user.getId())).getType().getType().toString().equals(customerTypeToString(filter.type.toUpperCase()));
+    }
+
+    private String customerTypeToString(String type) {
+        if(type.equals("1"))
+            return "BRONZE";
+        else if (type.equals("2"))
+            return "SILVER";
+        else if (type.equals("3"))
+            return "GOLD";
+        return "";
+    }
+
+    private ArrayList<User> sort(Filter filter, ArrayList<User> filtered) throws IOException {
+        switch (filter.sort) {
+            case "1":
+                Collections.sort(filtered, Comparator.comparing(User::getName));
+                break;
+            case "2":
+                Collections.sort(filtered, Comparator.comparing(User::getName, Comparator.reverseOrder()));
+                break;
+            case "3":
+                Collections.sort(filtered, Comparator.comparing(User::getSurname));
+                break;
+            case "4":
+                Collections.sort(filtered, Comparator.comparing(User::getSurname, Comparator.reverseOrder()));
+                break;
+//            case "5":
+//                sortListByPoints(filtered,"asc");
+//                break;
+//            case "6":
+//                sortListByPoints(filtered,"desc");
+//                break;
+            default:
+                return filtered;
+        }
+        return filtered;
+    }
+
+    private void sortListByPoints(ArrayList<User> users,String type) throws IOException {
+        ArrayList<Customer> sortedListCustomer = new ArrayList<Customer>();
+        if (type.equals("asc")) {
+            for (User user : users) {
+                if (user.getRole() == RoleType.CUSTOMER) {
+                    Customer customer = customerDAO.get(user.getId());
+                    sortedListCustomer.add(customer);
+                }
+            }
+            Collections.sort(sortedListCustomer, Comparator.comparing(Customer::getCollectedPoints));
+            ArrayList<User> sortedUsers = new ArrayList<User>();
+            for (int i = 0; i < sortedListCustomer.size(); i++) {
+                for (User user : users) {
+                    if (user.getRole() == RoleType.CUSTOMER && user.getUsername().equals(sortedListCustomer.get(i).getUsername())) {
+                        sortedUsers.add(user);
+                    }
+                }
+            }
+            for (User user : users) {
+                if (user.getRole() != RoleType.CUSTOMER)
+                    sortedUsers.add(user);
+            }
+            users = new ArrayList<>(sortedUsers);
+        } else if (type.equals("desc")) {
+            for (User user : users) {
+                if (user.getRole() == RoleType.CUSTOMER) {
+                    Customer customer = customerDAO.get(user.getId());
+                    sortedListCustomer.add(customer);
+                }
+            }
+            Collections.sort(sortedListCustomer, Comparator.comparing(Customer::getCollectedPoints, Comparator.reverseOrder()));
+            ArrayList<User> sortedUsers = new ArrayList<User>();
+            for (int i = 0; i < sortedListCustomer.size(); i++) {
+                for (User user : users) {
+                    if (user.getRole() == RoleType.CUSTOMER && user.getUsername().equals(sortedListCustomer.get(i).getUsername())) {
+                        sortedUsers.add(user);
+                    }
+                }
+            }
+            for (User user : users) {
+                if (user.getRole() != RoleType.CUSTOMER)
+                    sortedUsers.add(user);
+            }
+            users = new ArrayList<>(sortedUsers);
+        }
     }
 }

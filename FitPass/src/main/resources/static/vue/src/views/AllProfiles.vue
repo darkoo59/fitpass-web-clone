@@ -4,59 +4,66 @@
     <Menu/>
 
     <br>
-    <input type="text" @input="searchProfiles" v-model="input" placeholder="Search profiles..." />
-    <div v-for="prof in filteredProfiles" :key="prof.id">
-      <h1 class="text-white">{{prof.username}}</h1>
-<!--      <h3>{{}}</h3>-->
-<!--      <h2>{{filteredProfiles.username}}</h2>-->
+    <div class="container" id="searchFilter">
+      <div class="row">
+        <div class="col-sm">
+          <input type="text" v-model="filter.searchInput" placeholder="Search by name..." />
+        </div>
+        <select v-model="filter.role" class="form-select col-sm">
+          <option selected>Role</option>
+          <option value="1">Administrator</option>
+          <option value="2">Manager</option>
+          <option value="3">Coach</option>
+          <option value="4">Customer</option>
+        </select>
+        <select v-model="filter.type" class="form-select col-sm">
+          <option selected>Customer type</option>
+          <option value="1">Bronze</option>
+          <option value="2">Silver</option>
+          <option value="3">Gold</option>
+        </select>
+        <select v-model="filter.sort" class="form-select col-sm">
+          <option selected>Sort by</option>
+          <option value="1">Name: Ascending</option>
+          <option value="2">Name: Descending</option>
+          <option value="3">Surname: Ascending</option>
+          <option value="4">Surname: Descending</option>
+<!--          <option value="5">Collected points: Ascending</option>-->
+<!--          <option value="6">Collected points: Descending</option>-->
+        </select>
+        <div class="col-sm">
+          <button class="btn-primary" @click="searchProfiles()">
+            Search
+          </button>
+        </div>
+        <div class="col-sm">
+          <button class="btn-secondary" @click="removeFilters()">
+            Remove filters
+          </button>
+        </div>
+      </div>
     </div>
-    <div id="accordion" class="w-50">
+    <br>
+    <br>
 
-<!--      <li v-for="profile in filteredProfiles" :key="profile.username">-->
-<!--        <div class="card">-->
-<!--          <div class="card-header">-->
-<!--            <a class="btn" data-bs-toggle="collapse" href="#collapseOne">-->
-<!--              {{profile.name}} {{profile.surname}}-->
-<!--            </a>-->
-<!--          </div>-->
-<!--          <div id="collapseOne" class="collapse" data-bs-parent="#accordion">-->
-<!--            <div class="card-body">-->
-<!--              Name : {{profile.name}} <br>-->
-<!--              Surname : {{profile.surname}} <br>-->
-<!--              Username : {{profile.username}} <br>-->
-<!--              Birth date : {{profile.birthDate}} <br>-->
-<!--              Role : {{getRoleString(profile.role)}}-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </li>-->
 
-<!--      <div class="card">-->
-<!--        <div class="card-header">-->
-<!--          <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseTwo">-->
-<!--            Collapsible Group Item #2-->
-<!--          </a>-->
-<!--        </div>-->
-<!--        <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">-->
-<!--          <div class="card-body">-->
-<!--            Lorem ipsum..-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
 
-<!--      <div class="card">-->
-<!--        <div class="card-header">-->
-<!--          <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseThree">-->
-<!--            Collapsible Group Item #3-->
-<!--          </a>-->
-<!--        </div>-->
-<!--        <div id="collapseThree" class="collapse" data-bs-parent="#accordion">-->
-<!--          <div class="card-body">-->
-<!--            Lorem ipsum..-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
+    <div class="row">
+      <div class="col-md-3 p-2 w-25"  v-for="profile in filteredProfiles" :key="profile.username">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{ profile.name }} {{profile.surname}}</h5>
+            <p class="card-text">
+              <b>Username:</b> {{profile.username}} <br>
+              <b>Role:</b> {{this.convertRole(profile.role)}} <br>
+              <b>Birth day:</b> {{ profile.birthDate }} <br>
+              <div v-if="profile.role === '3'">
+                <b>Collected points: </b>{{this.getCollectedPoints(profile)}} <br>
+              </div>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -74,24 +81,31 @@ export default {
       profiles: [],
       filteredProfiles: [],
       profilesNum: 0,
-      input: ""
+      roles: [],
+      customers: [],
+      filter: {
+        searchInput: "",
+        role: "Role",
+        type: "Customer type",
+        sort: "Sort by"
+      }
     }
   },
   async mounted() {
     let resp = await axios.get(this.$port.value + '/allProfiles')
     this.profiles = resp.data
     this.filteredProfiles = resp.data
+    let response = await axios.get('http://localhost:8081/getAllCustomers')
+    this.customers = response.data
   },
   methods: {
-    getRoleString(role) {
-      if(role == 0)
-        return "Administrator"
-      else if(role == 1)
-        return "Manager"
-      else if(role == 2)
-        return "Coach"
-      else
-        return "Customer"
+    getCollectedPoints(profile)
+    {
+      for(const customer of this.customers){
+        if(customer.id === profile.id)
+          return customer.collectedPoints
+      }
+      return ''
     },
     incrementedNum() {
       this.profilesNum = this.profilesNum + 1
@@ -102,6 +116,30 @@ export default {
           .then(response => (alert(response.data),
                   this.filteredProfiles = response.data,
                   alert(this.filteredProfiles)))
+    },
+    convertRole(role){
+      if(role === '0')
+        return 'Administrator'
+      else if (role === '1')
+        return 'Manager'
+      else if (role === '2')
+        return 'Coach'
+      else if (role ==='3')
+        return 'Customer'
+      else
+        return 'Non defined'
+    },
+    async searchProfiles() {
+      let resp = await axios
+          .post('http://localhost:8081/searchProfiles', this.filter)
+      this.filteredProfiles = resp.data
+    },
+    removeFilters() {
+      this.filteredProfiles = this.profiles
+      this.filter.searchInput = ""
+      this.filter.role = "Role"
+      this.filter.type = "Customer type"
+      this.filter.sort = "Sort by"
     }
   }
 }

@@ -7,8 +7,8 @@ import dao.TrainingHistoryDAO;
 import model.SportsFacility;
 import model.Training;
 import model.TrainingHistory;
+import org.apache.commons.lang.time.DateUtils;
 import spark.Request;
-import spire.math.prime.SieveUtil;
 import utils.enums.RoleType;
 import utils.others.Filter;
 import utils.others.RequestsUtils;
@@ -18,10 +18,12 @@ import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 
 import static java.util.Comparator.comparing;
 
@@ -35,6 +37,72 @@ public class TrainingService {
         this.trainingDAO = new TrainingDAO();
         this.facilityDAO = new SportsFacilityDAO();
         this.trainingHistoryDAO = new TrainingHistoryDAO();
+    }
+
+    public void addTrainingHistory(Request req) throws ParseException, IOException {
+        String payload = RequestsUtils.getPayload(req);
+        String userId = RequestsUtils.getIdFromPayload(payload);
+        String applicationDateTime = req.queryParams("applicationDateTime");
+        String trainingId = req.queryParams("trainingId");
+        System.out.println("Date : "+applicationDateTime + ",id : "+trainingId);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(applicationDateTime, formatter);
+        ArrayList<TrainingHistory> allTrainings = trainingHistoryDAO.getAll();
+        for(TrainingHistory trainingHistory:allTrainings)
+        {
+            if(trainingHistory.getTrainingId().equals(trainingId))
+            {
+                LocalDate date = dateTime.toLocalDate();
+                ArrayList<LocalDate> dates = trainingHistory.getTrainingDates();
+                dates.add(date);
+                trainingHistory.setTrainingDates(dates);
+                trainingHistoryDAO.save(allTrainings);
+                return;
+            }
+        }
+        ArrayList<LocalDate> trainDates = new ArrayList<LocalDate>();
+        trainDates.add(dateTime.toLocalDate());
+        TrainingHistory trainingHistory = new TrainingHistory(dateTime,trainingId,userId,trainingDAO.get(trainingId).getCoachId(),
+                trainDates,null);
+        ArrayList<TrainingHistory> allTrain = trainingHistoryDAO.getAll();
+        allTrain.add(trainingHistory);
+        trainingHistoryDAO.save(allTrain);
+        return;
+    }
+
+    public int getTodayTrainingsNum(String customerId) throws IOException {
+        int todayTrainigs = 0;
+        for(TrainingHistory training : trainingHistoryDAO.getAll())
+        {
+            if(training.getCustomerId().equals(customerId))
+            {
+                for (LocalDate date : training.getTrainingDates())
+                {
+                    if(DateUtils.isSameDay(Date.from(date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant())
+                        ,Date.from(LocalDate.now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant())))
+                        todayTrainigs++;
+                }
+            }
+        }
+        System.out.println(todayTrainigs);
+        return todayTrainigs;
+    }
+
+    public int getUsedTermsInInterval(String customerId, LocalDate from, LocalDate to) throws IOException {
+        int termsNum = 0;
+        for(TrainingHistory training : trainingHistoryDAO.getAll())
+        {
+            if(training.getCustomerId().equals(customerId))
+            {
+                for (LocalDate date : training.getTrainingDates())
+                {
+                    if(date.isAfter(from) && date.isBefore(to))
+                        termsNum++;
+                }
+            }
+        }
+        System.out.println("Terms useddd : "+termsNum);
+        return termsNum;
     }
 
     public ArrayList<TrainingHistory> getMyTrainingsHistory(Request request) throws ParseException, IOException {

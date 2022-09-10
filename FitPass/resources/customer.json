@@ -1,0 +1,23 @@
+[
+  {
+    "membershipId": "ULL9X4DJDJ",
+    "visitedFacilitiesIds": [
+      "1",
+      "2"
+    ],
+    "collectedPoints": 735.0,
+    "type": {
+      "type": "BRONZE",
+      "percentage": 0.0,
+      "points": 3000.0
+    },
+    "id": "3",
+    "username": "customer",
+    "password": "Customer",
+    "name": "Jelena",
+    "surname": "Janjic",
+    "birthDate": "26-11-2018",
+    "role": "3",
+    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lciIsImV4cCI6MTY2MjU0NTQyNCwiaWF0IjoxNjYyNTQ1NDE0fQ.yIi1ET34PbuL6R6mBE6gVKhL6oeFwxMO-ghMKqabyeA"
+  }
+]

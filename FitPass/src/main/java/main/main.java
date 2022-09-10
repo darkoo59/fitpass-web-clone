@@ -40,6 +40,7 @@ public class main {
         AccountController.postUserInfoEdit();
         AccountController.getUsername();
         AccountController.getUserId();
+        AccountController.getFilteredProfiles();
 
         AdministratorController.postRegister();
         AdministratorController.getAllProfiles();
@@ -59,6 +60,9 @@ public class main {
         CustomerController.getMyTrainingsHistory();
         CustomerController.getFacilityByTrainingId();
         CustomerController.postTrainingsFilter();
+        CustomerController.getAddTrainingHistory();
+        CustomerController.getCustomer();
+        CustomerController.getAllCustomers();
 
         CoachController.getMyTrainingsHistory();
         CoachController.getAllTrainings();
@@ -74,6 +78,8 @@ public class main {
         MembershipController.getActiveMembership();
         MembershipController.postCreateMembership();
         MembershipController.getExistingMembershipById();
+        MembershipController.getTodayTermsNum();
+        MembershipController.getMembershipByCustomerId();
 
         PromoCodesController.getPromoCodes();
         PromoCodesController.getDecrementSelectedPromoCode();

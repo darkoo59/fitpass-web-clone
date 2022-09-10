@@ -18,4 +18,5 @@ public class Filter {
 //    LocalDate localDateInFinalObject = LocalDate.parse(DateAsStringFromDTOObject)
     public LocalDate fromApplicationDate;
     public LocalDate toApplicationDate;
+    public String role;
 }
