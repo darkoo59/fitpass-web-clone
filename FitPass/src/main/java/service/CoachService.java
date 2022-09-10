@@ -2,10 +2,12 @@ package service;
 
 import com.google.gson.*;
 import dao.*;
+import model.Coach;
 import model.Training;
 import model.TrainingHistory;
 import model.User;
 import spark.Request;
+import utils.enums.RoleType;
 import utils.others.Filter;
 import utils.others.RequestsUtils;
 
@@ -59,5 +61,16 @@ public class CoachService {
         Gson gson = trainingService.getGsonBuilder().setPrettyPrinting().create();
         Filter filter = gson.fromJson(req.body(), Filter.class);
         return trainingService.filter(req,filter);
+    }
+
+    public ArrayList<User> getAllCoaches() throws IOException {
+        ArrayList<User> allCoaches = new ArrayList<User>();
+        ArrayList<User> allUsers =  userDAO.getAll();
+        for(User user:allUsers)
+        {
+            if(user.getRole() == RoleType.COACH)
+                allCoaches.add(user);
+        }
+        return allCoaches;
     }
 }

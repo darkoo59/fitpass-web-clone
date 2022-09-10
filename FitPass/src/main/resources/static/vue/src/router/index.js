@@ -14,6 +14,8 @@ import Membership from "../views/Membership";
 import SelectedMembership from "../views/SelectedMembership";
 import TrainNow from "../views/TrainNow"
 import PromoCode from "../views/PromoCode"
+import NewContent from "@/views/NewContent";
+import NewTraining from "@/views/NewTraining";
 
 const routes = [
     {
@@ -90,6 +92,16 @@ const routes = [
         path: '/addPromoCode',
         name: 'PromoCode',
         component: PromoCode
+    },
+    {
+        path: '/newContent',
+        name: 'NewContent',
+        component: NewContent
+    },
+    {
+        path: '/newTraining',
+        name: 'NewTraining',
+        component: NewTraining
     }
 ]
 

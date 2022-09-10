@@ -4,6 +4,7 @@ import com.google.gson.*;
 import dao.SportsFacilityDAO;
 import dao.TrainingDAO;
 import dao.TrainingHistoryDAO;
+import model.Content;
 import model.SportsFacility;
 import model.Training;
 import model.TrainingHistory;
@@ -12,12 +13,14 @@ import spark.Request;
 import utils.enums.RoleType;
 import utils.others.Filter;
 import utils.others.RequestsUtils;
+import utils.others.WorkHour;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -372,5 +375,29 @@ public class TrainingService {
             }
         }
         return trainingHistory;
+    }
+
+    public void addNewTraining(Request req) throws ParseException, IOException {
+        String payload = RequestsUtils.getPayload(req);
+        String managerId = RequestsUtils.getIdFromPayload(payload);
+        System.out.println("Start : "+ req.queryParams("startTime") + ", end : "+ req.queryParams("endTime"));
+        WorkHour hours = new WorkHour(LocalTime.parse(req.queryParams("startTime")),
+                LocalTime.parse(req.queryParams("endTime")));
+        Training training = new Training(req.queryParams("name"),req.queryParams("type"),getFacilityIdByManagerId(managerId),
+                hours,req.queryParams("coachId"),req.queryParams("description"),req.queryParams("image"),Integer.parseInt(
+                        req.queryParams("price")));
+        training.setId(trainingDAO.getNewId());
+        ArrayList<Training> trainings = trainingDAO.getAll();
+        trainings.add(training);
+        trainingDAO.save(trainings);
+    }
+
+    private String getFacilityIdByManagerId(String managerId) throws IOException {
+        for(SportsFacility facility : facilityDAO.getAll())
+        {
+            if(facility.getManagerId().equals(managerId))
+                return facility.getManagerId();
+        }
+        return "";
     }
 }

@@ -2,6 +2,7 @@ package main;
 
 import com.google.gson.Gson;
 import controller.*;
+import model.Manager;
 import model.PromoCodes;
 import service.*;
 import utils.others.CustomGsonBuilder;
@@ -23,6 +24,7 @@ public class main {
     private static MembershipService membershipService;
     private static PromoCodesService promoCodesService;
     private static CommentService commentService;
+    private static ContentService contentService;
 
     public static void main(String[] args) throws Exception {
 
@@ -68,11 +70,13 @@ public class main {
         CoachController.getAllTrainings();
         CoachController.getCancelPersonalTraining();
         CoachController.postTrainingsFilter();
+        CoachController.getAllCoaches();
 
         ManagerController.getMyTrainingsHistory();
         ManagerController.getAllTrainings();
         ManagerController.getManagerFacilities();
         ManagerController.postTrainingsFilter();
+        ManagerController.postAddNewTraining();
 
         MembershipController.getExistingMemberships();
         MembershipController.getActiveMembership();
@@ -89,6 +93,9 @@ public class main {
         CommentController.deleteComment();
         CommentController.putAcceptComment();
         CommentController.putRejectComment();
+
+        ContentController.postCreateNewContentImage();
+        ContentController.postAddNewContent();
     }
 
     private static void initializeContext() throws IOException {
@@ -111,5 +118,7 @@ public class main {
         PromoCodesController.initializeService(promoCodesService);
         commentService = new CommentService();
         CommentController.initializeService(commentService);
+        contentService = new ContentService();
+        ContentController.initializeService(contentService);
     }
 }
