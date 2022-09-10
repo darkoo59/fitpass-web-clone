@@ -13,10 +13,7 @@ public class AccountController {
     }
 
     public static void postRegister() {
-        post("/register", (req, res) -> {
-            accountService.register(req);
-            return "SUCCESS";
-        });
+        post("/register", (req, res) -> accountService.register(req));
     }
 
     public static void postLogin() {
@@ -47,8 +44,10 @@ public class AccountController {
     }
     
     public static void getFilteredProfiles() {
-        post("/searchProfiles", (req, res) -> {
-            return gson.toJson(accountService.filter(req));
-        });
+        post("/searchProfiles", (req, res) -> gson.toJson(accountService.filter(req)));
+    }
+
+    public static void putChangePassword() {
+        put("/userInfo/edit/change-password", (req, res) -> accountService.changePassword(req));
     }
 }

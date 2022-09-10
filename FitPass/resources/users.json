@@ -38,9 +38,10 @@
     "password": "Administrator",
     "name": "Milos",
     "surname": "Jovanovic",
+    "gender": "MALE",
     "birthDate": "26-02-2018",
     "role": "0",
-    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjYyODIxMjUyLCJpYXQiOjE2NjI4MjEyNDJ9.GNemRW1_mt968WRlvrGFEZXFz4QvRBcCNF7jJPIOaXI",
+    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjYyODIzMzg0LCJpYXQiOjE2NjI4MjMzNzR9.dVLgsBu0SXQhMfNRDCoU11yTn2x1UAMadaaWGIC0R8k",
     "deleted": false
   },
   {
@@ -75,6 +76,17 @@
     "birthDate": "22-09-2022",
     "role": "1",
     "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjYyMjA2MjYyLCJpYXQiOjE2NjIyMDYyNTJ9.uf_sYDEypq51QyfAg2sysakBDBB8irjHrFZcBVY_E-o",
+    "deleted": false
+  },
+  {
+    "id": "8",
+    "username": "coacha",
+    "password": "Coachaaaaaaaaaaaaaaa",
+    "name": "agaga",
+    "surname": "agaga",
+    "gender": "MALE",
+    "birthDate": "01-09-2022",
+    "role": "3",
     "deleted": false
   }
 ]

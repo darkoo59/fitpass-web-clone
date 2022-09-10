@@ -41,6 +41,7 @@ public class main {
         AccountController.getUsername();
         AccountController.getUserId();
         AccountController.getFilteredProfiles();
+        AccountController.putChangePassword();
 
         AdministratorController.postRegister();
         AdministratorController.getAllProfiles();

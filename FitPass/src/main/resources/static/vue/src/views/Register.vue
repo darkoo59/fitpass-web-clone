@@ -112,9 +112,13 @@ export default {
       this.passwordError = false
       if (this.validate()) {
         let data = [ this.name, this.surname, this.username, this.password, this.date, this.sex]
-        await axios.post(this.$port.value + '/register', data)
-        this.$toast.success("Successful registration", {position: 'top', duration: 4000, maxToasts: 1})
-        await this.$router.push('/')
+        let res = await axios.post(this.$port.value + '/register', data)
+        if (res.data === 'USER_EXISTS') {
+          this.$toast.error("User with this username already exists", {position: 'top', duration: 4000, maxToasts: 1})
+        } else {
+          this.$toast.success("Successful registration", {position: 'top', duration: 4000, maxToasts: 1})
+          await this.$router.push('/')
+        }
       }
     },
     validate() {
@@ -124,8 +128,11 @@ export default {
         return false
     },
     validatePassword() {
-      this.passwordError = true
-      return this.password.trim().length >= 8;
+      if (this.password.trim().length < 8) {
+        this.passwordError = true
+        return false;
+      }
+      return true
     }
   }
 }

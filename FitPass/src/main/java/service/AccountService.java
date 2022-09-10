@@ -46,12 +46,16 @@ public class AccountService {
         mapper = new ObjectMapper();
     }
 
-    public void register(Request req) throws IOException {
-        System.out.println(req.body());
+    public String register(Request req) throws IOException {
         ArrayList<String> payload = gson.fromJson(req.body(), new TypeToken<ArrayList<String>>(){}.getType());
         String name = payload.get(0);
         String surname = payload.get(1);
         String username = payload.get(2);
+        for (User user : userDAO.getAll()) {
+            if (username.equals(user.getUsername())) {
+                return "USER_EXISTS";
+            }
+        }
         String password = payload.get(3);
         String date = payload.get(4);
         LocalDate parsedDate = LocalDate.parse(date);
@@ -63,6 +67,7 @@ public class AccountService {
         newUser.setId(userDAO.getNewId());
         users.add(newUser);
         userDAO.save(users);
+        return "SUCCESS";
     }
 
     public String loginUser(Request request) throws IOException {
@@ -119,11 +124,12 @@ public class AccountService {
     }
 
     private User makeUserFromReqBody(Request req) {
-        String id = StringUtils.substringBetween(req.body(), "\"id\":\"", "\",");
-        String username = StringUtils.substringBetween(req.body(), "\"username\":\"", "\",");
-        String name = StringUtils.substringBetween(req.body(), "\"name\":\"", "\",");
-        String surname = StringUtils.substringBetween(req.body(), "\"surname\":\"", "\",");
-        String sexString = StringUtils.substringBetween(req.body(), "\"gender\":\"", "\",");
+        ArrayList<String> payload = gson.fromJson(req.body(), new TypeToken<ArrayList<String>>(){}.getType());
+        String id = payload.get(0);
+        String username = payload.get(1);
+        String name = payload.get(2);
+        String surname = payload.get(3);
+        String sexString = payload.get(5);
         GenderType sex;
         if (sexString.equals("MALE")) {
             sex = GenderType.MALE;
@@ -132,8 +138,7 @@ public class AccountService {
             sex = GenderType.FEMALE;
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date = LocalDate.parse(
-                StringUtils.substringBetween(req.body(), "\"birthDate\":\"", "\""), formatter);
+        LocalDate date = LocalDate.parse(payload.get(4), formatter);
 
         return makeUserWith(id, username, name, surname, sex, date);
     }
@@ -298,5 +303,25 @@ public class AccountService {
             }
             users = new ArrayList<>(sortedUsers);
         }
+    }
+
+    public String changePassword(Request req) throws Exception {
+        ArrayList<String> payload = gson.fromJson(req.body(), new TypeToken<ArrayList<String>>(){}.getType());
+        User changedUser = new User();
+        for (User user : userDAO.getAll()) {
+            if (user.getId().equals(payload.get(0)) && user.getPassword().equals(payload.get(1))) {
+                user.setPassword(payload.get(2));
+                changedUser = user;
+            }
+        }
+        ArrayList<User> allUsers = userDAO.getAllAndDeleted();
+        for (User user : allUsers) {
+            if (user.getId().equals(changedUser.getId())) {
+                user.setPassword(changedUser.getPassword());
+                userDAO.save(allUsers);
+                return "SUCCESS";
+            }
+        }
+        return "PASSWORD_EXCEPTION";
     }
 }
