@@ -13,21 +13,21 @@ public class Customer extends User{
     private CustomerType type;
 
     public Customer(String username, String password, String name, String surname, GenderType gender, LocalDate birthDate,
-                  RoleType role, Membership membershipId, ArrayList<SportsFacility> visitedFacilities,
+                  RoleType role, String membershipId, ArrayList<String> visitedFacilitiesIds,
                   Double collectedPoints, CustomerType type) {
         super(username, password, name, surname, gender, birthDate, role);
         this.membershipId = membershipId;
-        this.visitedFacilitiesIds = visitedFacilities;
+        this.visitedFacilitiesIds = visitedFacilitiesIds;
         this.collectedPoints = collectedPoints;
         this.type = type;
     }
 
-    public Customer(User user, Membership membership, ArrayList<SportsFacility> visitedFacilities,
+    public Customer(User user, String membershipId, ArrayList<String> visitedFacilitiesIds,
                     Double collectedPoints, CustomerType type) {
         super(user.getUsername(), user.getPassword(), user.getName(), user.getSurname(),
                 user.getGender(), user.getBirthDate(), user.getRole());
-        this.membership = membership;
-        this.visitedFacilities = visitedFacilities;
+        this.membershipId = membershipId;
+        this.visitedFacilitiesIds = visitedFacilitiesIds;
         this.collectedPoints = collectedPoints;
         this.type = type;
     }
