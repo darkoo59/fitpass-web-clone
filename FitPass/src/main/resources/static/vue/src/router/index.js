@@ -13,6 +13,7 @@ import ManagerMyTrainings from "@/views/ManagerMyTrainings";
 import Membership from "../views/Membership";
 import SelectedMembership from "../views/SelectedMembership";
 import TrainNow from "../views/TrainNow"
+import PromoCode from "../views/PromoCode"
 
 const routes = [
     {
@@ -84,6 +85,11 @@ const routes = [
         path: '/trainNow',
         name: 'TrainNow',
         component: TrainNow
+    },
+    {
+        path: '/addPromoCode',
+        name: 'PromoCode',
+        component: PromoCode
     }
 ]
 

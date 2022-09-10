@@ -76,15 +76,10 @@
                 My Profile
               </router-link>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                AdministratorFeature3
-              </a>
-              <ul class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="#">AdministratorFeature3a</a></li>
-                <li><a class="dropdown-item" href="#">AdministratorFeature3b</a></li>
-                <li><a class="dropdown-item" href="#">AdministratorFeature3c</a></li>
-              </ul>
+            <li>
+              <router-link class="nav-link text-white" to="/addPromoCode">
+                Add promo code
+              </router-link>
             </li>
           </ul>
         </div>

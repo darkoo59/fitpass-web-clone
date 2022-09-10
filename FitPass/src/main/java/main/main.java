@@ -2,6 +2,7 @@ package main;
 
 import com.google.gson.Gson;
 import controller.*;
+import model.PromoCodes;
 import service.*;
 import utils.others.CustomGsonBuilder;
 
@@ -83,6 +84,7 @@ public class main {
 
         PromoCodesController.getPromoCodes();
         PromoCodesController.getDecrementSelectedPromoCode();
+        PromoCodesController.postAddPromoCode();
 
         CommentController.getAllComments();
     }

@@ -18,7 +18,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class CustomerDAO implements IDao<Customer>{
+public class CustomerDAO implements IDAO<Customer>{
     private final String path = "resources/customer.json";
 
     @Override
