@@ -7,17 +7,17 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Customer extends User{
-    private Membership membership;
-    private ArrayList<SportsFacility> visitedFacilities;
+    private String membershipId;
+    private ArrayList<String> visitedFacilitiesIds;
     private Double collectedPoints;
     private CustomerType type;
 
     public Customer(String username, String password, String name, String surname, GenderType gender, LocalDate birthDate,
-                  RoleType role, Membership membership, ArrayList<SportsFacility> visitedFacilities,
+                  RoleType role, Membership membershipId, ArrayList<SportsFacility> visitedFacilities,
                   Double collectedPoints, CustomerType type) {
         super(username, password, name, surname, gender, birthDate, role);
-        this.membership = membership;
-        this.visitedFacilities = visitedFacilities;
+        this.membershipId = membershipId;
+        this.visitedFacilitiesIds = visitedFacilities;
         this.collectedPoints = collectedPoints;
         this.type = type;
     }
@@ -32,20 +32,20 @@ public class Customer extends User{
         this.type = type;
     }
 
-    public Membership getMembership() {
-        return membership;
+    public String getMembership() {
+        return membershipId;
     }
 
-    public void setMembership(Membership membership) {
-        this.membership = membership;
+    public void setMembership(String membership) {
+        this.membershipId = membership;
     }
 
-    public ArrayList<SportsFacility> getVisitedFacilities() {
-        return visitedFacilities;
+    public ArrayList<String> getVisitedFacilities() {
+        return visitedFacilitiesIds;
     }
 
-    public void setVisitedFacilities(ArrayList<SportsFacility> visitedFacilities) {
-        this.visitedFacilities = visitedFacilities;
+    public void setVisitedFacilities(ArrayList<String> visitedFacilities) {
+        this.visitedFacilitiesIds = visitedFacilities;
     }
 
     public Double getCollectedPoints() {

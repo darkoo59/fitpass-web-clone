@@ -44,4 +44,25 @@ public class CustomerController {
             return gson.toJson(customerService.filter(req));
         });
     }
+
+    public static void getAddTrainingHistory() {
+        get("/addTrainingHistory", (req, res) -> {
+            customerService.addTrainingHistory(req);
+            return "SUCCESS";
+        });
+    }
+
+    public static void getCustomer() {
+        get("/getCustomer", (req, res) -> {
+            res.type("application/json");
+            return gson.toJson(customerService.getCustomer(req));
+        });
+    }
+
+    public static void getAllCustomers() {
+        get("/getAllCustomers", (req, res) -> {
+            res.type("application/json");
+            return gson.toJson(customerService.getAllCustomers());
+        });
+    }
 }

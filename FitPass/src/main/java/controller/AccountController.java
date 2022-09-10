@@ -45,4 +45,10 @@ public class AccountController {
     public static void getUserId() {
         get("/userId", (req, res) -> accountService.getUserId(req));
     }
+    
+    public static void getFilteredProfiles() {
+        post("/searchProfiles", (req, res) -> {
+            return gson.toJson(accountService.filter(req));
+        });
+    }
 }

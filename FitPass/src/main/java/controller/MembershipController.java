@@ -28,6 +28,19 @@ public class MembershipController {
         });
     }
 
+    public static void getMembershipByCustomerId() {
+        get("/getActiveMembershipById", (req, res) -> {
+            res.type("application/json");
+            return gson.toJson(membershipService.getActiveMembershipByCustomerId(req));
+        });
+    }
+
+    public static void getTodayTermsNum() {
+        get("/getTermsNum", (req, res) -> {
+            return membershipService.getTodayTermsNum(req);
+        });
+    }
+
     public static void postCreateMembership() {
         post("createMembership", (req, res) -> {
             membershipService.postCreateMembership(req);

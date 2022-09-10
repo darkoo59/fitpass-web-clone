@@ -5,6 +5,7 @@ import service.SportsFacilityService;
 
 import static main.main.gson;
 import static spark.Spark.get;
+import static spark.Spark.post;
 
 public class PromoCodesController {
     private static PromoCodesService promoCodesService;
@@ -26,4 +27,11 @@ public class PromoCodesController {
             return "SUCCESS";
         });
     }
+
+    public static void postAddPromoCode() {
+        post("/addPromoCode","application/json", (req,res) -> {
+            return promoCodesService.addPromoCode(req);
+        });
+    }
+
 }

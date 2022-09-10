@@ -74,6 +74,7 @@
     "gender": "MALE",
     "birthDate": "22-09-2022",
     "role": "1",
+    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjYyMjA2MjYyLCJpYXQiOjE2NjIyMDYyNTJ9.uf_sYDEypq51QyfAg2sysakBDBB8irjHrFZcBVY_E-o",
     "deleted": false
   }
 ]
