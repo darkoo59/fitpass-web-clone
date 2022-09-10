@@ -58,4 +58,8 @@ public class ManagerService {
         Filter filter = gson.fromJson(req.body(), Filter.class);
         return trainingService.managerFilter(req,filter);
     }
+
+    public void addNewTraining(Request req) throws ParseException, IOException {
+        trainingService.addNewTraining(req);
+    }
 }
