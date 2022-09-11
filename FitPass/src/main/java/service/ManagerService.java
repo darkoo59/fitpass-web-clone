@@ -151,4 +151,45 @@ public class ManagerService {
         String facilityId = sportsFacility.getId();
         return customerService.getAllCustomersWhoVisited(facilityId);
     }
+
+    public String editContentImage(Request req) throws Exception {
+        String name = req.params(":name");
+        String location = "";
+        long maxFileSize = 100000000;
+        long maxRequestSize = 100000000;
+        int fileSizeThreshold = 1024;
+
+        MultipartConfigElement multipartConfigElement = new MultipartConfigElement(
+                location, maxFileSize, maxRequestSize, fileSizeThreshold);
+        req.raw().setAttribute("org.eclipse.jetty.multipartConfig",
+                multipartConfigElement);
+
+        Part photo = req.raw().getPart("photo");
+        String photoName = photo.getSubmittedFileName();
+        String ext = photoName.substring(photoName.lastIndexOf(".") + 1);
+
+        Path out = Paths.get("src/main/resources/static/vue/src/assets/images/" + name + "." + ext);
+        try (final InputStream in = photo.getInputStream()) {
+            Files.copy(in, out, StandardCopyOption.REPLACE_EXISTING);
+            photo.delete();
+        }
+        multipartConfigElement = null;
+        photo = null;
+        return name + "." + ext;
+    }
+
+    public void editContent(Request req) throws Exception {
+        String facId = req.params(":id");
+        ArrayList<String> payload = gson.fromJson(req.body(), new TypeToken<ArrayList<String>>(){}.getType());
+        String id = payload.get(0);
+        String name = payload.get(1);
+        String type = payload.get(2);
+        String description = payload.get(3);
+        String duration = payload.get(4);
+        String image = payload.get(5);
+        Content content = new Content(name, type, image, description, duration, facId);
+        content.setId(id);
+        ContentDAO contentDAO = new ContentDAO();
+        contentDAO.update(content);
+    }
 }

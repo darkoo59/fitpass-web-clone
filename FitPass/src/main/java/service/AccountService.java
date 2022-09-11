@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.reflect.TypeToken;
 import com.nimbusds.jwt.SignedJWT;
 import dao.CustomerDAO;
+import dao.CustomerTypeDAO;
 import dao.IUserDAO;
 import dao.UserDAO;
 import dto.UserDTO;
@@ -63,7 +64,16 @@ public class AccountService {
         GenderType type = sex.equals("male") ? GenderType.MALE : GenderType.FEMALE;
         User newUser = new User(username, password, name, surname, type, parsedDate, RoleType.CUSTOMER);
         ArrayList<User> users = userDAO.getAllAndDeleted();
-        Customer customer = new Customer(newUser, null, null, 0.0, null);
+        Customer customer = new Customer(
+                newUser,
+                "",
+                new ArrayList<>(),
+                0.0,
+                new CustomerTypeDAO().get("1")
+        );
+        ArrayList<Customer> customers = customerDAO.getAll();
+        customers.add(customer);
+        customerDAO.save(customers);
         newUser.setId(userDAO.getNewId());
         users.add(newUser);
         userDAO.save(users);

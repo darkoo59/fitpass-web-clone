@@ -59,7 +59,7 @@
                 type="button"
                 class="btn btn-primary"
                 data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
+                data-bs-target="#editTraining"
                 style="width: 100px;"
                 @click="editTraining(getTraining(trainingHistory))">
               Edit
@@ -69,87 +69,68 @@
       </div>
     </div>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+      <div class="modal fade" id="editTraining" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editTrainingLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div v-if="modalRender" class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editTrainingLabel">Edit training</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+              <form>
+                <div class="mb-3">
+                  <label for="name" class="col-form-label">Name:</label>
+                  <input id="name" type="text" name="name" class="form-control"
+                         v-model="trainingForEdit.name" placeholder="Enter name (required)" required>
+                </div>
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">Type:</label>
+                  <input type="text" name="type" class="form-control" aria-describedby="emailHelp"
+                         v-model="trainingForEdit.type" placeholder="Enter type (required)" required>
+                </div>
+                <div class="mb-3">
+                  <div class="row">
+                    <div class="col">
+                      <label for="message-text" class="col-form-label">Start : </label>
+                      <input v-model="trainingForEdit.duration.start" type="time" class="w-auto form-control" id="timeId1"/>
+                    </div>
+                    <div class="col">
+                      <label for="message-text" class="col-form-label">End : </label>
+                      <input v-model="trainingForEdit.duration.end" type="time" class="w-auto form-control" id="timeId2"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">Choose coach:</label>
+                  <select class="form-control" v-model="coach" name="coaches" id="coachesSelection">
+                    <option v-for="coach in coaches" :value="coach" :key="coach">{{coach.name}} {{coach.surname}}</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">Description:</label>
+                  <input type="text" name="description" class="form-control" aria-describedby="emailHelp"
+                         v-model="trainingForEdit.description" placeholder="Enter description (required)" required>
+                </div>
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">Price:</label>
+                  <input type="text" name="price" class="form-control" aria-describedby="emailHelp"
+                         v-model="trainingForEdit.price" placeholder="Enter price in RSD(required)" required>
+                </div>
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">Image:</label>
+                  <input type="file" @change="onPhotoSelected" name="image" accept="image/png, image/gif, image/jpeg"
+                         class="form-control form-control-lg" required/>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button ref="close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" @click="editSubmit">Save changes</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-
-
-<!--      <div v-if="modalRender" class="modal" id="editTraining" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editTrainingLabel" aria-hidden="true">-->
-<!--        <div class="modal-dialog">-->
-<!--          <div class="modal-content">-->
-<!--            <div class="modal-header">-->
-<!--              <h5 class="modal-title" id="editTrainingLabel">Edit training</h5>-->
-<!--              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--            </div>-->
-<!--            <div class="modal-body">-->
-
-<!--              <form>-->
-<!--                <div class="mb-3">-->
-<!--                  <label for="name" class="col-form-label">Name:</label>-->
-<!--                  <input id="name" type="text" name="name" class="form-control"-->
-<!--                         v-model="trainingForEdit.name" placeholder="Enter name (required)" required>-->
-<!--                </div>-->
-<!--                <div class="mb-3">-->
-<!--                  <label for="message-text" class="col-form-label">Type:</label>-->
-<!--                  <input type="text" name="type" class="form-control" aria-describedby="emailHelp"-->
-<!--                         v-model="trainingForEdit.type" placeholder="Enter type (required)" required>-->
-<!--                </div>-->
-<!--                <div class="mb-3">-->
-<!--                  <div class="row">-->
-<!--                    <div class="col">-->
-<!--                      <label for="message-text" class="col-form-label">Start : </label>-->
-<!--                      <input v-model="trainingForEdit.duration.start" type="time" class="w-auto form-control" id="timeId1"/>-->
-<!--                    </div>-->
-<!--                    <div class="col">-->
-<!--                      <label for="message-text" class="col-form-label">End : </label>-->
-<!--                      <input v-model="trainingForEdit.duration.end" type="time" class="w-auto form-control" id="timeId2"/>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                <div class="mb-3">-->
-<!--                  <label for="message-text" class="col-form-label">Choose coach:</label>-->
-<!--                  <select class="form-control" v-model="coach" name="coaches" id="coachesSelection">-->
-<!--                    <option v-for="coach in coaches" :value="coach" :key="coach">{{coach.name}} {{coach.surname}}</option>-->
-<!--                  </select>-->
-<!--                </div>-->
-<!--                <div class="mb-3">-->
-<!--                  <label for="message-text" class="col-form-label">Description:</label>-->
-<!--                  <input type="text" name="description" class="form-control" aria-describedby="emailHelp"-->
-<!--                         v-model="trainingForEdit.description" placeholder="Enter description (required)" required>-->
-<!--                </div>-->
-<!--                <div class="mb-3">-->
-<!--                  <label for="message-text" class="col-form-label">Price:</label>-->
-<!--                  <input type="text" name="price" class="form-control" aria-describedby="emailHelp"-->
-<!--                         v-model="trainingForEdit.price" placeholder="Enter price in RSD(required)" required>-->
-<!--                </div>-->
-<!--                <div class="mb-3">-->
-<!--                  <label for="message-text" class="col-form-label">Image:</label>-->
-<!--                  <input type="file" @change="onPhotoSelected" name="image" accept="image/png, image/gif, image/jpeg"-->
-<!--                         class="form-control form-control-lg" required/>-->
-<!--                </div>-->
-<!--              </form>-->
-<!--            </div>-->
-<!--            <div class="modal-footer">-->
-<!--              <button ref="close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
-<!--              <button type="button" class="btn btn-primary" @click="editSubmit">Save changes</button>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
     </div>
 
   <div class="item error" v-if="filter.searchInput && !filteredManagerTrainingsHistory.length">
@@ -322,14 +303,19 @@ export default {
           .put(this.$port.value + "/managerTrainings/edit/" + this.trainingForEdit.id, data)
       if (res2.data === 'SUCCESS') {
         this.$refs.close.click();
+        let response1 = await axios.get(this.$port.value + '/managerTrainingsHistory', {headers: this.createHeadersWithToken()})
+        this.managerTrainingsHistory = response1.data
+        this.filteredManagerTrainingsHistory = response1.data
+        let response2 = await axios.get(this.$port.value + '/managerTrainingsInfo', {headers: this.createHeadersWithToken()})
+        this.managerTrainings = response2.data
+        let response3 = await axios.get(this.$port.value + '/managerFacilities',{headers: this.createHeadersWithToken()})
+        this.managerFacilities = response3.data
+        this.trainingTypes = this.getTrainingTypes(this.managerTrainings)
       }
     },
     validateData() {
-      if (this.trainingForEdit.name.length < 1 || this.trainingForEdit.type.length < 1 ||
-          this.trainingForEdit.description.length < 1 || this.trainingForEdit.price.length < 1) {
-        return false
-      }
-      return true
+      return !(this.trainingForEdit.name.length < 1 || this.trainingForEdit.type.length < 1 ||
+          this.trainingForEdit.description.length < 1 || this.trainingForEdit.price.length < 1);
     },
     getImage(trainingHistory) {
       return require('@/assets/images/' + this.getTrainingImage(trainingHistory))

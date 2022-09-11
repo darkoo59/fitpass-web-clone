@@ -18,6 +18,25 @@
     "surname": "Janjic",
     "birthDate": "26-11-2018",
     "role": "3",
-    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lciIsImV4cCI6MTY2MjU0NTQyNCwiaWF0IjoxNjYyNTQ1NDE0fQ.yIi1ET34PbuL6R6mBE6gVKhL6oeFwxMO-ghMKqabyeA"
+    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lciIsImV4cCI6MTY2MjU0NTQyNCwiaWF0IjoxNjYyNTQ1NDE0fQ.yIi1ET34PbuL6R6mBE6gVKhL6oeFwxMO-ghMKqabyeA",
+    "deleted": false
+  },
+  {
+    "membershipId": "",
+    "visitedFacilitiesIds": [],
+    "collectedPoints": 0.0,
+    "type": {
+      "id": "1",
+      "percentage": 0.0,
+      "points": 0.0
+    },
+    "username": "korisnik",
+    "password": "korisnik123",
+    "name": "administrator",
+    "surname": "Korisnik",
+    "gender": "MALE",
+    "birthDate": "09-09-2022",
+    "role": "3",
+    "deleted": false
   }
 ]

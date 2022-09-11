@@ -84,6 +84,8 @@ public class main {
         ManagerController.getManagerFacility();
         ManagerController.getAllCoachesForFacility();
         ManagerController.getAllCustomersForFacility();
+        ManagerController.putEditContentImage();
+        ManagerController.putEditContent();
 
         MembershipController.getExistingMemberships();
         MembershipController.getActiveMembership();
