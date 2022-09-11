@@ -8,14 +8,14 @@
           <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
             <div class="card-body p-4 p-md-5">
               <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Become a member of the FitPass community</h3>
-              <form method="post" :action="port + '/administratorCreateProfile'">
+              <form @submit.prevent="submitForm">
 
                 <div class="row">
                   <div class="col-md-6 mb-4">
 
                     <div class="form-outline">
                       <label class="form-label" for="firstName">Name</label>
-                      <input type="text" id="firstName" name="name" class="form-control form-control-lg" required/>
+                      <input v-model="name" type="text" id="firstName" name="name" class="form-control form-control-lg" required/>
                     </div>
 
                   </div>
@@ -23,7 +23,7 @@
 
                     <div class="form-outline">
                       <label class="form-label" for="lastName">Surname</label>
-                      <input type="text" id="lastName" name="surname" class="form-control form-control-lg" required/>
+                      <input v-model="surname" type="text" id="lastName" name="surname" class="form-control form-control-lg" required/>
                     </div>
 
                   </div>
@@ -34,7 +34,7 @@
 
                     <div class="form-outline">
                       <label for="username" class="form-label">Username</label>
-                      <input type="text" id="username" name="username" class="form-control form-control-lg" required/>
+                      <input v-model="username" type="text" id="username" name="username" class="form-control form-control-lg" required/>
                     </div>
 
                   </div>
@@ -42,7 +42,8 @@
                   <div class="col-md-6 mb-4">
                     <div class="form-outline">
                       <label for="password" class="form-label">Password</label>
-                      <input type="password" id="password" name="password" class="form-control form-control-lg" required/>
+                      <input v-model="password" type="password" id="password" name="password" class="form-control form-control-lg" required/>
+                      <span v-show="passwordError" class="text-danger">Password must be at least 8 characters long</span>
                     </div>
                   </div>
 
@@ -52,7 +53,7 @@
                   <div class="col-md-6 mb-4 pb-2">
 
                     <label class="form-label" for="datepicker">Date of birth</label>
-                    <input type="date" id="date" name="date" class="form-control form-control-lg" min="1900-01-01" max="2022-12-31" required/>
+                    <input v-model="date" type="date" id="date" name="date" class="form-control form-control-lg" min="1900-01-01" max="2022-12-31" required/>
 
                   </div>
 
@@ -62,13 +63,13 @@
 
                     <div class="col-md-12 mb-12 pb-2">
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="sexRadioOptions" id="femaleSex"
+                        <input v-model="sex" class="form-check-input" type="radio" name="sexRadioOptions" id="femaleSex"
                                value="female" required/>
                         <label class="form-check-label" for="femaleSex">Female</label>
                       </div>
 
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="sexRadioOptions" id="maleSex"
+                        <input v-model="sex" class="form-check-input" type="radio" name="sexRadioOptions" id="maleSex"
                                value="male" required/>
                         <label class="form-check-label" for="maleSex">Male</label>
                       </div>
@@ -86,17 +87,18 @@
 
                     <div class="col-md-12 mb-12 pb-2">
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="roleRadioOptions" id="managerRole"
+                        <input v-model="role" class="form-check-input" type="radio" name="roleRadioOptions" id="managerRole"
                                value="manager" required/>
                         <label class="form-check-label" for="managerRole">Manager</label>
                       </div>
 
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="roleRadioOptions" id="trainerRole"
+                        <input v-model="role" class="form-check-input" type="radio" name="roleRadioOptions" id="trainerRole"
                                value="trainer" required/>
                         <label class="form-check-label" for="trainerRole">Coach</label>
                       </div>
                     </div>
+
 
 
                   </div>
@@ -117,6 +119,7 @@
 
 <script>
 import Menu from "@/components/Menu";
+import axios from "axios";
 export default {
   name:'AdministratorCreateProfiles',
   components: {
@@ -125,7 +128,15 @@ export default {
   data () {
     return {
       lastPath: null,
-      port: this.$port.value
+      port: this.$port.value,
+      name: '',
+      surname: '',
+      username: '',
+      password: '',
+      date: '',
+      sex: '',
+      role: '',
+      passwordError: false
     }
   },
   async mounted() {
@@ -134,38 +145,47 @@ export default {
       // entire view has been rendered
       let managerOption = document.getElementById('managerRole')
       let coachOption = document.getElementById('trainerRole')
-      if (window.localStorage.getItem('createManager') === 'true') {
+      if (window.localStorage.getItem('createManager')) {
         managerOption.checked = true
         coachOption.disabled = true
+      }else
+      {
+        managerOption.checked = false
+        coachOption.disabled = false
       }
     })},
-  // },
-  // unmounted(){
-  //   window.localStorage.removeItem('createManager')
-  //   document.getElementById('firstName').value = ''
-  //   document.getElementById('lastName').value = ''
-  //   document.getElementById('username').value = ''
-  //   document.getElementById('password').value = ''
-  //   document.getElementById('date').value = ''
-  //   if(window.localStorage.getItem('createManager') === 'true')
-  //     this.$router.push('/createFacility')
-  //   else
-  //     this.$router.push('/')
-  // },
-  methods:{
-    submitForm()
-    {
-        document.getElementById('firstName').value = ''
-        document.getElementById('lastName').value = ''
-        document.getElementById('username').value = ''
-        document.getElementById('password').value = ''
-        document.getElementById('date').value = ''
-        if(window.localStorage.getItem('createManager') === 'true') {
-          window.localStorage.removeItem('createManager')
-          this.$router.push('/createFacility')
+  unmounted() {
+    if(window.localStorage.getItem('createManager')) {
+      window.localStorage.removeItem('createManager')
+    }
+  },
+  methods: {
+    async submitForm() {
+      this.passwordError = false
+      if (this.validate()) {
+        let data = [this.name, this.surname, this.username, this.password, this.date, this.sex, this.role]
+        let res = await axios.post(this.$port.value + '/administratorCreateProfile', data)
+        if (res.data === 'USER_EXISTS') {
+          this.$toast.error("User with this username already exists", {position: 'top', duration: 4000, maxToasts: 1})
+        } else {
+          this.$toast.success("Successful registration", {position: 'top', duration: 4000, maxToasts: 1})
+          await this.$router.push('/')
         }
-        else
-          this.$router.push('/')
+      }
+    },
+    validate() {
+      if (this.name && this.surname && this.username && this.validatePassword() && this.date && this.sex && this.role) {
+        return true
+      }
+      return false
+    }
+    ,
+    validatePassword() {
+      if (this.password.trim().length < 8) {
+        this.passwordError = true
+        return false;
+      }
+      return true
     }
   }
 }

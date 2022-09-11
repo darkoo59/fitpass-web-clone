@@ -16,8 +16,7 @@ public class AdministratorController {
     }
     public static void postRegister() {
         post("/administratorCreateProfile", (req, res) -> {
-              administratorService.register(req);
-              return "SUCCESS";
+              return administratorService.register(req);
         });
     }
 

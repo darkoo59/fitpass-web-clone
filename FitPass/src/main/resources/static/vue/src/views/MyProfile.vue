@@ -58,7 +58,7 @@
           <div class="col-1"></div>
           <button type="button" class="btn btn-primary col-3" @click="togglePassword">Change password</button>
         </div>
-        <div v-show="!changePasswordClicked">
+        <div v-show="changePasswordClicked">
           <div class="mb-3 row">
             <label for="oldPassword" class="col-sm-2 col-form-label">Old password:</label>
             <div class="col-sm-4">

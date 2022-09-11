@@ -36,22 +36,29 @@ public class AdministratorService {
         facilityDAO = new SportsFacilityDAO();
         allUsers = userDAO.getAll();
     }
-    public void register(Request req) throws IOException {
-        String name = req.queryParams("name");
-        String surname = req.queryParams("surname");
-        String username = req.queryParams("username");
-        String password = req.queryParams("password");
-        String date = req.queryParams("date");
+    public String register(Request req) throws IOException {
+        ArrayList<String> payload = gson.fromJson(req.body(), new TypeToken<ArrayList<String>>(){}.getType());
+        String name =  payload.get(0);
+        String surname = payload.get(1);
+        String username = payload.get(2);
+        String password = payload.get(3);
+        String date = payload.get(4);
         LocalDate parsedDate = LocalDate.parse(date);
-        String sex = req.queryParams("sexRadioOptions");
+        String sex = payload.get(5);
         GenderType sexType = sex.equals("male") ? GenderType.MALE : GenderType.FEMALE;
-        String role = req.queryParams("roleRadioOptions");
+        String role = payload.get(6);
         RoleType roleType = role.equals("manager") ? RoleType.MANAGER : RoleType.COACH;
         User newUser = new User(username, password, name, surname, sexType, parsedDate, roleType);
         newUser.setId(userDAO.getNewId());
         ArrayList<User> users = userDAO.getAll();
+        for (User user : users) {
+            if (username.equals(user.getUsername())) {
+                return "USER_EXISTS";
+            }
+        }
         users.add(newUser);
         userDAO.save(users);
+        return "SUCCESS";
     }
 
     public ArrayList<User> getSearchedProfiles(Request req) throws IOException {
