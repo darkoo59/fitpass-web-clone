@@ -82,4 +82,15 @@ public class ManagerController {
             return gson.toJson(managerService.getAllCustomersForFacility(req));
         });
     }
+
+    public static void putEditContentImage() {
+        put("/managerContent/edit/:name/image", (req, res) -> managerService.editContentImage(req));
+    }
+
+    public static void putEditContent() {
+        put("/managerContent/edit/:id", (req, res) -> {
+            managerService.editContent(req);
+            return "SUCCESS";
+        });
+    }
 }

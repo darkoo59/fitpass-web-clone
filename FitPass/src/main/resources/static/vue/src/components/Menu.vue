@@ -9,9 +9,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
-            </li>
+            <router-link class="nav-link text-white" to="/">
+              Home
+            </router-link>
             <li class="nav-item">
               <router-link class="nav-link text-white" to="/userInfo">
                 My Profile
@@ -21,16 +21,6 @@
               <router-link class="nav-link text-white" to="/coachTrainings">
                 My Trainings
               </router-link>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                CoachFeature3
-              </a>
-              <ul class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="#">CoachFeature3a</a></li>
-                <li><a class="dropdown-item" href="#">CoachFeature3b</a></li>
-                <li><a class="dropdown-item" href="#">CoachFeature3c</a></li>
-              </ul>
             </li>
           </ul>
         </div>
@@ -56,6 +46,11 @@
                 Home
               </router-link>
             </li>
+            <li>
+              <router-link class="nav-link text-white" to="/userInfo">
+                My Profile
+              </router-link>
+            </li>
             <li class="nav-item">
               <router-link class="nav-link text-white" to="/administratorCreateProfiles">
                 Create profile
@@ -69,11 +64,6 @@
             <li class="nav-item">
               <router-link class="nav-link text-white" to="/createFacility">
                 Create facility
-              </router-link>
-            </li>
-            <li>
-              <router-link class="nav-link text-white" to="/userInfo">
-                My Profile
               </router-link>
             </li>
             <li>
@@ -101,7 +91,9 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
+              <router-link class="nav-link text-white" to="/">
+                Home
+              </router-link>
             </li>
             <li>
               <router-link class="nav-link text-white" to="/userInfo">
@@ -133,22 +125,6 @@
                 </li>
               </ul>
                 </li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Edit
-              </a>
-              <ul class="dropdown-menu gradient-custom" aria-labelledby="navbarDropdownMenuLink">
-                <li class="nav-item">
-                  <router-link class="nav-link text-white  dropdown-item" to="/editContent">
-                    Content
-                  </router-link>
-                  <router-link class="nav-link text-white dropdown-item" to="/">
-                    Trainings
-                  </router-link>
-                </li>
-              </ul>
-            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Show

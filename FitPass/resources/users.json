@@ -7,7 +7,7 @@
     "surname": "Jovanovic",
     "birthDate": "26-05-2018",
     "role": "2",
-    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb2FjaCIsImV4cCI6MTY2MjgyMTI0MSwiaWF0IjoxNjYyODIxMjMxfQ.9ZP2T4UUUPK9r9o4c8Z2Yzympwks7vFsv42Krys_yik",
+    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb2FjaCIsImV4cCI6MTY2MjkwNjI0NCwiaWF0IjoxNjYyOTA2MjM0fQ.0NOXuFNEU4Mm2wTAV3O4x0Hcf0QBs0o331AF-hfRuEo",
     "deleted": false
   },
   {
@@ -18,7 +18,7 @@
     "surname": "Markovic",
     "birthDate": "26-03-2018",
     "role": "1",
-    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyIiwiZXhwIjoxNjYyOTA0Njk0LCJpYXQiOjE2NjI5MDQ2ODR9.iOh-wAAfmnfik_kGVB39O2P518myuZWPs4p0Gq3kunM",
+    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyIiwiZXhwIjoxNjYyOTA2MzMxLCJpYXQiOjE2NjI5MDYzMjF9.GcoB_o-F3Sn75B-zMQ9pYi2FqL1ypDMw46i4iDvqy2M",
     "deleted": false
   },
   {
@@ -29,7 +29,7 @@
     "surname": "Janjic",
     "birthDate": "26-11-2018",
     "role": "3",
-    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lciIsImV4cCI6MTY2MjgwNjk4MSwiaWF0IjoxNjYyODA2OTcxfQ.TBWfQdJBbWR-wbEBKWLDi5hTOys3xE6QjafG7J5WOYI",
+    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lciIsImV4cCI6MTY2MjkwNjM5NCwiaWF0IjoxNjYyOTA2Mzg0fQ.AX0QcTZAAEgSB8KGB384NA8iaQM8RzkSgJRWsOU-qAw",
     "deleted": false
   },
   {
@@ -41,7 +41,7 @@
     "gender": "FEMALE",
     "birthDate": "13-02-2018",
     "role": "0",
-    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjYyOTA0NDMwLCJpYXQiOjE2NjI5MDQ0MjB9.kXT0sGkalLz-7i3W0EfTNzpnJYxYdqN3uCvlZhAuRug",
+    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjYyOTA2MzQ3LCJpYXQiOjE2NjI5MDYzMzd9.ow4MiBSLf6brja46o4nmQ4IFnl2HHgMDwG9d_neV9jI",
     "deleted": false
   },
   {

@@ -3,6 +3,7 @@ package dao;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import model.Content;
 import model.Customer;
 import model.User;
 import utils.others.LocalDateDeserializer;
@@ -92,6 +93,7 @@ public class CustomerDAO implements IDAO<Customer>{
 
     @Override
     public String getNewId() throws IOException {
-        return null;
+        UserDAO userDAO = new UserDAO();
+        return userDAO.getNewId();
     }
 }
