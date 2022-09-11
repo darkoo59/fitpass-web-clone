@@ -67,6 +67,8 @@ public class ManagerController {
 
     public static void getContent() {
         get("/managerContent", (req, res) -> gson.toJson(managerService.getContent(req)));
+    }
+
     public static void getAllCoachesForFacility() {
         get("/facilityCoaches", (req, res) -> {
             res.type("application/json");

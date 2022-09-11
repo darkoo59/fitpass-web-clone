@@ -416,6 +416,8 @@ public class TrainingService {
             }
         }
         trainingDAO.save(trainings);
+    }
+
     public ArrayList<User> getAllCoachesForManager(String managerId) throws IOException {
         String facilityId = getFacilityIdByManagerId(managerId);
         ArrayList<String> coachesIds = new ArrayList<String>();
