@@ -7,12 +7,12 @@
           <div class="form-group p-3">
             <label class="form-label text-white" for="exampleInputEmail1">Name</label>
             <input type="text" name="name" class="form-control" aria-describedby="emailHelp"
-                   v-model="contentData.name" placeholder="Enter name(required)" required>
+                   v-model="contentData.name" placeholder="Enter name (required)" required>
           </div>
           <div class="form-group p-3">
             <label class="form-label text-white" for="exampleInputEmail1">Type</label>
             <input type="text" name="type" class="form-control" aria-describedby="emailHelp"
-                   v-model="contentData.type" placeholder="Enter type(required)" required>
+                   v-model="contentData.type" placeholder="Enter type (required)" required>
           </div>
           <div class="form-group p-3">
             <label class="form-label text-white" for="image">Image</label>
@@ -21,12 +21,12 @@
           <div class="form-group p-3">
             <label class="form-label text-white" for="exampleInputEmail1">Description</label>
             <input type="text" name="type" class="form-control" aria-describedby="emailHelp"
-                   v-model="contentData.description" placeholder="Enter description(optional)">
+                   v-model="contentData.description" placeholder="Enter description (optional)">
           </div>
           <div class="form-group p-3">
             <label class="form-label text-white" for="exampleInputEmail1">Duration</label>
             <input type="text" name="duration" class="form-control" aria-describedby="emailHelp"
-                   v-model="contentData.duration" placeholder="Enter duration in minutes(optional)">
+                   v-model="contentData.duration" placeholder="Enter duration in minutes (optional)">
           </div>
         <div class="m-3">
           <input class="btn btn-primary btn-lg" @click="submitForm" value="Submit" />

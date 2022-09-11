@@ -16,6 +16,7 @@ import TrainNow from "../views/TrainNow"
 import PromoCode from "../views/PromoCode"
 import NewContent from "@/views/NewContent";
 import NewTraining from "@/views/NewTraining";
+import ManagerContent from "@/views/ManagerContent"
 
 const routes = [
     {
@@ -102,6 +103,11 @@ const routes = [
         path: '/newTraining',
         name: 'NewTraining',
         component: NewTraining
+    },
+    {
+        path: '/managerContent',
+        name: 'ManagerContent',
+        component: ManagerContent
     }
 ]
 

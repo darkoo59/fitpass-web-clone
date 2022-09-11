@@ -113,6 +113,11 @@
                 Trainings
               </router-link>
             </li>
+            <li class="nav-item">
+              <router-link class="nav-link text-white" to="/managerContent">
+                Content
+              </router-link>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Add new
@@ -128,22 +133,6 @@
                 </li>
               </ul>
                 </li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Edit
-              </a>
-              <ul class="dropdown-menu gradient-custom" aria-labelledby="navbarDropdownMenuLink">
-                <li class="nav-item">
-                  <router-link class="nav-link text-white  dropdown-item" to="/editContent">
-                    Content
-                  </router-link>
-                  <router-link class="nav-link text-white dropdown-item" to="/">
-                    Trainings
-                  </router-link>
-                </li>
-              </ul>
-            </li>
           </ul>
         </div>
         <router-link to="/">

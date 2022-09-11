@@ -136,7 +136,6 @@ export default {
       return res.data
     },
     reloadCommentSection(id) {
-      console.log(id)
       this.comments = this.comments.filter(comment => comment.id !== id)
     }
   }

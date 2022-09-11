@@ -400,4 +400,21 @@ public class TrainingService {
         }
         return "";
     }
+
+    public void editTraining(String id, Training training) throws Exception {
+        ArrayList<Training> trainings = trainingDAO.getAll();
+        for (Training train : trainings) {
+            if (train.getId().equals(id)) {
+                train.setName(training.getName());
+                train.setType(training.getType());
+                train.setImage(training.getImage());
+                train.setDescription(training.getDescription());
+                train.setPrice(training.getPrice());
+                train.setDuration(training.getDuration());
+                train.setCoachId(training.getCoachId());
+                train.setFacilityId(training.getFacilityId());
+            }
+        }
+        trainingDAO.save(trainings);
+    }
 }

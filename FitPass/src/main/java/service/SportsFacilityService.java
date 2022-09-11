@@ -221,4 +221,13 @@ public class SportsFacilityService {
         }
         return true;
     }
+
+    public SportsFacility getSportsFacilityByManagerId(String id) throws Exception{
+        for (SportsFacility facility : facilitiesDao.getAll()) {
+            if (facility.getManagerId().equals(id)) {
+                return facility;
+            }
+        }
+        return null;
+    }
 }

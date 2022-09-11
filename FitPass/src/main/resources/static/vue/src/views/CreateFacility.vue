@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="row">
-                  <div class="col-md-6 mb-4">
+                  <div class="col pb-2">
                     <AddressFieldGroup
                       v-model:street="addressForm.street"
                       v-model:number="addressForm.number"

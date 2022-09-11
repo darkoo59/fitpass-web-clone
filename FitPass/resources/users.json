@@ -18,7 +18,7 @@
     "surname": "Markovic",
     "birthDate": "26-03-2018",
     "role": "1",
-    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyIiwiZXhwIjoxNjYyNjUzNTY0LCJpYXQiOjE2NjI2NTM1NTR9.G6JdwH1x5ku6Xp-Zb9eG_hhqcUN0LIYbp8mju7uGxAw",
+    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyIiwiZXhwIjoxNjYyODMwNzI1LCJpYXQiOjE2NjI4MzA3MTV9.OMrC5g3WQy1FPOyR5q6Ib4FEjysnS3omtgmHlI9YxJE",
     "deleted": false
   },
   {
@@ -41,7 +41,7 @@
     "gender": "MALE",
     "birthDate": "26-02-2018",
     "role": "0",
-    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjYyODIzMzg0LCJpYXQiOjE2NjI4MjMzNzR9.dVLgsBu0SXQhMfNRDCoU11yTn2x1UAMadaaWGIC0R8k",
+    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjYyODQ4MDk1LCJpYXQiOjE2NjI4NDgwODV9.nHlTJ0qpQ-yHBjhfM_OZUBD-il1bAJmLWCY8LdfBwww",
     "deleted": false
   },
   {

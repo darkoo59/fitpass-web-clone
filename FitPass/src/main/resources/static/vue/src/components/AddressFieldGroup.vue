@@ -1,36 +1,44 @@
 <template>
-  <div class="grid grid-cols-3 gap-5">
+  <div class="container">
 
-    <label class="col-span-2">
-      Street
-      <input type="text"
-             @input="$emit('update:street', $event.target.value)"
-             :value="street"
-             ref="streetRef"
-             placeholder="Street"/>
-    </label>
-
-    <label class="col-span-2">
-      Number
-      <input type="text"
-             @input="$emit('update:number', $event.target.value)"
-             :value="number"
-             placeholder="Number"/>
-
-      <label class="col-span-2">
-        Place
+    <div class="row">
+      <label class="col-md-8 mb-4">
+        Street
         <input type="text"
-               @input="$emit('update:place', $event.target.value)"
-               :value="place"
-               placeholder="Place"/>
+               class="form-control"
+               @input="$emit('update:street', $event.target.value)"
+               :value="street"
+               ref="streetRef"
+               required/>
       </label>
 
-      <label class="col-span-2">
+      <label class="col-md-4 mb-4">
+        Number
+        <input type="text"
+               class="form-control"
+               @input="$emit('update:number', $event.target.value)"
+               :value="number"
+               required/>
+      </label>
+    </div>
+
+    <div class="row">
+      <label class="col-md-8 mb-4">
+        Place
+        <input type="text"
+               class="form-control"
+               @input="$emit('update:place', $event.target.value)"
+               :value="place"
+               required/>
+      </label>
+
+      <label class="col-md-4 mb-4">
         Zip code
         <input type="text"
+               class="form-control"
                @input="$emit('update:zipCode', $event.target.value)"
                :value="zipCode"
-               placeholder="Zip code"/>
+               required/>
       </label>
 
       <input type="hidden"
@@ -41,7 +49,7 @@
              @input="$emit('update:lng', $event.target.value)"
              :value="lng"/>
 
-    </label>
+    </div>
   </div>
 </template>
 

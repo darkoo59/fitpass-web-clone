@@ -1,11 +1,9 @@
 package controller;
 
-import service.CoachService;
 import service.ManagerService;
 
 import static main.main.gson;
-import static spark.Spark.get;
-import static spark.Spark.post;
+import static spark.Spark.*;
 
 public class ManagerController {
 
@@ -47,5 +45,20 @@ public class ManagerController {
             managerService.addNewTraining(req);
             return "SUCCESS";
         });
+    }
+
+    public static void putEditTrainingImage() {
+        put("/managerTrainings/edit/:name/logo", (req, res) -> managerService.editTrainingImage(req));
+    }
+
+    public static void putEditTraining() {
+        put("/managerTrainings/edit/:id", (req, res) -> {
+            managerService.editTraining(req);
+            return "SUCCESS";
+        });
+    }
+
+    public static void getContent() {
+        get("/managerContent", (req, res) -> gson.toJson(managerService.getContent(req)));
     }
 }
