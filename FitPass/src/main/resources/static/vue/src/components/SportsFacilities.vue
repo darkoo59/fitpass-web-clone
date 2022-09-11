@@ -1,6 +1,6 @@
 <template>
   <br>
-  <div class="container" id="searchFilter">
+  <div class="container position-relative overflow-hidden" id="searchFilter">
     <div class="row">
       <div class="col-sm">
         <input type="text" v-model="filter.searchInput" placeholder="Search by name..." />
@@ -19,13 +19,19 @@
         <option value="4">3.0 - 3.5</option>
         <option value="5">&lt;= 3.0</option>
       </select>
-      <select v-model="filter.sort" class="form-select col-sm">
+      <select v-model="filter.sort" class="form-select col-sm p-1">
         <option selected>Sort by</option>
         <option value="1">Name: Ascending</option>
         <option value="2">Name: Descending</option>
         <option value="3">Avg. rating: Low to High</option>
         <option value="4">Avg. rating: High to Low</option>
       </select>
+      <div class="col-sm">
+        <input v-model="filter.currentlyOpen" class="form-check-input" type="checkbox" value="" id="checkboxId">
+        <label class="form-check-label text-white" for="checkboxId">
+          Currently open
+        </label>
+      </div>
       <div class="col-sm">
         <button class="btn-primary" @click="searchFacilities()">
           Search
@@ -80,7 +86,8 @@ export default {
         location: "Location",
         type: "Type",
         rating: "Rating",
-        sort: "Sort by"
+        sort: "Sort by",
+        currentlyOpen: ''
       }
     }
   },
@@ -122,14 +129,15 @@ export default {
       }
       return types
     },
-  removeFilters() {
-    this.filtered = this.facilities
-    this.filter.searchInput = ""
-    this.filter.location = "Location"
-    this.filter.type = "Type"
-    this.filter.rating = "Rating"
-    this.filter.sort = "Sort by"
-  }
+    removeFilters() {
+      this.filtered = this.facilities
+      this.filter.searchInput = ""
+      this.filter.location = "Location"
+      this.filter.type = "Type"
+      this.filter.rating = "Rating"
+      this.filter.sort = "Sort by"
+      this.filter.currentlyOpen = false
+    }
   }
 }
 
