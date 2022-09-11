@@ -47,7 +47,6 @@ public class TrainingService {
         String userId = RequestsUtils.getIdFromPayload(payload);
         String applicationDateTime = req.queryParams("applicationDateTime");
         String trainingId = req.queryParams("trainingId");
-        System.out.println("Date : "+applicationDateTime + ",id : "+trainingId);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(applicationDateTime, formatter);
         ArrayList<TrainingHistory> allTrainings = trainingHistoryDAO.getAll();
@@ -87,7 +86,6 @@ public class TrainingService {
                 }
             }
         }
-        System.out.println(todayTrainigs);
         return todayTrainigs;
     }
 
@@ -108,7 +106,6 @@ public class TrainingService {
     }
 
     public ArrayList<TrainingHistory> getMyTrainingsHistory(Request request) throws ParseException, IOException {
-        System.out.println(RequestsUtils.getPayload(request));
         String payload = RequestsUtils.getPayload(request);
         String userId = RequestsUtils.getIdFromPayload(payload);
         RoleType userRole = RequestsUtils.getRoleFromPayload(payload);
@@ -379,7 +376,6 @@ public class TrainingService {
     public String addNewTraining(Request req) throws ParseException, IOException {
         String payload = RequestsUtils.getPayload(req);
         String managerId = RequestsUtils.getIdFromPayload(payload);
-        System.out.println("Start : "+ req.queryParams("startTime") + ", end : "+ req.queryParams("endTime"));
         if(req.queryParams("startTime").isEmpty() || req.queryParams("endTime").isEmpty())
             return "ERROR_TIME";
         WorkHour hours = new WorkHour(LocalTime.parse(req.queryParams("startTime")),

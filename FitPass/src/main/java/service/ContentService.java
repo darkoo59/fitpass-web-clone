@@ -44,10 +44,8 @@ public class ContentService {
         return "";
     }
     public String addNewContent(Request req) throws Exception {
-        System.out.println(req.queryParams("description"));
         String payload = RequestsUtils.getPayload(req);
         String managerId = RequestsUtils.getIdFromPayload(payload);
-        System.out.println(req.queryParams("image"));
         Content content = new Content(req.queryParams("name"),req.queryParams("type"),req.queryParams("image"),
                 req.queryParams("description"),req.queryParams("duration"),getFacilityIdByManagerId(managerId));
         content.setId(contentDAO.getNewId());

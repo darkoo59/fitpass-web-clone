@@ -86,7 +86,6 @@ public class CustomerService {
         String username = payload.substring(8,payload.lastIndexOf("\",\"exp\":"));
         String applicationDateTime = req.queryParams("applicationDateTime");
         String trainingId = req.queryParams("trainingId");
-        System.out.println("Date : "+applicationDateTime + ",id : "+trainingId);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(applicationDateTime, formatter);
 

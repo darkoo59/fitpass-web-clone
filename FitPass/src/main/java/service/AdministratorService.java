@@ -68,8 +68,6 @@ public class AdministratorService {
             if(user.getName().contains(req.body()) || user.getSurname().contains(req.body()) || user.getUsername().contains(req.body()))
                 searchedUsers.add(user);
         }
-        for(User user : searchedUsers)
-            System.out.println(user.getUsername());
         return searchedUsers;
     }
 

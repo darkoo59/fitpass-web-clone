@@ -7,6 +7,6 @@ import '@vuepic/vue-datepicker/dist/main.css'
 import Toaster from "@meforma/vue-toaster";
 
 const app = createApp(App)
-app.config.globalProperties.$port = ref('http://localhost:8081')
+app.config.globalProperties.$port = ref('')
 app.use(router).use(Toaster).mount('#app')
 export { app }

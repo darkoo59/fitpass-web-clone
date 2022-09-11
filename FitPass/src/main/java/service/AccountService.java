@@ -196,9 +196,6 @@ public class AccountService {
     }
 
     private Boolean name(Filter filter, User user) {
-//        System.out.println(user.getName());
-////        System.out.println(filter.searchInput);
-//        return true;
         return user.getName().toLowerCase().contains(filter.searchInput.toLowerCase()) ||
                 user.getSurname().toLowerCase().contains(filter.searchInput.toLowerCase()) ||
                 user.getUsername().toLowerCase().contains(filter.searchInput.toLowerCase());
