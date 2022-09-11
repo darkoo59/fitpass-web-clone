@@ -7,5 +7,10 @@ module.exports = {
   devServer: {
     proxy: 'https://mainsite.com/',
     },
-  lintOnSave: false
+  lintOnSave: false,
+  configureWebpack: {
+    devServer: {
+      historyApiFallback: true
+    }
+  }
 }

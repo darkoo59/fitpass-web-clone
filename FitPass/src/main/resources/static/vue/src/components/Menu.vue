@@ -3,7 +3,9 @@
   <div v-if="userRole === 'COACH'" class="header gradient-custom">
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid">
-        <a class="navbar-brand text-white" href="#">FITPASS</a>
+        <router-link class="text-white navbar-brand" to="/">
+          FITPASS
+        </router-link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,7 +37,9 @@
   <div v-if="userRole === 'ADMINISTRATOR'" class="header gradient-custom">
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid">
-        <a class="navbar-brand text-white" href="#">FITPASS</a>
+        <router-link class="text-white navbar-brand" to="/">
+          FITPASS
+        </router-link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -84,7 +88,9 @@
   <div v-if="userRole === 'MANAGER'" class="header gradient-custom">
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid">
-        <a class="navbar-brand text-white" href="#">FITPASS</a>
+        <router-link class="text-white navbar-brand" to="/">
+          FITPASS
+        </router-link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -155,7 +161,9 @@
   <div v-if="userRole === 'CUSTOMER'" class="header gradient-custom">
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid">
-        <a class="navbar-brand text-white" href="#">FITPASS</a>
+        <router-link class="text-white navbar-brand" to="/">
+          FITPASS
+        </router-link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
