@@ -82,6 +82,11 @@ public class SportsFacilityService {
                     filtered.remove(facility);
                 }
             }
+            if (!currentlyOpen(filter, facility)) {
+                if (filtered.contains(facility)) {
+                    filtered.remove(facility);
+                }
+            }
         }
         return sort(filter, filtered);
     }
@@ -126,6 +131,16 @@ public class SportsFacilityService {
                 break;
             default:
                 return true;
+        }
+        return false;
+    }
+
+    private Boolean currentlyOpen(Filter filter, SportsFacility facility) {
+        if (filter.currentlyOpen.equals("false"))
+            return true;
+        if (LocalTime.now().isAfter(facility.getWorkHour().getStart())
+                && LocalTime.now().isBefore(facility.getWorkHour().getEnd())) {
+            return true;
         }
         return false;
     }
