@@ -53,11 +53,11 @@ export default {
   methods: {
       submitForm:function()  {
         if(moment(this.formData.validUntil) < moment())
-          alert("Dont choose date from past")
+          this.$toast.error("Dont choose date from past", {position: 'top', duration: 4000, maxToasts: 1})
         else if(isNaN(this.formData.discountPercentage))
-          alert('Type number in percentage field')
+          this.$toast.error("Type number in percentage field", {position: 'top', duration: 4000, maxToasts: 1})
         else if(isNaN(this.formData.maxUsage))
-          alert('Type number in max usage field')
+          this.$toast.error("Type number in max usage field", {position: 'top', duration: 4000, maxToasts: 1})
         else {
           axios
               .post(this.$port.value + '/addPromoCode',this.formData,{
@@ -75,9 +75,9 @@ export default {
       },
     isResponseGood() {
       if(this.responseData == '1'){
-        alert('Code already exist')
+        this.$toast.error("Code already exists", {position: 'top', duration: 4000, maxToasts: 1})
       }else if(this.responseData == '0'){
-        alert('Code successfully added')
+        this.$toast.success("Code successfully added", {position: 'top', duration: 4000, maxToasts: 1})
       }
     }
   }

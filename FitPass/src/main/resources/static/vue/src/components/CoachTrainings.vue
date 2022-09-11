@@ -199,7 +199,8 @@ export default {
           axios.get(this.$port.value + '/cancelPersonalTraining', {
             params: {id: trainingHistory.trainingId}
           })
-          this.$router.go()
+          this.$toast.success("Successfully deleted training", {position: 'top', duration: 4000, maxToasts: 1})
+          this.$router.push('/')
         },
         removeFilters() {
           this.filteredCoachTrainingsHistory = this.coachTrainingsHistory

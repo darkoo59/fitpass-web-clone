@@ -68,7 +68,8 @@ export default {
           if(this.promoCode === code.code){
               this.existingMembership.price = this.existingMembership.price - ((code.discountPercentage/100)*
                   this.existingMembership.price)
-              alert('Price with discount is ' + this.existingMembership.price)
+              this.$toast.success("Price with discount is " + this.existingMembership.price,
+                  {position: 'top', duration: 4000, maxToasts: 1})
               this.membershipData.priceDiscountPercentage = code.discountPercentage
               this.selectedPromoCode = code
               this.membershipActivation()

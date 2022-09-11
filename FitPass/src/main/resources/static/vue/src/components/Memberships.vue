@@ -51,12 +51,6 @@ export default {
   methods: {
     createHeadersWithToken() {
       return {"Authorization" : `Bearer ${localStorage.getItem('token')}`}
-    }
-    ,
-    checkValidity(membership)
-    {
-      alert(membership.name)
-      return true
     },
     openMembership(membership) {
       this.$router.push({

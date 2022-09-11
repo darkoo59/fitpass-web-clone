@@ -90,20 +90,19 @@ export default {
     },
     facilityClick() {
       if(this.selectedTraining.name === undefined)
-        alert('Please select training first')
+        this.$toast.error("Please select training first", {position: 'top', duration: 4000, maxToasts: 1})
       else if(this.activeMembership === 'None')
-        alert('Please purchase membership first')
+        this.$toast.error("Please purchase membership first", {position: 'top', duration: 4000, maxToasts: 1})
       else if(!this.isTermsNumberValid())
-        alert('You dont have enough terms today')
+        this.$toast.error("You dont have enough terms today", {position: 'top', duration: 4000, maxToasts: 1})
       else {
-        alert('You are ready to go')
         //TODO : umanjiti broj preostalih termina(diskutabilno) i dodati u istoriju treninga vezanu za jednog kupca
         axios.get(this.$port.value + '/addTrainingHistory',{headers: this.createHeadersWithToken(),
           params: {
             applicationDateTime: moment().format('yyyy-MM-DD hh:mm'),
             trainingId: this.selectedTraining.id
           }})
-        alert('Training successfully added to training history')
+        this.$toast.error("Training successfully added to training history", {position: 'top', duration: 4000, maxToasts: 1})
         this.$router.push('/trainNow')
       }
     },
