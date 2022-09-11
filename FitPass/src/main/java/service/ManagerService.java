@@ -32,6 +32,7 @@ public class ManagerService {
 
     private ArrayList<User> allUsers;
     private TrainingService trainingService;
+    private CustomerService customerService;
 
     public ManagerService() throws IOException {
         userDAO = new UserDAO();
@@ -40,6 +41,7 @@ public class ManagerService {
         facilityDAO = new SportsFacilityDAO();
         allUsers = userDAO.getAll();
         trainingService = new TrainingService();
+        customerService = new CustomerService();
     }
 
     public ArrayList<TrainingHistory> getMyTrainingsHistory(Request request) throws ParseException, IOException {
@@ -60,6 +62,16 @@ public class ManagerService {
     public ArrayList<SportsFacility> getManagerFacilities(Request request) throws ParseException, IOException {
         String managerId = RequestsUtils.getIdFromPayload(RequestsUtils.getPayload(request));
         return facilityDAO.getFacilitiesByManagerId(managerId);
+    }
+
+    public SportsFacility getManagerFacility(Request request) throws ParseException, IOException {
+        String managerId = RequestsUtils.getIdFromPayload(RequestsUtils.getPayload(request));
+        for(SportsFacility facility : facilityDAO.getAll())
+        {
+            if(facility.getManagerId().equals(managerId))
+                return facility;
+        }
+        return null;
     }
 
     public ArrayList<TrainingHistory> filter(Request req) throws Exception {
@@ -129,4 +141,14 @@ public class ManagerService {
         return content;
     }
 
+    public ArrayList<User> getAllCoachesForFacility(Request req) throws IOException, ParseException {
+        String managerId = RequestsUtils.getIdFromPayload(RequestsUtils.getPayload(req));
+        return trainingService.getAllCoachesForManager(managerId);
+    }
+
+    public ArrayList<Customer> getAllCustomersForFacility(Request req) throws ParseException, IOException {
+        SportsFacility sportsFacility = getManagerFacility(req);
+        String facilityId = sportsFacility.getId();
+        return customerService.getAllCustomersWhoVisited(facilityId);
+    }
 }
