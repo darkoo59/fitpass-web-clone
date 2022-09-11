@@ -43,5 +43,14 @@
     "rating": "4",
     "status": "1",
     "deleted": false
+  },
+  {
+    "id": "6",
+    "customerId": "3",
+    "sportsFacilityId": "2",
+    "text": "Bas jaka",
+    "rating": "4",
+    "status": "1",
+    "deleted": false
   }
 ]

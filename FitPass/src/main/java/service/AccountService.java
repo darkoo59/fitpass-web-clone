@@ -72,9 +72,11 @@ public class AccountService {
                 new CustomerTypeDAO().get("1")
         );
         ArrayList<Customer> customers = customerDAO.getAll();
+        String id = userDAO.getNewId();
+        customer.setId(id);
         customers.add(customer);
         customerDAO.save(customers);
-        newUser.setId(userDAO.getNewId());
+        newUser.setId(id);
         users.add(newUser);
         userDAO.save(users);
         return "SUCCESS";

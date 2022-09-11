@@ -52,5 +52,23 @@
     "customerId": "3",
     "status": "NOT_ACTIVE",
     "priceDiscountPercentage": 30.0
+  },
+  {
+    "id": "HD2FYDKP0U",
+    "membershipId": "3",
+    "paymentDate": "2022-09-11 18:25",
+    "validityDateTime": "2023-09-11 18:25",
+    "customerId": "3",
+    "status": "NOT_ACTIVE",
+    "priceDiscountPercentage": 0.0
+  },
+  {
+    "id": "WY1Z5ICDZD",
+    "membershipId": "6",
+    "paymentDate": "2021-09-11 18:25",
+    "validityDateTime": "2022-09-06 18:25",
+    "customerId": "3",
+    "status": "NOT_ACTIVE",
+    "priceDiscountPercentage": 30.0
   }
 ]

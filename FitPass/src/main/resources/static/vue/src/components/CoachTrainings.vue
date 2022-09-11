@@ -198,7 +198,8 @@ export default {
         cancelPersonalTraining(trainingHistory) {
           axios.get(this.$port.value + '/cancelPersonalTraining', {
             params: {id: trainingHistory.trainingId}
-          }).then(this.$router.go());
+          })
+          this.$router.go()
         },
         removeFilters() {
           this.filteredCoachTrainingsHistory = this.coachTrainingsHistory

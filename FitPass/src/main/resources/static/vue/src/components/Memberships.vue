@@ -37,9 +37,9 @@ export default {
   },
   async mounted()
   {
-    let response2 = await axios.get('http://localhost:8081/getCustomer',{headers: this.createHeadersWithToken()})
+    let response2 = await axios.get(this.$port.value + '/getCustomer',{headers: this.createHeadersWithToken()})
     this.customer = response2.data
-    let resp = await axios.get('http://localhost:8081/existingMemberships')
+    let resp = await axios.get(this.$port.value + '/existingMemberships')
     this.existingMemberships = resp.data
     let response = await axios.get(this.$port.value + '/activeMembership', {headers: this.createHeadersWithToken()})
     if(response.data == '')

@@ -7,14 +7,12 @@ import dao.IDAO;
 import dao.MembershipDAO;
 import dao.*;
 import model.*;
-import org.threeten.extra.Days;
 import spark.Request;
 import utils.enums.CustomerTypeName;
 import utils.enums.MembershipStatus;
 import utils.others.RequestsUtils;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.LocalDate;
@@ -47,7 +45,6 @@ public class MembershipService {
         String payload = RequestsUtils.getPayload(request);
         String userId = RequestsUtils.getIdFromPayload(payload);
         for (Membership membership1 : membershipDAO.getAll()) {
-            System.out.println("UserId : " + userId + ",MemStatus : " + membership1.getStatus());
             if (membership1.getCustomerId().equals(userId) && membership1.getStatus() == MembershipStatus.ACTIVE) {
                 if(isMembershipStillActive(membership1))
                     return existingMembershipDAO.get(membership1.getMembershipId());
@@ -78,7 +75,11 @@ public class MembershipService {
                 if((((double)usedTerms) / maxTerms) < 0.33)
                 {
                     double pointsLost = ((double)totalMembershipPrice/1000)*133*4;
-                    customer.setCollectedPoints(customer.getCollectedPoints() - pointsLost);
+                    if ( customer.getCollectedPoints() - pointsLost < 0) {
+                        customer.setCollectedPoints(0.0);
+                    } else {
+                        customer.setCollectedPoints(customer.getCollectedPoints() - pointsLost);
+                    }
                 }
             }
             if(customer.getType().getType() == CustomerTypeName.BRONZE && customer.getCollectedPoints() > customer.getType().getPoints()){
@@ -106,11 +107,9 @@ public class MembershipService {
     }
 
     public void postCreateMembership(Request request) throws IOException, ParseException {
-        Membership membership = new Membership();
+        Membership membership;
         mapper.registerModule(new JavaTimeModule());
         membership = mapper.readValue(request.body(), Membership.class);
-        System.out.println("MemId=" + membership.getMembershipId() + ",CustId=" + membership.getCustomerId() + ",Id=" + membership.getId() +
-                ",Status=" + membership.getStatus() + ",PayDat=" + membership.getPaymentDate() + ",ValdAT=" + membership.getValidityDateTime());
         membership.setCustomerId(RequestsUtils.getIdFromPayload(RequestsUtils.getPayload(request)));
         membership.setId(membershipDAO.getNewId());
         membership.setStatus(MembershipStatus.ACTIVE);
@@ -118,12 +117,10 @@ public class MembershipService {
         ArrayList<Membership> allMemberships = membershipDAO.getAll();
         allMemberships.add(membership);
         membershipDAO.save(allMemberships);
-
     }
 
     public ExistingMembership getExistingMembershipById(Request req) throws IOException {
         String id = req.queryParams("id");
-        System.out.println("Id:" + id);
         return existingMembershipDAO.get(id);
     }
 

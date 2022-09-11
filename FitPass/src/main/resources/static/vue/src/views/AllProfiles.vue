@@ -95,7 +95,7 @@ export default {
     let resp = await axios.get(this.$port.value + '/allProfiles')
     this.profiles = resp.data
     this.filteredProfiles = resp.data
-    let response = await axios.get('http://localhost:8081/getAllCustomers')
+    let response = await axios.get(this.$port.value + '/getAllCustomers')
     this.customers = response.data
   },
   methods: {
@@ -111,12 +111,6 @@ export default {
       this.profilesNum = this.profilesNum + 1
       return this.profilesNum.toString()
     },
-    searchProfiles() {
-      axios.post(this.$port.value + '/sarchProfiles', this.input)
-          .then(response => (alert(response.data),
-                  this.filteredProfiles = response.data,
-                  alert(this.filteredProfiles)))
-    },
     convertRole(role){
       if(role === '0')
         return 'Administrator'
@@ -131,7 +125,7 @@ export default {
     },
     async searchProfiles() {
       let resp = await axios
-          .post('http://localhost:8081/searchProfiles', this.filter)
+          .post(this.$port.value + '/searchProfiles', this.filter)
       this.filteredProfiles = resp.data
     },
     removeFilters() {

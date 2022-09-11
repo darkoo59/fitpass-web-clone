@@ -104,7 +104,6 @@ public class TrainingService {
                 }
             }
         }
-        System.out.println("Terms useddd : "+termsNum);
         return termsNum;
     }
 

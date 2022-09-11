@@ -51,17 +51,17 @@ export default {
   },
   async mounted()
   {
-    let resp = await axios.get('http://localhost:8081/sportsFacilities')
+    let resp = await axios.get(this.$port.value + '/sportsFacilities')
     this.facilities = resp.data
     this.filtered = resp.data
-    let resp2 = await axios.get('http://localhost:8081/myTrainingsInfo')
+    let resp2 = await axios.get(this.$port.value + '/myTrainingsInfo')
     this.trainings = resp2.data
-    let resp3 = await axios.get('http://localhost:8081/activeMembership', {headers: this.createHeadersWithToken()})
+    let resp3 = await axios.get(this.$port.value + '/activeMembership', {headers: this.createHeadersWithToken()})
     if(resp3.data == '')
       this.activeMembership = 'None'
     else
       this.activeMembership = resp3.data
-    let resp4 = await axios.get('http://localhost:8081/getTermsNum', {headers: this.createHeadersWithToken()})
+    let resp4 = await axios.get(this.$port.value + '/getTermsNum', {headers: this.createHeadersWithToken()})
     this.todayTermsNum = resp4.data
     this.cities = this.getCitiesFromResponse(resp.data)
     this.types = this.getTypesFromResponse(resp.data)
@@ -98,7 +98,7 @@ export default {
       else {
         alert('You are ready to go')
         //TODO : umanjiti broj preostalih termina(diskutabilno) i dodati u istoriju treninga vezanu za jednog kupca
-        axios.get('http://localhost:8081/addTrainingHistory',{headers: this.createHeadersWithToken(),
+        axios.get(this.$port.value + '/addTrainingHistory',{headers: this.createHeadersWithToken(),
           params: {
             applicationDateTime: moment().format('yyyy-MM-DD hh:mm'),
             trainingId: this.selectedTraining.id
