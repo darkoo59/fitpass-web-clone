@@ -1,16 +1,11 @@
 <template>
-  <div class="card mb-3">
-    <h1>TODO : LOGO IDE OVDE</h1>
-    <div class="card-body">
-      <h5 class="card-title">{{facility.name}}</h5>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Type : {{facility.type}}</li>
-        <li class="list-group-item">Status : {{facility.status}}</li>
-        <li class="list-group-item">Location : {{facility.location}}</li>
-        <li class="list-group-item">Average rating : {{facility.averageRating}}</li>
-        <li class="list-group-item">TODO : RASPORED TRENINGA KOJE SPORTSKI OBJEKAT NUDI</li>
-      </ul>
-    </div>
+  <div style="text-align: center">
+    <img style="width: 10%; height: 10%" v-bind:src="'../'+img">
+    <h4 class="text-white">{{facilityData.name}}</h4>
+    <p class="text-white">Type : {{facilityData.type}}</p>
+    <p class="text-white">Status : {{ this.getFacilityStatus() }} </p>
+    <p class="text-white">Average rating : {{facilityData.averageRating}}</p>
+    <p class="text-white">TODO : RASPORED TRENINGA KOJE SPORTSKI OBJEKAT NUDI</p>
   </div>
   <div class="container h-50">
     <div class="row h-100">
@@ -54,7 +49,9 @@ export default {
       text: '',
       rating: '',
       canLeaveComment: false,
-      administrator: false
+      administrator: false,
+      img: '',
+      status: ''
     }
   },
   setup() {
@@ -94,14 +91,6 @@ export default {
     return { facility, center, mapDiv }
   },
   async mounted() {
-    let res = await axios.get(this.$port.value + '/facility', {
-      params: {
-        id: this.$route.params.id
-      }
-    })
-    this.facilityData = res.data
-
-
     let role = await axios.get(this.$port.value + '/userRole', {headers : this.createHeadersWithToken()})
 
     if (role.data === "CUSTOMER") {
@@ -117,6 +106,15 @@ export default {
     let res3 = await axios.post(this.$port.value + '/facility/' + this.facilityData.id + '/comments', role.data)
 
     this.comments = res3.data
+  },
+  async beforeMount() {
+    let res = await axios.get(this.$port.value + '/facility', {
+      params: {
+        id: this.$route.params.id
+      }
+    })
+    this.facilityData = res.data
+    this.getImageLocation()
   },
   methods: {
     createHeadersWithToken() {
@@ -137,6 +135,15 @@ export default {
     },
     reloadCommentSection(id) {
       this.comments = this.comments.filter(comment => comment.id !== id)
+    },
+    getImageLocation() {
+      this.img = require('../assets/images/' + this.facilityData.logo)
+    },
+    getFacilityStatus() {
+      if (this.facilityData.status === '0')
+        return 'WORKING'
+      else
+        return 'NOT WORKING'
     }
   }
 }
