@@ -127,7 +127,6 @@ export default {
   },
   data () {
     return {
-      lastPath: null,
       port: this.$port.value,
       name: '',
       surname: '',
@@ -148,6 +147,7 @@ export default {
       if (window.localStorage.getItem('createManager')) {
         managerOption.checked = true
         coachOption.disabled = true
+        this.role = "manager";
       }else
       {
         managerOption.checked = false
@@ -177,7 +177,9 @@ export default {
       if (this.name && this.surname && this.username && this.validatePassword() && this.date && this.sex && this.role) {
         return true
       }
-      return false
+      {
+        return false
+      }
     }
     ,
     validatePassword() {

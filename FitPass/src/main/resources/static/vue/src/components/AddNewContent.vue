@@ -60,24 +60,32 @@ export default {
       return {"Authorization": `Bearer ${localStorage.getItem('token')}`}
     },
     async submitForm() {
-      const formData = new FormData();
-      formData.append('photo', this.selectedPhoto)
+      if(!isNaN(this.contentData.duration) || this.contentData.duration === '') {
+        const formData = new FormData();
+        formData.append('photo', this.selectedPhoto)
 
-      let resp = await axios
-          .post(this.$port.value + "/addNewContent/logo/" + this.contentData.name, formData)
-      this.contentData.image = resp.data
-      await axios
-          .post(this.$port.value + "/addNewContent", this.contentData, {headers : this.createHeadersWithToken(),
-            params:{
-              name: this.contentData.name,
-              type: this.contentData.type,
-              image: this.contentData.image,
-              description: this.contentData.description,
-              duration: this.contentData.duration
-            }
-          })
-
-      await this.$router.push('/')
+        let resp = await axios
+            .post(this.$port.value + "/addNewContent/logo/" + this.contentData.name, formData)
+        this.contentData.image = resp.data
+        let resp2 = await axios
+            .post(this.$port.value + "/addNewContent", this.contentData, {
+              headers: this.createHeadersWithToken(),
+              params: {
+                name: this.contentData.name,
+                type: this.contentData.type,
+                image: this.contentData.image,
+                description: this.contentData.description,
+                duration: this.contentData.duration
+              }
+            })
+        if (resp2.data === 'NAME_EXISTS')
+          this.$toast.error("Content with this name already exists", {position: 'top', duration: 4000, maxToasts: 1})
+        else {
+          this.$toast.success("Successfully created content", {position: 'top', duration: 4000, maxToasts: 1})
+          await this.$router.push('/')
+        }
+      }else
+        this.$toast.error("Duration needs to be a number", {position: 'top', duration: 4000, maxToasts: 1})
     },
     onPhotoSelected(event) {
       this.selectedPhoto = event.target.files[0]

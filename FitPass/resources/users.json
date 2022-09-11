@@ -18,7 +18,7 @@
     "surname": "Markovic",
     "birthDate": "26-03-2018",
     "role": "1",
-    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyIiwiZXhwIjoxNjYyOTA2MzMxLCJpYXQiOjE2NjI5MDYzMjF9.GcoB_o-F3Sn75B-zMQ9pYi2FqL1ypDMw46i4iDvqy2M",
+    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyIiwiZXhwIjoxNjYyOTA5NjI2LCJpYXQiOjE2NjI5MDk2MTZ9.zDlNFYT0aZ-t5eBxd1siybgwWs2Tj5JKemzJruBTyQs",
     "deleted": false
   },
   {
@@ -41,19 +41,18 @@
     "gender": "FEMALE",
     "birthDate": "13-02-2018",
     "role": "0",
-    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjYyOTA2MzQ3LCJpYXQiOjE2NjI5MDYzMzd9.ow4MiBSLf6brja46o4nmQ4IFnl2HHgMDwG9d_neV9jI",
+    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjYyOTA3NDA3LCJpYXQiOjE2NjI5MDczOTd9.rLoenYFdD6MnBe3xyqpdW3RIEy00-YZ6-_OKPEW8Sj0",
     "deleted": false
   },
   {
-    "id": "7",
-    "username": "dsada",
-    "password": "dasda",
-    "name": "dasda",
-    "surname": "dada",
+    "id": "5",
+    "username": "dsadasd",
+    "password": "dsadsadfdsada",
+    "name": "dsadsadd",
+    "surname": "dsadsa",
     "gender": "MALE",
-    "birthDate": "22-09-2022",
+    "birthDate": "01-09-2022",
     "role": "1",
-    "JWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjYyMjA2MjYyLCJpYXQiOjE2NjIyMDYyNTJ9.uf_sYDEypq51QyfAg2sysakBDBB8irjHrFZcBVY_E-o",
     "deleted": false
   }
 ]

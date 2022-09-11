@@ -7,5 +7,32 @@
     "description": "NAJJACA GLAVA DAMJAN",
     "duration": "20",
     "facilityId": "1"
+  },
+  {
+    "id": "2",
+    "name": "dadas",
+    "type": "dsadas",
+    "image": "dadas.jpg",
+    "description": "",
+    "duration": "43",
+    "facilityId": "2"
+  },
+  {
+    "id": "3",
+    "name": "dadsd",
+    "type": "dasda",
+    "image": "dadsd.jpg",
+    "description": "",
+    "duration": "",
+    "facilityId": "2"
+  },
+  {
+    "id": "4",
+    "name": "dsadasd",
+    "type": "dsadas",
+    "image": "dsadasd.jpg",
+    "description": "",
+    "duration": "312",
+    "facilityId": "2"
   }
 ]

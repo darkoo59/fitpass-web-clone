@@ -24,8 +24,7 @@ public class ContentController {
     public static void postAddNewContent()
     {
         post("/addNewContent",(req,res) -> {
-            contentService.addNewContent(req);
-            return "SUCCESS";
+            return contentService.addNewContent(req);
         });
     }
 }

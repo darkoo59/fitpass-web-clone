@@ -377,19 +377,24 @@ public class TrainingService {
         return trainingHistory;
     }
 
-    public void addNewTraining(Request req) throws ParseException, IOException {
+    public String addNewTraining(Request req) throws ParseException, IOException {
         String payload = RequestsUtils.getPayload(req);
         String managerId = RequestsUtils.getIdFromPayload(payload);
         System.out.println("Start : "+ req.queryParams("startTime") + ", end : "+ req.queryParams("endTime"));
+        if(req.queryParams("startTime").isEmpty() || req.queryParams("endTime").isEmpty())
+            return "ERROR_TIME";
         WorkHour hours = new WorkHour(LocalTime.parse(req.queryParams("startTime")),
                 LocalTime.parse(req.queryParams("endTime")));
         Training training = new Training(req.queryParams("name"),req.queryParams("type"),getFacilityIdByManagerId(managerId),
                 hours,req.queryParams("coachId"),req.queryParams("description"),req.queryParams("image"),Integer.parseInt(
                         req.queryParams("price")));
         training.setId(trainingDAO.getNewId());
+        if(req.queryParams("coachId") == null)
+            return "ERROR_COACH";
         ArrayList<Training> trainings = trainingDAO.getAll();
         trainings.add(training);
         trainingDAO.save(trainings);
+        return "SUCCESS";
     }
 
     private String getFacilityIdByManagerId(String managerId) throws IOException {

@@ -8,6 +8,11 @@ public class Location {
     private Double longitude;
     private Address address;
 
+    public Location()
+    {
+
+    }
+
     public Location(Double latitude, Double longitude, Address address) {
         this.latitude = latitude;
         this.longitude = longitude;

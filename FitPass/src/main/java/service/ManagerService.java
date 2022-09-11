@@ -80,8 +80,8 @@ public class ManagerService {
         return trainingService.managerFilter(req,filter);
     }
 
-    public void addNewTraining(Request req) throws ParseException, IOException {
-        trainingService.addNewTraining(req);
+    public String addNewTraining(Request req) throws ParseException, IOException {
+        return trainingService.addNewTraining(req);
     }
 
     public String editTrainingImage(Request req) throws Exception {

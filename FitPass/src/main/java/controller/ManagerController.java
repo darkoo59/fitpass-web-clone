@@ -49,8 +49,7 @@ public class ManagerController {
 
     public static void postAddNewTraining() {
         post("/addNewTraining", (req, res) -> {
-            managerService.addNewTraining(req);
-            return "SUCCESS";
+            return managerService.addNewTraining(req);
         });
     }
 

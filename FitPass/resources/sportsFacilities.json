@@ -10,25 +10,26 @@
     ],
     "status": "0",
     "location": {
-		"id": "1",
-        "latitude": "45.2399494527454",
-		"longitude": "19.846999867489547",
-		"address": {
-			"street": "Fruskogorska",
-            "number": "30",
-			"place": "Novi Sad",
-			"zipCode": "21000"
-		}
-	},
+      "id": "1",
+      "latitude": 45.2399494527454,
+      "longitude": 19.846999867489547,
+      "address": {
+        "street": "Fruskogorska",
+        "number": "30",
+        "place": "Novi Sad",
+        "zipCode": "21000"
+      }
+    },
     "logo": "liman.jpg",
     "averageRating": 4.9,
-    "workHour":{
+    "workHour": {
       "start": "09:00:00",
       "end": "10:00:00"
     },
-    "managerId":"2" 
+    "managerId": "2"
   },
-  {"id": "2",
+  {
+    "id": "2",
     "name": "Baš čelik",
     "type": "gym",
     "content": [
@@ -37,23 +38,23 @@
     ],
     "status": "0",
     "location": {
-		"id": "2",
-        "latitude": "45.23594123700401",
-		"longitude": "19.834837813528818",
-		"address": {
-			"street": "Bulevar despota Stefana",
-            "number": "11",
-			"place": "Novi Sad",
-			"zipCode": "21000"
-		}
-	},
+      "id": "2",
+      "latitude": 45.23594123700401,
+      "longitude": 19.834837813528818,
+      "address": {
+        "street": "Bulevar despota Stefana",
+        "number": "11",
+        "place": "Novi Sad",
+        "zipCode": "21000"
+      }
+    },
     "logo": "bascelik.jpg",
     "averageRating": 4.7,
-    "workHour":{
+    "workHour": {
       "start": "09:00:00",
       "end": "10:00:00"
     },
-    "managerId":"7"
+    "managerId": "7"
   },
   {
     "id": "3",
@@ -66,23 +67,23 @@
     ],
     "status": "1",
     "location": {
-		"id": "3",
-        "latitude": "45.248517574105996",
-		"longitude": "19.844307253999684",
-		"address": {
-			"street": "Sutjeska",
-            "number": "2",
-			"place": "Novi Sad",
-			"zipCode": "21000"
-		}
-	},
+      "id": "3",
+      "latitude": 45.248517574105996,
+      "longitude": 19.844307253999684,
+      "address": {
+        "street": "Sutjeska",
+        "number": "2",
+        "place": "Novi Sad",
+        "zipCode": "21000"
+      }
+    },
     "logo": "flex.jpg",
     "averageRating": 4.6,
-    "workHour":{
+    "workHour": {
       "start": "09:00:00",
       "end": "17:59:00"
     },
-    "managerId":"0"
+    "managerId": "0"
   },
   {
     "id": "4",
@@ -94,23 +95,45 @@
     ],
     "status": "0",
     "location": {
-		"id": "4",
-        "latitude": "45.25279303703945",
-		"longitude": "19.843901113529405",
-		"address": {
-			"street": "Narodnih heroja",
-            "number": "1",
-			"place": "Novi Sad",
-			"zipCode": "21000"
-		},
-    "managerId": "0"
-	},
+      "id": "4",
+      "latitude": 45.25279303703945,
+      "longitude": 19.843901113529405,
+      "address": {
+        "street": "Narodnih heroja",
+        "number": "1",
+        "place": "Novi Sad",
+        "zipCode": "21000"
+      }
+    },
     "logo": "nonstop.jpg",
     "averageRating": 4.6,
-    "workHour":{
+    "workHour": {
       "start": "06:00:00",
       "end": "23:00:00"
     },
     "managerId": "0"
+  },
+  {
+    "id": "5",
+    "name": "dasdasd",
+    "type": "dsada",
+    "status": "0",
+    "location": {
+      "latitude": 45.2461,
+      "longitude": 19.8517,
+      "address": {
+        "street": "dadad",
+        "number": "11",
+        "place": "dsadasd",
+        "zipCode": "11111"
+      }
+    },
+    "logo": "dasdasd.jpg",
+    "averageRating": 0.0,
+    "workHour": {
+      "start": "00:00:00",
+      "end": "00:00:00"
+    },
+    "managerId": "5"
   }
 ]

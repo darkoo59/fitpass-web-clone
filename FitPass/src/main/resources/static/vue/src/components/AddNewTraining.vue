@@ -16,13 +16,13 @@
         </div>
         <div class="form-group p-3">
           <label class="form-label text-white">Start : </label>
-          <input v-model="trainingData.startTime" type="time" class="w-auto" id="timeId1"/>
+          <input v-model="trainingData.startTime" type="time" class="w-auto" id="timeId1" required/>
           <label class="form-label text-white">End : </label>
-          <input v-model="trainingData.endTime" type="time" class="w-auto" id="timeId2"/>
+          <input v-model="trainingData.endTime" type="time" class="w-auto" id="timeId2" required/>
         </div>
         <div class="form-group p-3">
           <label class="form-label text-white" for="coaches">Choose coach:</label>
-          <select v-model="coach" name="coaches" id="coachesSelection">
+          <select v-model="coach" name="coaches" id="coachesSelection" required>
             <option v-for="coach in coaches" :value="coach" :key="coach">{{coach.name}} {{coach.surname}}</option>
           </select>
         </div>
@@ -88,7 +88,7 @@ export default {
             .post(this.$port.value + "/addNewContent/logo/" + this.trainingData.name, formData)
         this.trainingData.image = resp.data
         this.trainingData.coachId = this.coach.id
-        await axios
+        let resp2 = await axios
             .post(this.$port.value + "/addNewTraining", this.trainingData, {
               headers: this.createHeadersWithToken(),
               params: {
@@ -102,10 +102,16 @@ export default {
                 coachId: this.trainingData.coachId
               }
             })
-
-        await this.$router.push('/')
+        if(resp2.data === 'ERROR_COACH')
+          this.$toast.error("Coach isn't selected", {position: 'top', duration: 4000, maxToasts: 1})
+        else if(resp2.data === 'ERROR_TIME')
+          this.$toast.error("Time isn't selected", {position: 'top', duration: 4000, maxToasts: 1})
+        else{
+          this.$toast.success("Training successfully added", {position: 'top', duration: 4000, maxToasts: 1})
+          await this.$router.push('/')
+          }
       }else
-        alert("Price need to be number")
+        this.$toast.error("Price needs to be a number", {position: 'top', duration: 4000, maxToasts: 1})
     },
     onPhotoSelected(event) {
       this.selectedPhoto = event.target.files[0]

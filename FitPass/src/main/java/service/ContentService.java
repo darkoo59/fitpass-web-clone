@@ -19,6 +19,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -42,19 +43,23 @@ public class ContentService {
         }
         return "";
     }
-    public void addNewContent(Request req) throws Exception {
+    public String addNewContent(Request req) throws Exception {
         System.out.println(req.queryParams("description"));
         String payload = RequestsUtils.getPayload(req);
         String managerId = RequestsUtils.getIdFromPayload(payload);
         System.out.println(req.queryParams("image"));
-
-
         Content content = new Content(req.queryParams("name"),req.queryParams("type"),req.queryParams("image"),
                 req.queryParams("description"),req.queryParams("duration"),getFacilityIdByManagerId(managerId));
         content.setId(contentDAO.getNewId());
         ArrayList<Content> contents = contentDAO.getAll();
+        for(Content contentt : contents)
+        {
+            if(contentt.getName().equals(req.queryParams("name")))
+                return "NAME_EXISTS";
+        }
         contents.add(content);
         contentDAO.save(contents);
+        return "SUCCESS";
     }
 
     public String createNewContentImage(Request req, String name) throws Exception {
@@ -74,7 +79,7 @@ public class ContentService {
 
         Path out = Paths.get("src/main/resources/static/vue/src/assets/images/" + name + "." + ext);
         try (final InputStream in = photo.getInputStream()) {
-            Files.copy(in, out);
+            Files.copy(in, out, StandardCopyOption.REPLACE_EXISTING);
             photo.delete();
         }
         multipartConfigElement = null;

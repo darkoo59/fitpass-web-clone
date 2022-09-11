@@ -102,11 +102,16 @@ public class AdministratorService {
                 payload.get(5),
                 payload.get(6)
         );
-        Location location = new Location(
-                Double.parseDouble(payload.get(7)),
-                Double.parseDouble(payload.get(8)),
-                address
-        );
+        Location location = new Location();
+        if(payload.get(7).isEmpty() || payload.get(8).isEmpty()){
+            location.setLatitude(45.2461);
+            location.setLongitude(19.8517);
+            location.setAddress(address);
+        }else {
+            location.setLatitude(Double.parseDouble(payload.get(7)));
+            location.setLongitude(Double.parseDouble(payload.get(8)));
+            location.setAddress(address);
+        }
         LocalTime time = LocalTime.of(0, 0);
         WorkHour workHour = new WorkHour(time ,time);
         SportsFacility facility = new SportsFacility(
