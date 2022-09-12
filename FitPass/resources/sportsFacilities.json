@@ -21,7 +21,7 @@
       }
     },
     "logo": "liman.jpg",
-    "averageRating": 4.9,
+    "averageRating": 3.0,
     "workHour": {
       "start": "09:00:00",
       "end": "10:00:00"
@@ -49,7 +49,7 @@
       }
     },
     "logo": "bascelik.jpg",
-    "averageRating": 4.7,
+    "averageRating": 0.0,
     "workHour": {
       "start": "09:00:00",
       "end": "10:00:00"
@@ -78,12 +78,12 @@
       }
     },
     "logo": "flex.jpg",
-    "averageRating": 4.6,
+    "averageRating": 3.0,
     "workHour": {
       "start": "09:00:00",
       "end": "17:59:00"
     },
-    "managerId": "0"
+    "managerId": "8"
   },
   {
     "id": "4",
@@ -106,34 +106,34 @@
       }
     },
     "logo": "nonstop.jpg",
-    "averageRating": 4.6,
+    "averageRating": 4.0,
     "workHour": {
       "start": "06:00:00",
       "end": "23:00:00"
     },
-    "managerId": "0"
+    "managerId": "9"
   },
   {
     "id": "5",
-    "name": "dasdasd",
-    "type": "dsada",
+    "name": "MissFit",
+    "type": "gym",
     "status": "0",
     "location": {
-      "latitude": 45.2461,
-      "longitude": 19.8517,
+      "latitude": 45.238747,
+      "longitude": 19.8273305,
       "address": {
-        "street": "dadad",
-        "number": "11",
-        "place": "dsadasd",
-        "zipCode": "11111"
+        "street": "Banović Strahinje",
+        "number": "8",
+        "place": "Novi Sad",
+        "zipCode": "21000"
       }
     },
-    "logo": "dasdasd.jpg",
+    "logo": "MissFit.png",
     "averageRating": 0.0,
     "workHour": {
-      "start": "00:00:00",
-      "end": "00:00:00"
+      "start": "08:00:00",
+      "end": "22:00:00"
     },
-    "managerId": "5"
+    "managerId": "6"
   }
 ]

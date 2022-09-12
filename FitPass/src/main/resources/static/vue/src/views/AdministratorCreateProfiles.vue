@@ -169,7 +169,7 @@ export default {
           this.$toast.error("User with this username already exists", {position: 'top', duration: 4000, maxToasts: 1})
         } else {
           this.$toast.success("Successful registration", {position: 'top', duration: 4000, maxToasts: 1})
-          await this.$router.push('/')
+          await this.$router.go(-1)
         }
       }
     },

@@ -5,7 +5,6 @@
     <p class="text-white">Type : {{facilityData.type}}</p>
     <p class="text-white">Status : {{ this.getFacilityStatus() }} </p>
     <p class="text-white">Average rating : {{facilityData.averageRating}}</p>
-    <p class="text-white">TODO : RASPORED TRENINGA KOJE SPORTSKI OBJEKAT NUDI</p>
   </div>
   <div class="container h-50">
     <div class="row h-100">

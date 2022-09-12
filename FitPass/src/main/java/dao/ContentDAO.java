@@ -83,7 +83,7 @@ public class ContentDAO implements IDAO<Content>{
 
     @Override
     public String getNewId() throws IOException {
-        int id = 0;
+        int id = 1;
         ArrayList<Content> contents = getAll();
         for (Content content:contents) {
             if(Integer.parseInt(content.getId()) >= id) {

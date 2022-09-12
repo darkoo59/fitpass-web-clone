@@ -396,7 +396,7 @@ public class TrainingService {
         for(SportsFacility facility : facilityDAO.getAll())
         {
             if(facility.getManagerId().equals(managerId))
-                return facility.getManagerId();
+                return facility.getId();
         }
         return "";
     }

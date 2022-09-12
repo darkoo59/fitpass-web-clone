@@ -110,8 +110,9 @@ public class AdministratorService {
             location.setLongitude(Double.parseDouble(payload.get(8)));
             location.setAddress(address);
         }
-        LocalTime time = LocalTime.of(0, 0);
-        WorkHour workHour = new WorkHour(time ,time);
+        LocalTime start = LocalTime.of(0, 0);
+        LocalTime end = LocalTime.of(23, 59);
+        WorkHour workHour = new WorkHour(start, end);
         SportsFacility facility = new SportsFacility(
                 payload.get(0),                 //name
                 payload.get(1),                 //type

@@ -1,7 +1,7 @@
 [
   {
     "id": "1",
-    "name": "Hipertrofija",
+    "name": "Hypertrophy",
     "type": "personalni",
     "facilityId": "1",
     "duration": {
@@ -10,12 +10,12 @@
     },
     "coachId": "1",
     "description": "Veoma zanimljiv i jak trening!",
-    "image": "Hipertrofija.jpg",
+    "image": "Hypertrophy.jpg",
     "price": 2000
   },
   {
     "id": "2",
-    "name": "Hipertrofija",
+    "name": "Weight lifting",
     "type": "grupni",
     "facilityId": "2",
     "duration": {
@@ -26,5 +26,19 @@
     "description": "Lake tezine!",
     "image": "bascelik.jpg",
     "price": 3000
+  },
+  {
+    "id": "3",
+    "name": "Cardio",
+    "type": "running",
+    "facilityId": "1",
+    "duration": {
+      "start": "10:15:00",
+      "end": "11:15:00"
+    },
+    "coachId": "1",
+    "description": "intense running training",
+    "image": "Cardio.jpg",
+    "price": 1000
   }
 ]

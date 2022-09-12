@@ -70,5 +70,14 @@
     "customerId": "3",
     "status": "NOT_ACTIVE",
     "priceDiscountPercentage": 30.0
+  },
+  {
+    "id": "UCUXU9RTO6",
+    "membershipId": "1",
+    "paymentDate": "2022-09-12 08:18",
+    "validityDateTime": "2022-09-27 08:18",
+    "customerId": "5",
+    "status": "ACTIVE",
+    "priceDiscountPercentage": 0.0
   }
 ]

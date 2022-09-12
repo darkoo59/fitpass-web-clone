@@ -23,5 +23,14 @@
       "2022-08-05"
     ],
     "nextTrainingDate": "2023-07-20"
+  },
+  {
+    "applicationDateTime": "2022-09-12 10:18",
+    "trainingId": "3",
+    "customerId": "5",
+    "coachId": "1",
+    "trainingDates": [
+      "2022-09-12"
+    ]
   }
 ]

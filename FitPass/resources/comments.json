@@ -3,8 +3,8 @@
     "id": "1",
     "customerId": "1",
     "sportsFacilityId": "1",
-    "text": "Sranje objekat",
-    "rating": "3",
+    "text": "Bad gym",
+    "rating": "2",
     "status": "1",
     "deleted": false
   },
@@ -12,8 +12,8 @@
     "id": "2",
     "customerId": "3",
     "sportsFacilityId": "1",
-    "text": "Najjaci objekat",
-    "rating": "2",
+    "text": "Very good",
+    "rating": "3",
     "status": "0",
     "deleted": false
   },
@@ -21,7 +21,7 @@
     "id": "3",
     "customerId": "3",
     "sportsFacilityId": "1",
-    "text": "Najjaci objekat",
+    "text": "I love it",
     "rating": "3",
     "status": "0",
     "deleted": false
@@ -30,25 +30,16 @@
     "id": "4",
     "customerId": "3",
     "sportsFacilityId": "1",
-    "text": "agagagagaga",
+    "text": "Everything is good",
     "rating": "3",
     "status": "1",
     "deleted": false
   },
   {
     "id": "5",
-    "customerId": "3",
+    "customerId": "5",
     "sportsFacilityId": "1",
-    "text": "Darko je najaci u fitness centru Liman",
-    "rating": "4",
-    "status": "1",
-    "deleted": false
-  },
-  {
-    "id": "6",
-    "customerId": "3",
-    "sportsFacilityId": "2",
-    "text": "Bas jaka",
+    "text": "Very good gym",
     "rating": "4",
     "status": "1",
     "deleted": false
