@@ -1,4 +1,4 @@
-# FitPass-web-app
+# FitPass Web Application
  <br>
 Technologies used: HTML, CSS, JS, Vue.js 3, Bootstrap v5.0, Java, Apache Spark<br><br>
 The project was done by: darkoo59, Marko007205<br><br>
