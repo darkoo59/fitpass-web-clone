@@ -33,7 +33,7 @@ Here're some of the project's best features:
 <p>1. Cloning a repository</p>
 
 ```
-git clone https://github.com/darkoo59/FitPass-web-app.git
+git clone https://github.com/darkoo59/fitpass-web-clone.git
 ```
 
 <p>2. Starting public project</p>
