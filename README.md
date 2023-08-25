@@ -70,3 +70,9 @@ Technologies used in the project:
 *   Bootstrap v5.0
 *   Vue.js
 *   And more
+
+<h2>👩‍👨‍👦‍👧 Contributors:</h2>
+
+*   darkoo59
+*   Marko007205
+
