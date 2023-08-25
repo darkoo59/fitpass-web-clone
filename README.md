@@ -1,12 +1,58 @@
-# FitPass Web Application
- <br>
-Technologies used: HTML, CSS, JS, Vue.js 3, Bootstrap v5.0, Java, Apache Spark<br><br>
-The project was done by: darkoo59, Marko007205<br><br>
-Description: Project done at third year of university. We have worked on the project from May to September 2022.<br><br>
-Specification: You can read complete specification <a href="https://github.com/darkoo59/FitPass-web-app/blob/dev/Web%20Programiranje%20-%20Projekat%202021-2022%20(1).pdf" target="blank">here</a><br><br>
-Screenshots:<br> <br>
-<img src = "https://github.com/darkoo59/FitPass-web-app/blob/dev/FitPass/src/main/resources/static/vue/src/assets/images/ss1.png"></img> <br>
-<img src = "https://github.com/darkoo59/FitPass-web-app/blob/dev/FitPass/src/main/resources/static/vue/src/assets/images/ss2.png"></img> <br>
-<img src = "https://github.com/darkoo59/FitPass-web-app/blob/dev/FitPass/src/main/resources/static/vue/src/assets/images/ss3.png"></img> <br>
-<img src = "https://github.com/darkoo59/FitPass-web-app/blob/dev/FitPass/src/main/resources/static/vue/src/assets/images/ss4.png"></img> <br>
-<img src = "https://github.com/darkoo59/FitPass-web-app/blob/dev/FitPass/src/main/resources/static/vue/src/assets/images/ss5.png"></img> <br>
+<h1 align="center" id="title">Fitpass-clone</h1>
+
+<h2>Project Screenshots:</h2>
+
+<img src="https://github.com/darkoo59/FitPass-web-app/blob/dev/FitPass/src/main/resources/static/vue/src/assets/images/ss1.png" alt="project-screenshot" width="400" height="400/">
+
+<img src="https://github.com/darkoo59/FitPass-web-app/blob/dev/FitPass/src/main/resources/static/vue/src/assets/images/ss2.png" alt="project-screenshot" width="400" height="400/">
+
+<img src="https://github.com/darkoo59/FitPass-web-app/blob/dev/FitPass/src/main/resources/static/vue/src/assets/images/ss3.png" alt="project-screenshot" width="400" height="400/">
+
+<img src="https://github.com/darkoo59/FitPass-web-app/blob/dev/FitPass/src/main/resources/static/vue/src/assets/images/ss4.png" alt="project-screenshot" width="400" height="400/">
+
+<img src="https://github.com/darkoo59/FitPass-web-app/blob/dev/FitPass/src/main/resources/static/vue/src/assets/images/ss5.png" alt="project-screenshot" width="400" height="400/">
+
+  
+  
+<h2>🧐 Features</h2>
+
+Here're some of the project's best features:
+
+*   Registration
+*   Login
+*   Profile editing
+*   All facilities
+*   Facilites editing
+*   Searching and filtering
+*   Promo codes
+*   Trainings
+*   And more
+
+<h2>🛠️ Installation Steps:</h2>
+
+<p>1. Cloning a repository</p>
+
+```
+git clone https://github.com/darkoo59/FitPass-web-app.git
+```
+
+<p>2. Starting public project</p>
+
+```
+npm start
+```
+
+  
+  
+<h2>💻 Built with</h2>
+
+Technologies used in the project:
+
+*   Java
+*   Spark Framework
+*   HTML
+*   CSS
+*   JavaScript
+*   Bootstrap v5.0
+*   Vue.js
+*   And more
