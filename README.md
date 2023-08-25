@@ -1,16 +1,16 @@
-<h1 align="center" id="title">Fitpass-clone</h1>
+<h1 align="center" id="title">Fitpass 💪</h1>
 
-<h2>Project Screenshots:</h2>
+<h2>📷 Project Screenshots:</h2>
 
-<img src="https://github.com/darkoo59/FitPass-web-app/blob/dev/FitPass/src/main/resources/static/vue/src/assets/images/ss1.png" alt="project-screenshot" width="400" height="400/">
+<img src="https://github.com/darkoo59/FitPass-web-app/blob/dev/FitPass/src/main/resources/static/vue/src/assets/images/ss1.png" alt="project-screenshot" width="900" height="450/">
 
-<img src="https://github.com/darkoo59/FitPass-web-app/blob/dev/FitPass/src/main/resources/static/vue/src/assets/images/ss2.png" alt="project-screenshot" width="400" height="400/">
+<img src="https://github.com/darkoo59/FitPass-web-app/blob/dev/FitPass/src/main/resources/static/vue/src/assets/images/ss2.png" alt="project-screenshot" width="900" height="450/">
 
-<img src="https://github.com/darkoo59/FitPass-web-app/blob/dev/FitPass/src/main/resources/static/vue/src/assets/images/ss3.png" alt="project-screenshot" width="400" height="400/">
+<img src="https://github.com/darkoo59/FitPass-web-app/blob/dev/FitPass/src/main/resources/static/vue/src/assets/images/ss3.png" alt="project-screenshot" width="900" height="450/">
 
-<img src="https://github.com/darkoo59/FitPass-web-app/blob/dev/FitPass/src/main/resources/static/vue/src/assets/images/ss4.png" alt="project-screenshot" width="400" height="400/">
+<img src="https://github.com/darkoo59/FitPass-web-app/blob/dev/FitPass/src/main/resources/static/vue/src/assets/images/ss4.png" alt="project-screenshot" width="900" height="450/">
 
-<img src="https://github.com/darkoo59/FitPass-web-app/blob/dev/FitPass/src/main/resources/static/vue/src/assets/images/ss5.png" alt="project-screenshot" width="400" height="400/">
+<img src="https://github.com/darkoo59/FitPass-web-app/blob/dev/FitPass/src/main/resources/static/vue/src/assets/images/ss5.png" alt="project-screenshot" width="900" height="450/">
 
   
   
@@ -42,7 +42,21 @@ git clone https://github.com/darkoo59/FitPass-web-app.git
 npm start
 ```
 
-  
+<p>3. Starting backend project</p>
+
+🔧 Build the Project:
+
+```
+mvn clean package
+```
+
+🚀 Run the Application:
+
+    💻 Using IntelliJ IDEA:
+
+      1.Open the project in IntelliJ IDEA.
+      2.Navigate to the MainApp class in the project explorer.
+      3.Right-click on the class and select "Run MainApp".
   
 <h2>💻 Built with</h2>
 
